@@ -37,10 +37,10 @@ module.exports = function () {
   }
 
   var imgs = {
-    border: imgfy('/mascote/img/bg-final-clean.png'),
-    olyLogo: imgfy('/mascote/img/' + m.category + '-logo' + imgSuffix + '.png'),
-    selfieLogo: imgfy('/mascote/img/selfie-logo' + imgSuffix + '.png'),
-    url: imgfy('/mascote/img/site-url' + imgSuffix + '.png')
+    border: imgfy('img/bg-final-clean.png'),
+    olyLogo: imgfy('img/' + m.category + '-logo' + imgSuffix + '.png'),
+    selfieLogo: imgfy('img/selfie-logo' + imgSuffix + '.png'),
+    url: imgfy('img/site-url' + imgSuffix + '.png')
   };
 
   var ctx = canvas.getContext('2d');

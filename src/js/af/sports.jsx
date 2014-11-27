@@ -21,7 +21,7 @@ var Sport = React.createClass({
   },
 
   fetchText: function () {
-    fetch('/mascote/text/' + this.context.locales[0].substr(0, 2) +
+    fetch('text/' + this.context.locales[0].substr(0, 2) +
       '/sports/' + this.props.sport.category + '/' +
       this.props.sport.id.toLowerCase() + '.html')
         .then(function (response) {
@@ -100,7 +100,7 @@ var Sport = React.createClass({
       last: this.props.index === 2
     });
 
-    var img = '/mascote/img/cards/' + sport.category + '/' + sport.id + '.png';
+    var img = 'img/cards/' + sport.category + '/' + sport.id + '.png';
 
     return (
       <div className={classes} onClick={this.props.slideTo}>

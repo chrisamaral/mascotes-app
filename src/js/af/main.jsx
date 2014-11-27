@@ -83,7 +83,7 @@ var Question = React.createClass({
           <span>{this.props.q}</span>
         </p>
         <fieldset>
-          <img src='/mascote/img/af-mascote-esquerda.png' />
+          <img src='img/af-mascote-esquerda.png' />
 
           <ul>
             {
@@ -94,7 +94,7 @@ var Question = React.createClass({
             }
       </ul>
 
-      <img src='/mascote/img/af-mascote-direita.png' />
+      <img src='img/af-mascote-direita.png' />
     </fieldset>
         <div id='AFNavigation'>
           <a href='' className={prevClasses} type='submit' onClick={this.props.prev ? this.prev : cancel}>{'<'}</a>
