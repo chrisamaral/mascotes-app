@@ -1,8 +1,15 @@
 {
   "name": "MascotesApp",
+  "description": "Aplicativo dos Mascotes Rio 2016",
   "version": "0.0.1",
-  "dependencies": {
+  "private": true,
 
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/agenciakindle/r2016-mascotes-app"
+  },
+
+  "dependencies": {
     "browserify": "^5.9.1",
     "gulp": "^3.8.6",
     "gulp-autoprefixer": "^1.0.1",
@@ -16,10 +23,12 @@
     "vinyl-source-stream": "*",
     "watch": "*",
 
+    "intl": "*",
     "react": "~0.12",
     "react-intl": "1.0.0",
     "reactify": "^0.15.2",
 
+    "async": "*",
     "jwerty": "*",
     "localforage": "*"
   },
