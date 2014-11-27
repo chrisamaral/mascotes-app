@@ -13,7 +13,7 @@ var gulp = require('gulp'),
   phonegapBuild = require('gulp-phonegap-build');
 
 gulp.task('server', function () {
-  gulp.src('./public')
+  gulp.src('./www')
     .pipe(webserver({
       port: 1999,
       host: '0.0.0.0',
@@ -30,7 +30,7 @@ gulp.task('scripts', function () {
   })
     .bundle().on('error', gutil.log)
     .pipe(source('app.js'))
-    .pipe(gulp.dest('./public/js'));
+    .pipe(gulp.dest('./www/js'));
 });
 
 gulp.task('sass', function () {
@@ -41,7 +41,7 @@ gulp.task('sass', function () {
       browsers: require('../r2016.browsers.js'),
       cascade: false
     }))
-    .pipe(gulp.dest('./public/css'));
+    .pipe(gulp.dest('./www/css'));
 });
 
 gulp.task('watch', function() {
@@ -51,18 +51,18 @@ gulp.task('watch', function() {
 
 gulp.task('compress', function() {
 
-  gulp.src('./public/js/app.js')
+  gulp.src('./www/js/app.js')
     .pipe(uglify())
-    .pipe(gulp.dest('./public/js/'));
+    .pipe(gulp.dest('./www/js/'));
 
-  gulp.src('./public/js/loader.js')
+  gulp.src('./www/js/loader.js')
     .pipe(uglify())
-    .pipe(gulp.dest('./public/js/'));
+    .pipe(gulp.dest('./www/js/'));
 
-  gulp.src(['./public/css/app.css'])
-    .pipe(concat('public.css'))
+  gulp.src(['./www/css/app.css'])
+    .pipe(concat('www.css'))
     .pipe(minifyCSS())
-    .pipe(gulp.dest('./public/css/'));
+    .pipe(gulp.dest('./www/css/'));
 });
 
 gulp.task('generate',
@@ -78,7 +78,7 @@ gulp.task('default',
 );
 
 gulp.task('phonegap-build', function () {
-  gulp.src(['public/**/*'])
+  gulp.src(['www/**/*'])
     .pipe(phonegapBuild({
       "isRepository": "true",
       "appId": "1090635",
