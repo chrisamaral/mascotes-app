@@ -19,7 +19,7 @@ body{
   width: 100%;
   display: table !important;
 
-  background: url(img/bg-af.jpg) center no-repeat !important;
+  background: url(../img/bg-af.jpg) center no-repeat !important;
   background-size: cover !important;
   overflow: hidden;
   font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
@@ -80,7 +80,7 @@ body{
 }
 
 #AFClose{
-  background: url(img/bt-close.png) center no-repeat;
+  background: url(../img/bt-close.png) center no-repeat;
   background-size: contain;
   width: 3em;
   height: 4em;
@@ -106,7 +106,7 @@ body{
 
 #AFLogo{
   display: table-cell;
-  background: url(img/af-logo.png) center no-repeat;
+  background: url(../img/af-logo.png) center no-repeat;
   background-size: auto;
   height: 100%;
   width: 100%;
@@ -115,7 +115,7 @@ body{
 
 }
 .en #AFLogo{
-  background: url(img/af-logo-en.png) center no-repeat;
+  background: url(../img/af-logo-en.png) center no-repeat;
 }
 
 #AFNavigation{
@@ -131,11 +131,11 @@ body{
     text-indent: -9999px;
 
     &.prev{
-      background: url(img/bt-af-prev.png) center no-repeat;
+      background: url(../img/bt-af-prev.png) center no-repeat;
     }
 
     &.next{
-      background: url(img/bt-af-next.png) center no-repeat;
+      background: url(../img/bt-af-next.png) center no-repeat;
     }
     &.disabled{
       @include filter(grayscale(100%));

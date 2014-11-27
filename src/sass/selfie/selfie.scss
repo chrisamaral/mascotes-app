@@ -23,11 +23,11 @@
 #SelfieApp {
   font-size: 100%;
   overflow: hidden;
-  background: url(img/bg-default.jpg) center / 100% 100% no-repeat;
+  background: url(../img/bg-default.jpg) center / 100% 100% no-repeat;
 }
 
 #SelfieClose {
-  background: url(img/bt-close.png) center / contain no-repeat;
+  background: url(../img/bt-close.png) center / contain no-repeat;
   width: 3em;
   height: 4em;
   line-height: 4em;
@@ -94,14 +94,14 @@
 }
 
 #SelfieTela0Logo {
-  background: url(img/tela0-logo.png) center / contain no-repeat;
+  background: url(../img/tela0-logo.png) center / contain no-repeat;
   width: 90%;
   height: 14em;
   margin: 1em auto;
 }
 
 .en #SelfieTela0Logo {
-  background: url(img/tela0-logo-en.png) center / contain no-repeat;
+  background: url(../img/tela0-logo-en.png) center / contain no-repeat;
 }
 
 #SelfieTela0 p {
@@ -117,11 +117,11 @@
 #SelfieTela0Mascotes {
   display: table-cell;
   vertical-align: middle;
-  background: url(img/mascotes/a/tela0-mascotes.png) center / contain no-repeat;
+  background: url(../img/mascotes/a/tela0-mascotes.png) center / contain no-repeat;
 }
 
 #SelfieBtSkip {
-  background: url(img/bt-vamos-nessa.png) center / 100% 100% no-repeat;
+  background: url(../img/bt-vamos-nessa.png) center / 100% 100% no-repeat;
   padding: 0 1.5em;
   line-height: 4em;
   height: 5em;
@@ -195,7 +195,7 @@
 
   background: #fffbcc;
   &.isEmpty {
-    background: url(img/bg-canvas.png) center / cover no-repeat #fffbcc;
+    background: url(../img/bg-canvas.png) center / cover no-repeat #fffbcc;
   }
 }
 
@@ -299,34 +299,34 @@
 }
 
 #BtChangeSelfie {
-  background: url(img/bt-trocar.png) center / 100% 100% no-repeat;
+  background: url(../img/bt-trocar.png) center / 100% 100% no-repeat;
 }
 
 #SelfieTakePic {
-  background: url(img/bt-tirar-nova.png) center / 100% 100% no-repeat;
+  background: url(../img/bt-tirar-nova.png) center / 100% 100% no-repeat;
   padding: 0 2em;
   text-indent: 1em;
 }
 
 #SelfieOpenGallery {
-  background: url(img/bt-escolher-foto.png) center / 100% 100% no-repeat;
+  background: url(../img/bt-escolher-foto.png) center / 100% 100% no-repeat;
   padding: 0 2.2em;
   text-indent: 1em;
 }
 
 #BtGoBack {
-  background: url(img/bt-tirar-outra.png) center no-repeat;
+  background: url(../img/bt-tirar-outra.png) center no-repeat;
   margin: 0 1em 0 12em;
 }
 
 #BtProceedToSave {
-  background: url(img/bt-quero-essa.png) center / 100% 100% no-repeat;
+  background: url(../img/bt-quero-essa.png) center / 100% 100% no-repeat;
   padding-left: 1em;
   padding-right: 3em;
 }
 
 #BtDownload {
-  background: url(img/bt-sv.png) center / contain no-repeat;
+  background: url(../img/bt-sv.png) center / contain no-repeat;
   position: absolute;
   width: 10em;
   top: -0.7em;
@@ -385,17 +385,17 @@
 }
 
 #BtShareFB {
-  background: url(img/fb-logo.png) center no-repeat;
+  background: url(../img/fb-logo.png) center no-repeat;
 }
 
 #BtShareTwitter {
-  background: url(img/twitter-logo.png) center no-repeat;
+  background: url(../img/twitter-logo.png) center no-repeat;
 }
 
 #SelfieLogo {
   display: block;
   position: absolute;
-  background: url(img/selfie-logo.png) center no-repeat;
+  background: url(../img/selfie-logo.png) center no-repeat;
   width: 12em;
   height: auto;
   left: 1em;
@@ -453,7 +453,7 @@
   top: 6em;
   bottom: 6em;
   width: 100%;
-  background: url(img/bg-side-menu.png) center / 100% 100% no-repeat;
+  background: url(../img/bg-side-menu.png) center / 100% 100% no-repeat;
   > img {
     width: 100%;
     height: 100%;
@@ -472,13 +472,13 @@
   display: block;
   width: 100%;
   height: 6em;
-  background: url(img/bt-up.png) center no-repeat;
+  background: url(../img/bt-up.png) center no-repeat;
   top: 6em;
 }
 
 #SideMenuScrollDown {
   bottom: 4em;
-  background: url(img/bt-down.png) center no-repeat;
+  background: url(../img/bt-down.png) center no-repeat;
 }
 
 #IScrollWrapper, #SelfieSideMenu {

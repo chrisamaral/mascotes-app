@@ -11,7 +11,7 @@
   margin: 0;
 
   height: 22em;
-  background: url(img/af-text-container.png) center no-repeat;
+  background: url(../img/af-text-container.png) center no-repeat;
   background-size: 90% 17em;
   @media (min-width: 1500px) {
     background-size: 75% 17em;
@@ -73,7 +73,7 @@
     text-align: center;
     line-height: 4em;
     color: white;
-    background: url(img/bt-af-proceed.png) center no-repeat;
+    background: url(../img/bt-af-proceed.png) center no-repeat;
     font-size: x-large;
     background-size: contain;
     @media screen and (max-width: 1024px) {
@@ -84,6 +84,6 @@
 }
 
 #AFWelcomeRight {
-  background: url(img/af-mascotes.png) left center no-repeat;
+  background: url(../img/af-mascotes.png) left center no-repeat;
   background-size: 80%;
 }
