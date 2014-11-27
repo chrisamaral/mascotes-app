@@ -135,21 +135,22 @@ var R2016MascotesApp = React.createClass({
     switch (this.state.activeApp) {
 
       case 'af':
+
         localeData = Atleta.messages[this.props.lang];
         SelectedComponent = Atleta.component;
-        wrapperStyle.height = wrapperStyle.minHeight;
-
         if (!AFFlow[this.props.lang]) {
           AFFlow[this.props.lang] = Atleta.Flow(this.props.lang);
         }
-
         mainContent = <SelectedComponent messages={localeData.messages} locales={localeData.locales} flow={AFFlow[this.props.lang]} />;
+
         break;
 
       case 'selfie':
+
         localeData = Selfie.messages[this.props.lang];
         SelectedComponent = Selfie.component;
         mainContent = <SelectedComponent messages={localeData.messages} locales={localeData.locales} />;
+
         break;
 
       default:

@@ -64,9 +64,14 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('./public/css/'));
 });
 
+gulp.task('generate',
+  gulpsync.sync(['scripts', 'sass'], 'compile assets')
+);
+
 gulp.task('build',
   gulpsync.sync(['scripts', 'sass', 'compress'], 'build assets')
 );
+
 gulp.task('default',
   gulpsync.sync(['server', 'scripts', 'sass', 'watch'], 'normal workflow')
 );
