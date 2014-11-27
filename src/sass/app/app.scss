@@ -1,21 +1,21 @@
 @font-face {
   font-family: 'TheSansRio2016TT-Regular';
-  src: url("/fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.eot");
-  src: url("/fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.eot?#iefix") format("embedded-opentype"), url("/fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.woff") format("woff"), url("/fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.ttf") format("truetype"), url("/fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.svg#TheSansRio2016TT-Regular") format("svg");
+  src: url("/mascote/fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.eot");
+  src: url("/mascote/fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.eot?#iefix") format("embedded-opentype"), url("/mascote/fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.woff") format("woff"), url("/mascote/fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.ttf") format("truetype"), url("/mascote/fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.svg#TheSansRio2016TT-Regular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'TheSansRio2016TT-Bold';
-  src: url("/fonts/TheSansRio2016/bold/TheSansRio2016TT-Bold.eot");
-  src: url("/fonts/TheSansRio2016/bold/TheSansRio2016TT-Bold.eot?#iefix") format("embedded-opentype"), url("/fonts/TheSansRio2016/bold/TheSansRio2016TT-Bold.woff") format("woff"), url("/fonts/TheSansRio2016/bold/TheSansRio2016TT-Bold.ttf") format("truetype"), url("/fonts/TheSansRio2016/bold/TheSansRio2016TT-Bold.svg#TheSansRio2016TT-Bold") format("svg");
+  src: url("/mascote/fonts/TheSansRio2016/bold/TheSansRio2016TT-Bold.eot");
+  src: url("/mascote/fonts/TheSansRio2016/bold/TheSansRio2016TT-Bold.eot?#iefix") format("embedded-opentype"), url("/mascote/fonts/TheSansRio2016/bold/TheSansRio2016TT-Bold.woff") format("woff"), url("/mascote/fonts/TheSansRio2016/bold/TheSansRio2016TT-Bold.ttf") format("truetype"), url("/mascote/fonts/TheSansRio2016/bold/TheSansRio2016TT-Bold.svg#TheSansRio2016TT-Bold") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'rio2016regular';
-  src: url("/fonts/rio2016/regular/rio2016_rg-webfont.eot");
-  src: url("/fonts/rio2016/regular/rio2016_rg-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/rio2016/regular/rio2016_rg-webfont.woff2") format("woff2"), url("/fonts/rio2016/regular/rio2016_rg-webfont.woff") format("woff"), url("/fonts/rio2016/regular/rio2016_rg-webfont.ttf") format("truetype"), url("/fonts/rio2016/regular/rio2016_rg-webfont.svg#rio2016regular") format("svg");
+  src: url("/mascote/fonts/rio2016/regular/rio2016_rg-webfont.eot");
+  src: url("/mascote/fonts/rio2016/regular/rio2016_rg-webfont.eot?#iefix") format("embedded-opentype"), url("/mascote/fonts/rio2016/regular/rio2016_rg-webfont.woff2") format("woff2"), url("/mascote/fonts/rio2016/regular/rio2016_rg-webfont.woff") format("woff"), url("/mascote/fonts/rio2016/regular/rio2016_rg-webfont.ttf") format("truetype"), url("/mascote/fonts/rio2016/regular/rio2016_rg-webfont.svg#rio2016regular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -51,7 +51,7 @@ html, body{
   @extend .wrapped;
   line-height: 3em;
   background: #2f3222;
-  font-size: medium;
+  font-size: large;
   font-weight: bold;
   color: white;
   text-indent: 3em;
