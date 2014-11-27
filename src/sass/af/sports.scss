@@ -1,0 +1,374 @@
+#AFSports{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transform: translate3d(0,0,0);
+  position: relative;
+  padding-bottom: 4em;
+
+  *,:after,:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  >section{
+    display: block;
+    position: relative;
+    width: 85%;
+    margin: 1em auto;
+    list-style: none;
+    height: 28em;
+    @media (min-height: 900px), (min-width: 1366px) {
+      height: 32em;
+    }
+    >span{
+      @extend .inner;
+    }
+  }
+
+  #AFLogo{
+    width: 40%;
+    background-size: 50%;
+  }
+}
+
+#AFCoolStoryBro{
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+  line-height: 1.3em;
+  color: white;
+  font-size: xx-large;
+  font-weight: bold;  width: 59%;
+  margin-left: -5%;
+  text-align: center;
+  text-shadow: 1px 2px rgba(30, 50, 100, 0.3);
+
+  strong{
+    color: yellow;
+    font-size: larger;
+  }
+}
+
+#AFSlidePrev, #AFSlideNext{
+  font-size: x-large;
+  display: inline-block;
+  padding: 0 3em;
+  line-height: 4em;
+  position: absolute;
+  top: 15em;
+  background-size: contain !important;
+  text-indent: -9999px;
+  z-index: 2;
+
+}
+
+#AFSlidePrev{
+  background: url(/mascote/img/bt-af-prev.png) center no-repeat;
+  left: 12.5%;
+}
+
+#AFSlideNext{
+  background: url(/mascote/img/bt-af-next.png) center no-repeat;
+  right: 12.5%;
+}
+.AFBTSportDetails{
+  display: inline-block;
+  color: white;
+  width: auto;
+  font-size: large;
+  line-height: 3em;
+  height: 3em;
+  padding: 0 2em;
+  background: url(/mascote/img/bt-af-blue.png) center no-repeat;
+  background-size: contain;
+
+}
+.AFSport {
+  display: block;
+  position: absolute;
+  width: 30%;
+  text-align: center;
+  height: 100%;
+  overflow: visible;
+  line-height: 1.5em;
+  top: 0;
+  //left height width top opacity
+  @include transition(all, .2s, ease-out);
+
+  h2{
+    font-size: xx-large;
+    font-weight: bold;
+    color: rgb(0, 145, 214);
+    margin: 0;
+    line-height: 2em;
+    width: 100%;
+
+    overflow: hidden;
+    height: 2em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    >span{
+      display: inline;
+    }
+  }
+
+  .AFSPortContent{ }
+
+  .AFSportImg{
+    height: 20em;
+    position: relative;
+    .img{
+      display: block;
+      position: absolute;
+      height: 120%;
+      width: 120%;
+      top: -20%;
+      left: -10%;
+    }
+  }
+
+  .AFInfo{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: x-large;
+  }
+
+
+  >.inner{
+    background: url(/mascote/img/card-af-small.png) center no-repeat;
+    background-size: 88% 100%;
+    padding: 0;
+  }
+}
+
+.AFSPortContent{
+  padding: 5% 11% 7% 11%;
+}
+
+.AFSport.expanded{
+  text-align: left;
+
+  .AFBTSportDetails{
+    font-size: medium;
+  }
+
+  h2{
+    text-align: left;
+    line-height: 1.2em;
+    height: auto;
+    white-space: normal;
+  }
+
+  .AFSPortContent{
+    display: block;
+    position: relative;
+  }
+
+  .AFSportImg{
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    .img{
+      display: block;
+      position: absolute;
+      height: 110%;
+      width: 150%;
+      top: -5%;
+      left: -35%;
+    }
+  }
+
+  .AFInfo{
+    text-align: center;
+    display: block;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 60%;
+    overflow-y: auto;
+    padding-left: 2em;
+    font-size: x-large;
+
+    article{
+      max-width: 30em;
+      text-align: left;
+      font-size: medium;
+    }
+  }
+
+  .AFInfoWrapper {
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .AFInfoTB{
+    display: table;
+    height: 100%;
+  }
+
+  .AFInfoExpansible{
+    display: table-cell;
+    vertical-align: middle;
+    height: auto;
+  }
+
+  .AFInfoExpansible.mid{
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+  }
+
+  >.inner{
+    background: url(/mascote/img/card-af-large.png) center no-repeat;
+    background-size: 88% 100%;
+  }
+
+
+}
+.AFDoSomething{
+  display: block;
+  position: relative;
+  text-align: left;
+  font-size: medium;
+
+  @media (max-width: 1366px) {
+    font-size: small;
+  }
+
+  line-height: 3em;
+  margin-top: 2em;
+  text-align: center;
+  >a{
+
+  }
+
+  .share-fb, .share-tw{
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+  }
+  .share-fb{
+    background: url(/mascote/img/af-fb.png) center no-repeat;
+    background-size: contain;
+    margin-left: 0.7em;
+  }
+  .share-tw{
+    background: url(/mascote/img/af-twitter.png) center no-repeat;
+    background-size: contain;
+  }
+  .share-this{
+
+    display: inline-block;
+    font-size: small;
+    color: rgb(150, 150, 150);
+    font-weight: bold;
+    position: absolute;
+    top: -3em;
+    width: 100%;
+
+    @media (max-width: 1280px) {
+      display: block;
+      position: relative;
+      top: 0;
+    }
+  }
+  >.share{
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    margin-left: 0.5em;
+  }
+}
+.AFSport.first{
+  left: 10%;
+}
+
+.AFSport.first,
+.AFSport.last{
+
+  cursor: pointer;
+  .AFSPortContent{
+    padding: 10% 13%;
+  }
+
+  opacity: .7;
+
+  >.inner{
+    height: 80%;
+    margin: 10% 0;
+  }
+}
+
+.AFSport.middle{
+  z-index: 2;
+  width: 50%;
+  left: 25%;
+}
+
+.AFSport.expanded.middle{
+  width: 70%;
+  left: 15%;
+}
+
+.AFSport.last{
+  right: 10%;
+
+}
+
+#AFSportsGoBack{
+  width: auto;
+  display: block;
+  position: fixed;
+  z-index: 2;
+  padding: 0 2em 0 2em;
+  bottom: 1em;
+  right: -1em;
+  line-height: 4em;
+  text-align: right;
+  background: url(/mascote/img/bt-af-back.png) right center no-repeat;
+  background-size: 100%;
+  font-size: large;
+  font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
+  color: $dark-brown;
+  transition: transform .2s ease-out;
+  &:hover{
+    transform: translate3d(-1em, 0, 0);
+  }
+  &:active{
+    transform: translate3d(-0.7em, 0, 0);
+  }
+}
+
+
+
+#AFSportsIndex{
+  background: url(/mascote/img/af-sports-index.png) center no-repeat;
+  background-size: contain;
+  padding: 0; margin: 0;
+  line-height: 3.5em;
+  margin-top: -1.5em;
+  font-weight: bold;
+  color: $dark-brown;
+
+  position: absolute;
+  display: block;
+  bottom: 3.5em;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+}
+
+
+.AFPopBt{
+  transition: transform .2s ease-out;
+  &:hover{
+    transform: scale(1.02) translate3d(0, -0.3em, 0) !important;
+  }
+  &:active{
+    transform: scale(1.02) translate3d(0, 0em, 0) !important;
+  }
+}

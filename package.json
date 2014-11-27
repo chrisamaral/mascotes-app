@@ -40,6 +40,6 @@
   },
 
   "scripts": {
-    "phonegap-build": "cd public && rm -rf mascote && rm -rf img && rm -rf text && rm -rf fonts && cp -Rf ../../mascote-producao/img . && cp -Rf ../../rio2016-atletadofuturo/af/fonts . && cp -Rf ../../rio2016-atletadofuturo/af/text . && cd .. && gulp phonegap-build && cd public && ln -s mascote . && cd .."
+    "save": "./make.static.sh && gulp build && gulp phonegap-build"
   }
 }

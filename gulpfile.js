@@ -60,7 +60,7 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('./www/js/'));
 
   gulp.src(['./www/css/app.css'])
-    .pipe(concat('www.css'))
+    .pipe(concat('app.css'))
     .pipe(minifyCSS())
     .pipe(gulp.dest('./www/css/'));
 });

@@ -1,0 +1,166 @@
+@import "mixins";
+
+$dark-brown: darken(rgb(172, 81, 0), 5%);
+
+body{
+  margin: 0; padding: 0;
+}
+
+.inner{
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0; padding: 0;
+}
+
+.AF{
+  height: auto;
+  width: 100%;
+  display: table !important;
+
+  background: url(/mascote/img/bg-af.jpg) center no-repeat !important;
+  background-size: cover !important;
+  overflow: hidden;
+  font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
+
+  h2{
+    text-indent: 0 !important;
+  }
+
+  a{
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  p{
+    margin: 1em 0;
+  }
+
+  header{
+    display: table;
+    width: 100%;
+    height: 12em;
+    //padding: 3em 2em;
+  }
+
+  .hoverable{
+    @include transition(transform, .4s, cubic-bezier(0.19, 1, 0.22, 1));
+
+    &:hover{
+      @include transform(translateY(-0.3em) scale(1.1));
+    }
+
+    &:active{
+      @include transform(translateY(0.1em));
+      &:hover{
+        @include transform(translateY(0.1em));
+      }
+    }
+  }
+
+}
+
+.AFNavBt{
+  transition: transform .2s ease-out;
+
+  &.left:hover{
+    transform: translate3d(-10%, 0, 0);
+  }
+  &.left:active{
+    transform: translate3d(-5%, 0, 0);
+  }
+
+  &.right:hover{
+    transform: translate3d(10%, 0, 0);
+  }
+  &.right:active{
+    transform: translate3d(5%, 0, 0);
+  }
+}
+
+#AFClose{
+  background: url(/mascote/img/bt-close.png) center no-repeat;
+  background-size: contain;
+  width: 3em;
+  height: 4em;
+  line-height: 4em;
+  text-indent: -9999px;
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  top: 0.5em; right: 1em;
+  font-size: large;
+  text-decoration: none;
+  z-index: 2;
+
+  @include transition(transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1));
+}
+
+#AFClose:hover{
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  @include transform(scale(1.2));
+}
+
+#AFLogo{
+  display: table-cell;
+  background: url(/mascote/img/af-logo.png) center no-repeat;
+  background-size: auto;
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+  font-size: x-large;
+
+}
+.en #AFLogo{
+  background: url(/mascote/img/af-logo-en.png) center no-repeat;
+}
+
+#AFNavigation{
+  text-align: center;
+  margin: 1em 0;
+  .AFButtonFlow{
+
+    margin-right: 1em;
+    display: inline-block;
+    padding: 0 3em;
+    line-height: 4em;
+    background-size: contain !important;
+    text-indent: -9999px;
+
+    &.prev{
+      background: url(/mascote/img/bt-af-prev.png) center no-repeat;
+    }
+
+    &.next{
+      background: url(/mascote/img/bt-af-next.png) center no-repeat;
+    }
+    &.disabled{
+      @include filter(grayscale(100%));
+      opacity: 0.3;
+    }
+  }
+}
+
+#AFContainer{
+  display: table-cell;
+  vertical-align: middle;
+  font-size: medium;
+}
+
+.AFContent{
+  display: block;
+  text-align: center;
+  position: relative;
+  max-width: 1600px;
+  margin: 1em auto;
+}
+
+
+
+@import "welcome";
+@import "question";
+@import "sports";
+

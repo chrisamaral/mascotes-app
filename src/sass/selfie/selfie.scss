@@ -1,0 +1,624 @@
+@function grayscale($value) {
+  @return #{"grayscale(" + $value + ")"};
+}
+
+#SelfieApp {
+  .fullWrapper {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0; padding: 0;
+  }
+  >.fullWrapper{
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+#SelfieApp *, :after, :before {
+  box-sizing: border-box;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+#SelfieApp {
+  font-size: 100%;
+  overflow: hidden;
+  background: url(/mascote/img/bg-default.jpg) center / 100% 100% no-repeat;
+}
+
+#SelfieClose {
+  background: url(/mascote/img/bt-close.png) center / contain no-repeat;
+  width: 3em;
+  height: 4em;
+  line-height: 4em;
+  text-indent: -9999px;
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  top: .5em;
+  right: 1em;
+  font-size: large;
+  text-decoration: none;
+  z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+}
+
+#SelfieApp {
+  .alert-box {
+    line-height: 3em;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    text-indent: 1em;
+    font-weight: 700;
+    font-family: "Helvetica Neue",Helvetica,Helvetica,Arial,sans-serif;
+    color: #fff;
+    z-index: 2;
+    &.radius {
+      border-radius: 4px;
+    }
+    &.success {
+      background-color: #43ac6a;
+    }
+    &.alert {
+      background-color: #f04124;
+    }
+    > .close {
+      cursor: pointer;
+      float: right;
+      margin-right: 1em;
+    }
+  }
+  ul {
+    list-style: none;
+  }
+  .sBt {
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+  }
+}
+
+
+
+#SelfieTela0 {
+  display: block;
+  text-align: center;
+  >div:last-child{
+    margin-left: 3em;
+  }
+}
+
+#SelfieTela0Logo {
+  background: url(/mascote/img/tela0-logo.png) center / contain no-repeat;
+  width: 90%;
+  height: 14em;
+  margin: 1em auto;
+}
+
+.en #SelfieTela0Logo {
+  background: url(/mascote/img/tela0-logo-en.png) center / contain no-repeat;
+}
+
+#SelfieTela0 p {
+  width: 15em;
+  margin: 2em auto;
+  font-family: TheSansRio2016TT-Bold,sans-serif;
+  font-size: x-large;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 1px 2px 1px rgba(100, 100, 100, 0.3);
+}
+
+#SelfieTela0Mascotes {
+  display: table-cell;
+  vertical-align: middle;
+  background: url(/mascote/img/mascotes/a/tela0-mascotes.png) center / contain no-repeat;
+}
+
+#SelfieBtSkip {
+  background: url(/mascote/img/bt-vamos-nessa.png) center / 100% 100% no-repeat;
+  padding: 0 1.5em;
+  line-height: 4em;
+  height: 5em;
+}
+
+#FlexRow {
+  @extend .fullWrapper;
+}
+
+#FlexRowLeft {
+  display: block;
+  position: absolute;
+  width: auto;
+  left: 0; right: 10em;
+  height: 100%;
+}
+.fullCam #FlexRowLeft{
+ transform: translateX(5em);
+}
+
+#FlexRowRight {
+  position: absolute;
+  height: 100%;
+  width: 10em;
+  right: 0;
+}
+
+#FlexColumn {
+  @extend .fullWrapper;
+}
+
+#FlexColumnTop {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  top: 0; bottom: 6em;
+}
+
+#FlexColumnBottom {
+  position: absolute;
+  height: 5em;
+  bottom: 0em;
+  width: 100%;
+}
+
+#SelfieApp {
+  video {
+    object-fit: cover;
+  }
+  height: 100%;
+  position: relative;
+  margin: auto;
+}
+
+#SelfieBkg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+
+#SelfieApp.landscape #CanvasWrapper {
+  overflow: hidden;
+  height: 90%;
+  width: 85%;
+  margin: 5% auto;
+  max-width: 1000px;
+
+  border: 1em solid #4c9023;
+  border-width: .8em;
+
+  background: #fffbcc;
+  &.isEmpty {
+    background: url(/mascote/img/bg-canvas.png) center / cover no-repeat #fffbcc;
+  }
+}
+
+
+
+#MenuBtsContainer {
+  text-align: center;
+}
+
+.sBt {
+  display: inline-block;
+  font-family: TheSansRio2016TT-Bold,sans-serif;
+  font-size: x-large;
+  line-height: 3em;
+  font-weight: 700;
+  margin: 0 1em;
+  color: #fff!important;
+  &:disabled {
+    filter: grayscale(1);
+    opacity: .8;
+  }
+}
+
+.lameHover {
+  transition: transform .4s ease-in;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.3em) scale(1.1) !important;
+  }
+  &:active {
+    transform: translateY(0.1em) !important;
+    &:hover {
+      transform: translateY(0.1em) !important;
+    }
+  }
+}
+
+.sBt {
+  &.error, &.loading, &.saved, &.waiting {
+    padding: 0 1.5em;
+    border-radius: 25%;
+  }
+  &.error {
+    background-color: #B52929!important;
+  }
+  &.saved {
+    > span {
+      animation-name: helloDumbAss;
+      animation-duration: 3s;
+      animation-iteration-count: 1;
+    }
+    background-color: #3F9C58!important;
+  }
+  &.waiting {
+    background-color: #969696!important;
+  }
+  &.loading {
+    background-color: #003f54!important;
+    > span {
+      animation-name: lameRotate;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+@keyframes helloDumbAss {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(2);
+  }
+  100%,50% {
+    transform: scale(1);
+  }
+}
+
+
+@keyframes lameRotate {
+  0% {
+    transform: rotate(0deg) !important;
+  }
+  50% {
+    transform: rotate(180deg) !important;
+  }
+  100% {
+    transform: rotate(360deg) !important;
+  }
+}
+
+
+#ShowPopupButton {
+  background-color: #43ac6a!important;
+  width: 4em;
+}
+
+#BtChangeSelfie, #BtGoBack, #SelfieTakePic {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+#BtChangeSelfie {
+  background: url(/mascote/img/bt-trocar.png) center / 100% 100% no-repeat;
+}
+
+#SelfieTakePic {
+  background: url(/mascote/img/bt-tirar-nova.png) center / 100% 100% no-repeat;
+  padding: 0 2em;
+  text-indent: 1em;
+}
+
+#SelfieOpenGallery {
+  background: url(/mascote/img/bt-escolher-foto.png) center / 100% 100% no-repeat;
+  padding: 0 2.2em;
+  text-indent: 1em;
+}
+
+#BtGoBack {
+  background: url(/mascote/img/bt-tirar-outra.png) center no-repeat;
+  margin: 0 1em 0 12em;
+}
+
+#BtProceedToSave {
+  background: url(/mascote/img/bt-quero-essa.png) center / 100% 100% no-repeat;
+  padding-left: 1em;
+  padding-right: 3em;
+}
+
+#BtDownload {
+  background: url(/mascote/img/bt-sv.png) center / contain no-repeat;
+  position: absolute;
+  width: 10em;
+  top: -0.7em;
+  line-height: 4em;
+  text-shadow: 0 0 4px rgba(166, 124, 0, 0.9), -1px 2px 2px rgba(166, 124, 0, 0.9), 1px -1px 1px rgba(166, 124, 0, 0.9);
+}
+
+.floatingMascote {
+  position: absolute;
+  bottom: 2em;
+  width: auto;
+  height: 50%;
+  z-index: 2;
+  &:first-child {
+    left: -2em;
+  }
+  &:last-of-type {
+    right: -4em;
+  }
+}
+
+#SelfieSaveMascote1 {
+  height: 50%;
+  width: auto;
+  bottom: 4.5em;
+}
+
+#SelfieInitialMascote1, #SelfieInitialMascote2{
+  height: 70%;
+}
+@media (max-width: 1024px), (max-height: 768px) {
+
+  #SelfieApp.landscape #FlexRowLeft{
+    max-height: 700px;
+  }
+  #FlexRowRight{
+    max-height: 700px;
+  }
+
+  #SelfieApp.landscape #SelfieSaveMascote1 {
+    height: 40%;
+  }
+  #SelfieApp.landscape #SelfieSaveMascote2 {
+    height: 45%;
+  }
+}
+
+
+#SelfieSaveMascote2 {
+  bottom: 4em;
+
+}
+
+#BtShareFB, #BtShareTwitter {
+  width: 4em;
+}
+
+#BtShareFB {
+  background: url(/mascote/img/fb-logo.png) center no-repeat;
+}
+
+#BtShareTwitter {
+  background: url(/mascote/img/twitter-logo.png) center no-repeat;
+}
+
+#SelfieLogo {
+  display: block;
+  position: absolute;
+  background: url(/mascote/img/selfie-logo.png) center no-repeat;
+  width: 12em;
+  height: auto;
+  left: 1em;
+  top: 1em;
+}
+
+#FlexColumn, #FlexRow {
+  height: 100%;
+}
+
+#SelfieCanvasBorder {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.ImgContainer {
+  position: absolute;
+  &.selected {
+    border: 2px solid rgba(88, 172, 250, 0.5);
+  }
+  > .fullWrapper > img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#SelfieFileSelector {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+#SelfieOpenGallery {
+  position: relative;
+}
+
+#SelfieSideMenuWrapper {
+  height: 100%;
+  position: relative;
+  font-size: medium;
+  width: 85%;
+  margin: 0 auto;
+  padding: 10em 0;
+  text-align: center;
+}
+
+#SideMenuBox {
+  position: absolute;
+  top: 6em;
+  bottom: 6em;
+  width: 100%;
+  background: url(/mascote/img/bg-side-menu.png) center / 100% 100% no-repeat;
+  > img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#SideMenuScrollDown {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 6em;
+}
+
+#SideMenuScrollUp {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 6em;
+  background: url(/mascote/img/bt-up.png) center no-repeat;
+  top: 6em;
+}
+
+#SideMenuScrollDown {
+  bottom: 4em;
+  background: url(/mascote/img/bt-down.png) center no-repeat;
+}
+
+#IScrollWrapper, #SelfieSideMenu {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+#IScrollWrapper {
+  height: 100%;
+  width: auto;
+  margin: 0 5%;
+}
+
+.SelfieSideMenuItem {
+  width: 90%;
+  margin: 1em auto;
+  background-color: #fffbec;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.3em) scale(1.05) !important;
+  }
+  &:active {
+    transform: translateY(0.1em) !important;
+    &:hover {
+      transform: translateY(0.1em) !important;
+    }
+  }
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.SelfiePopupMenuItem {
+  border: 3px solid #4f7a00;
+  border-radius: 10%;
+  border-bottom-width: 7px;
+  border-left-width: 4px;
+}
+
+.SelfieSideMenuItem {
+  border: 3px solid #4f7a00;
+  border-radius: 10%;
+  border-bottom-width: 7px;
+  border-left-width: 4px;
+  > img {
+    opacity: .4;
+    width: 100%;
+    height: auto;
+  }
+  &.selected {
+    background-color: #F2E4C6;
+  }
+}
+
+.SelfiePopupMenuItem.selected > img, .SelfieSideMenuItem.selected > img {
+  opacity: 1;
+}
+
+#SelfieAppErrors {
+  position: absolute;
+  width: 100%;
+  top: 1em;
+  left: 0;
+  z-index: 3;
+  padding: 0 5%;
+  &:empty {
+    display: none;
+  }
+}
+
+#SelfiePopUpMenuContainer {
+  position: absolute;
+  width: 60%;
+  height: auto;
+  left: 5px;
+  bottom: 3.9em;
+  margin: auto;
+  background-color: #F5ECCE;
+  box-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 3%;
+  z-index: 2;
+  > .fullWrapper {
+    height: auto;
+    padding: 5px;
+    &:after {
+      top: 100%;
+      left: 3em;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(245, 236, 206, 0);
+      border-top-color: #F5ECCE;
+      border-width: 10px;
+      margin-left: -10px;
+      z-index: 1;
+    }
+  }
+}
+
+#SelfiePopupMenuList {
+  list-style: none;
+  width: 90%;
+  margin: .5em auto;
+  padding: 0;
+}
+
+.SelfiePopupMenuItem {
+  display: inline-block;
+  width: 25%;
+  height: 4em;
+  margin: .5em;
+}
+
+@keyframes stupidAnimation {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.1);
+  }
+  20% {
+    transform: scale(1);
+  }
+}
+
+
+.hasStupidAnimation {
+  animation-duration: 3s;
+  animation-name: stupidAnimation;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

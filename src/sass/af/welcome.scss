@@ -1,0 +1,89 @@
+#AFWelcome{
+  display: table;
+}
+
+#AFWelcomeText{
+  display: table;
+  font-weight: bold;
+  font-size: large;
+  text-align: center;
+  line-height: 1.5em;
+  margin: 0;
+
+  height: 22em;
+  background: url(/mascote/img/af-text-container.png) center no-repeat;
+  background-size: 90% 17em;
+  @media (min-width: 1500px) {
+    background-size: 75% 17em;
+  }
+  >article{
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 15%;
+    >p{
+      font-size: medium;
+      color: white;
+      margin: 0.5em;
+
+      &:first-child {
+        font-size: x-large;
+        color: yellow;
+      }
+
+      &:last-child{
+        font-size: x-large;
+      }
+    }
+  }
+}
+
+#AFWelcomeTextWrapper{
+  height: auto;
+}
+
+#AFWelcomeAction{
+  z-index: 2;
+  position: absolute;
+  bottom: -1.5em;
+  width: 100%;
+}
+
+#AFWelcomeLeft, #AFWelcomeRight{
+  display: table-cell;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+#AFWelcomeLeft{
+  width: 60%;
+  text-align: center;
+  padding: 0 0 0 10%;
+
+  #AFLogo{
+    display: block;
+    height: 6em;
+    background-size: auto 6em;
+    margin-bottom: -1em;
+  }
+
+  a{
+    display: inline-block;
+    width: 10em;
+    text-align: center;
+    line-height: 4em;
+    color: white;
+    background: url(/mascote/img/bt-af-proceed.png) center no-repeat;
+    font-size: x-large;
+    background-size: contain;
+    @media screen and (max-width: 1024px) {
+      font-size: large;
+      line-height: 4em;
+    }
+  }
+}
+
+#AFWelcomeRight {
+  background: url(/mascote/img/af-mascotes.png) left center no-repeat;
+  background-size: 80%;
+}
