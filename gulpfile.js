@@ -81,7 +81,7 @@ gulp.task('phonegap-build', function () {
   gulp.src(['www/**/*'])
     .pipe(phonegapBuild({
       "isRepository": "true",
-      "appId": "1090635",
+      "appId": "1202457",
       "user": {
         "email": "darthcas@gmail.com"
       }
