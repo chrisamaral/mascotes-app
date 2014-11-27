@@ -9,7 +9,8 @@ var gulp = require('gulp'),
   minifyCSS = require('gulp-minify-css'),
   sass = require('gulp-sass'),
   autoprefixer = require('gulp-autoprefixer'),
-  gulpsync = require('gulp-sync')(gulp);
+  gulpsync = require('gulp-sync')(gulp),
+  phonegapBuild = require('gulp-phonegap-build');
 
 gulp.task('server', function () {
   gulp.src('./public')
@@ -75,3 +76,14 @@ gulp.task('build',
 gulp.task('default',
   gulpsync.sync(['server', 'scripts', 'sass', 'watch'], 'normal workflow')
 );
+
+gulp.task('phonegap-build', function () {
+  gulp.src(['public/**/*'])
+    .pipe(phonegapBuild({
+      "isRepository": "true",
+      "appId": "1090635",
+      "user": {
+        "email": "darthcas@gmail.com"
+      }
+    }));
+});

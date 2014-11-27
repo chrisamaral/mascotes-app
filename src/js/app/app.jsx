@@ -7,9 +7,6 @@ window.Hammer = require('./../ext/hammer.min.js');
 
 require('./../ext/l.min.js');
 
-var fromCordova = document.URL.substr(0, 'http://'.length) !== 'http://' &&
-  document.URL.substr(0, 'https://'.length) !== 'https://';
-
 var AFFlow = {en: null, pt: null};
 
 var languages = [
@@ -189,5 +186,13 @@ function AppRenderer(lang) {
 
 $(function () {
   $window = $(window);
-  AppRenderer('en');
+  var fromCordova = document.URL.substr(0, 'http://'.length) !== 'http://' &&
+    document.URL.substr(0, 'https://'.length) !== 'https://';
+
+  if (!fromCordova) return AppRenderer('en');
+
+  ljs.load(['cordova.js'], function () {
+    AppRenderer('en');
+  });
+
 });
