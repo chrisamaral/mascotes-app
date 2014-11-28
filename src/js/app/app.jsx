@@ -4,6 +4,11 @@ window.React = require('react/addons');
 window.ReactIntlMixin = require('react-intl');
 window._ = require('./../ext/lodash.min.js');
 window.Hammer = require('./../ext/hammer.min.js');
+window.app_base = '';
+
+window.fromCordova =
+  document.URL.substr(0, 'http://'.length) !== 'http://' &&
+  document.URL.substr(0, 'https://'.length) !== 'https://';
 
 require('./../ext/l.min.js');
 
@@ -186,8 +191,6 @@ function AppRenderer(lang) {
 
 $(function () {
   $window = $(window);
-  var fromCordova = document.URL.substr(0, 'http://'.length) !== 'http://' &&
-    document.URL.substr(0, 'https://'.length) !== 'https://';
 
   if (!fromCordova) return AppRenderer('en');
 

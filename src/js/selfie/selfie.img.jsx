@@ -173,7 +173,7 @@ var Img = React.createClass({
   },
 
   componentWillUnmount: function () {
-    $(window).off('resize', this.onResize);
+    $(window).off('resize orientationchange', this.onResize);
   },
 
 	componentDidMount: function () {
@@ -181,7 +181,7 @@ var Img = React.createClass({
         elem = this.getDOMNode(),
         hammertime;
 
-    $(window).on('resize', _.throttle(this.onResize, 300));
+    $(window).on('resize orientationchange', this.onResize);
 
 		if (this.undefinedSize() && img.complete) this.setDefaultSize();
     

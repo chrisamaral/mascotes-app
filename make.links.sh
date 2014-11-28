@@ -2,15 +2,13 @@
 
 #ASSETS
 
-cd mascote
 rm -rf img
 rm -rf text
 rm -rf fonts
 
-ln -s ../../mascote-producao/img
-ln -s ../../rio2016-atletadofuturo/af/fonts
-ln -s ../../rio2016-atletadofuturo/af/text
-cd ..
+ln -s ../mascote-producao/img
+ln -s ../rio2016-atletadofuturo/af/fonts
+ln -s ../rio2016-atletadofuturo/af/text
 
 #SOURCES
 

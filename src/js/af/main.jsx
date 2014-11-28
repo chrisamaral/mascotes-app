@@ -1,6 +1,21 @@
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var opts = ['a', 'b', 'c', 'd', 'e'];
 
+(function initializeBasePath() {
+
+  if (typeof app_base !== 'undefined') return;
+
+  window.app_base = '';
+
+  if (sys_args && sys_args.base_url) {
+    window.app_base = sys_args.base_url;
+  }
+
+  if (app_base && app_base.substr(app_base.length - 1) !== '/') {
+    app_base = app_base + '/';
+  }
+
+}());
 
 
 var Option = React.createClass({
@@ -83,7 +98,7 @@ var Question = React.createClass({
           <span>{this.props.q}</span>
         </p>
         <fieldset>
-          <img src='img/af-mascote-esquerda.png' />
+          <img src={app_base + 'img/af-mascote-esquerda.png'} />
 
           <ul>
             {
@@ -94,7 +109,7 @@ var Question = React.createClass({
             }
       </ul>
 
-      <img src='img/af-mascote-direita.png' />
+      <img src={app_base + 'img/af-mascote-direita.png'} />
     </fieldset>
         <div id='AFNavigation'>
           <a href='' className={prevClasses} type='submit' onClick={this.props.prev ? this.prev : cancel}>{'<'}</a>
@@ -251,12 +266,12 @@ var AF = React.createClass({
   },
 
   componentDidMount: function () {
-    $window.on('resize', this.onResize);
+    $window.on('resize orientationchange', this.onResize);
     this.onResize();
   },
 
   componentWillUnmount: function () {
-    $window.off('resize', this.onResize);
+    $window.off('resize orientationchange', this.onResize);
   },
 
   navigate: function (path, current) {

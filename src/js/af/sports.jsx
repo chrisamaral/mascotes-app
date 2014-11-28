@@ -21,7 +21,7 @@ var Sport = React.createClass({
   },
 
   fetchText: function () {
-    fetch('text/' + this.context.locales[0].substr(0, 2) +
+    fetch(app_base + 'text/' + this.context.locales[0].substr(0, 2) +
       '/sports/' + this.props.sport.category + '/' +
       this.props.sport.id.toLowerCase() + '.html')
         .then(function (response) {
@@ -74,11 +74,11 @@ var Sport = React.createClass({
 
   componentDidMount: function () {
     _.delay(this.resize, 500);
-    $(window).on('resize', this.resize);
+    $(window).on('resize orientationchange', this.resize);
   },
 
   componentWillUnmount: function () {
-    $(window).off('resize', this.resize);
+    $(window).off('resize orientationchange', this.resize);
   },
 
   shareToFB: function (e) {
@@ -100,8 +100,15 @@ var Sport = React.createClass({
       last: this.props.index === 2
     });
 
-    var img = 'img/cards/' + sport.category + '/' + sport.id + '.png';
-
+    var img = app_base + 'img/cards/' + sport.category + '/' + sport.id + '.png';
+    var shareBox = null;
+    if (!window.fromCordova) {
+      shareBox = <div className='share'>
+        <span className='share-this'>{this.getIntlMessage('result.shareme')}</span>
+        <a target='_blank' className='share-tw AFPopBt' href={this.props.twitterUrl}>&zwnj;</a>
+        <a target='_blank' className='share-fb AFPopBt' href={'//www.facebook.com/sharer/sharer.php?u=' + window.location.href}>&zwnj;</a>
+      </div>;
+    }
     return (
       <div className={classes} onClick={this.props.slideTo}>
         <div className='inner'>
@@ -131,11 +138,9 @@ var Sport = React.createClass({
                                 } target='_blank'>
                                   {this.getIntlMessage('result.evenmore')}
                               </a>
-                              <div className='share'>
-                                <span className='share-this'>{this.getIntlMessage('result.shareme')}</span>
-                                <a target='_blank' className='share-tw AFPopBt' href={this.props.twitterUrl}>&zwnj;</a>
-                                <a target='_blank' className='share-fb AFPopBt' href={'//www.facebook.com/sharer/sharer.php?u=' + window.location.href}>&zwnj;</a>
-                              </div>
+
+                              {shareBox}
+
                             </div>
                         : null}
 

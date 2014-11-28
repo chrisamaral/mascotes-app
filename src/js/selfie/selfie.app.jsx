@@ -16,6 +16,23 @@ function detectmob() {
     return false;
   }
 }
+
+(function initializeBasePath() {
+
+  if (typeof app_base !== 'undefined') return;
+
+  window.app_base = '';
+
+  if (sys_args && sys_args.base_url) {
+    window.app_base = sys_args.base_url;
+  }
+
+  if (app_base && app_base.substr(app_base.length - 1) !== '/') {
+    app_base = app_base + '/';
+  }
+
+}());
+
 window.isMobile = detectmob();
 
 var Menus = require('./selfie.menu.jsx');
@@ -196,14 +213,17 @@ var Selfie = React.createClass({
     return defaults;
   },
 
+  resizeHandler: function () {
+    this.state.orientation = isLandScape() ? 'landscape' : 'portrait';
+    this.setState(this.state);
+  },
+
+  componentWillUnmount: function () {
+    $(window).off('resize orientationchange', this.resizeHandler);
+  },
 
   componentDidMount: function () {
-    $(window).resize(_.throttle(function () {
-      if (!this.isMounted()) return;
-      this.state.orientation = isLandScape() ? 'landscape' : 'portrait';
-      this.setState(this.state);
-
-    }.bind(this), 300));
+    $(window).on('resize orientationchange', this.resizeHandler);
 
     this.resizeWrap();
 
@@ -421,16 +441,16 @@ var Selfie = React.createClass({
                 <div id='FlexColumnTop' ref='container'>
 
                   {landscapeViewPort && this.state.mode === 'initial' && !this.state.stream
-                    ? <img className='floatingMascote' id='SelfieInitialMascote1' src={'img/mascotes/a/tela1-mascote1' + imgSuffix + '.png'} /> : null}
+                    ? <img className='floatingMascote' id='SelfieInitialMascote1' src={app_base + 'img/mascotes/a/tela1-mascote1' + imgSuffix + '.png'} /> : null}
 
                   {landscapeViewPort && this.state.mode === 'initial' && !this.state.stream
-                    ? <img className='floatingMascote' id='SelfieInitialMascote2' src={'img/mascotes/a/tela1-mascote2' + imgSuffix + '.png'} /> : null}
+                    ? <img className='floatingMascote' id='SelfieInitialMascote2' src={app_base + 'img/mascotes/a/tela1-mascote2' + imgSuffix + '.png'} /> : null}
 
                   {landscapeViewPort && this.state.mode === 'save'
-                    ? <img className='floatingMascote' id='SelfieSaveMascote1' src='img/mascotes/a/tela5-mascote1.png' /> : null}
+                    ? <img className='floatingMascote' id='SelfieSaveMascote1' src={app_base + 'img/mascotes/a/tela5-mascote1.png'} /> : null}
 
                   {landscapeViewPort && this.state.mode === 'save'
-                    ? <img className='floatingMascote' id='SelfieSaveMascote2' src='img/mascotes/a/tela5-mascote2.png' /> : null}
+                    ? <img className='floatingMascote' id='SelfieSaveMascote2' src={app_base + 'img/mascotes/a/tela5-mascote2.png'} /> : null}
 
                   <div className={canvasClasses} id='CanvasWrapper' ref='wrap'>
                       { this.state.stream && this.state.mode === 'initial'
@@ -510,7 +530,7 @@ var Selfie = React.createClass({
               }
           </div>
 
-          <img id='SelfieLogo' onDoubleClick={this.doReset} src={'img/selfie-logo' + imgSuffix + '.png'} />
+          <img id='SelfieLogo' onDoubleClick={this.doReset} src={app_base + 'img/selfie-logo' + imgSuffix + '.png'} />
 
           <ErrList errors={this.state.errors} dismissError={this.dismissError} />
         </div>
@@ -540,7 +560,7 @@ var Selfie = React.createClass({
     return (
       <div id='SelfieApp' className={mainClasses} style={viewPort}>
         {this.props.onClose && <a id='SelfieClose' title={this.getIntlMessage('close')} onClick={this.props.onClose}>{'×'}</a>}
-        <img id='SelfieBkg' src='img/bg-tela0.png' />
+        <img id='SelfieBkg' src={app_base + 'img/bg-tela0.png'} />
         <div className='fullWrapper' id='SelfieTela0'>
 
           <div style={{display: 'inline-block', height: '100%', width: '30%'}}>

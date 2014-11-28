@@ -65,12 +65,12 @@
 }
 
 #AFSlidePrev{
-  background: url(../img/bt-af-prev.png) center no-repeat;
+  background: url(#{$basePath}img/bt-af-prev.png) center no-repeat;
   left: 12.5%;
 }
 
 #AFSlideNext{
-  background: url(../img/bt-af-next.png) center no-repeat;
+  background: url(#{$basePath}img/bt-af-next.png) center no-repeat;
   right: 12.5%;
 }
 .AFBTSportDetails{
@@ -81,7 +81,7 @@
   line-height: 3em;
   height: 3em;
   padding: 0 2em;
-  background: url(../img/bt-af-blue.png) center no-repeat;
+  background: url(#{$basePath}img/bt-af-blue.png) center no-repeat;
   background-size: contain;
 
 }
@@ -139,7 +139,7 @@
 
 
   >.inner{
-    background: url(../img/card-af-small.png) center no-repeat;
+    background: url(#{$basePath}img/card-af-small.png) center no-repeat;
     background-size: 88% 100%;
     padding: 0;
   }
@@ -223,7 +223,7 @@
   }
 
   >.inner{
-    background: url(../img/card-af-large.png) center no-repeat;
+    background: url(#{$basePath}img/card-af-large.png) center no-repeat;
     background-size: 88% 100%;
   }
 
@@ -252,12 +252,12 @@
     height: 3em;
   }
   .share-fb{
-    background: url(../img/af-fb.png) center no-repeat;
+    background: url(#{$basePath}img/af-fb.png) center no-repeat;
     background-size: contain;
     margin-left: 0.7em;
   }
   .share-tw{
-    background: url(../img/af-twitter.png) center no-repeat;
+    background: url(#{$basePath}img/af-twitter.png) center no-repeat;
     background-size: contain;
   }
   .share-this{
@@ -329,7 +329,7 @@
   right: -1em;
   line-height: 4em;
   text-align: right;
-  background: url(../img/bt-af-back.png) right center no-repeat;
+  background: url(#{$basePath}img/bt-af-back.png) right center no-repeat;
   background-size: 100%;
   font-size: large;
   font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
@@ -346,7 +346,7 @@
 
 
 #AFSportsIndex{
-  background: url(../img/af-sports-index.png) center no-repeat;
+  background: url(#{$basePath}img/af-sports-index.png) center no-repeat;
   background-size: contain;
   padding: 0; margin: 0;
   line-height: 3.5em;
