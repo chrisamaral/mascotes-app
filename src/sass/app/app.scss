@@ -1,5 +1,15 @@
 $basePath: "../";
 
+@import "_sizes";
+
+$fontSize-xxlarge: 3rem;
+$fontSize-xlarge: 2rem;
+$fontSize-large: 1.5rem;
+$fontSize-largeish: 1.2rem;
+$fontSize-medium: 1rem;
+$fontSize-small: 0.7rem;
+$fontSize-xsmall: 0.5rem;
+
 @font-face {
   font-family: 'TheSansRio2016TT-Regular';
   src: url("../fonts/TheSansRio2016/regular/TheSansRio2016TT-Regular.eot");

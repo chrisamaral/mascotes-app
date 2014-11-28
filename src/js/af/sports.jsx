@@ -81,14 +81,6 @@ var Sport = React.createClass({
     $(window).off('resize orientationchange', this.resize);
   },
 
-  shareToFB: function (e) {
-    e.preventDefault();
-    FB.ui({
-      method: 'share',
-      href: window.location.href
-    });
-  },
-
   render: function () {
     var sport = this.props.sport;
     var showText = this.state.text && this.props.index === 1;
@@ -101,6 +93,7 @@ var Sport = React.createClass({
     });
 
     var img = app_base + 'img/cards/' + sport.category + '/' + sport.id + '.png';
+
     var shareBox = null;
     if (!window.fromCordova) {
       shareBox = <div className='share'>
@@ -109,6 +102,7 @@ var Sport = React.createClass({
         <a target='_blank' className='share-fb AFPopBt' href={'//www.facebook.com/sharer/sharer.php?u=' + window.location.href}>&zwnj;</a>
       </div>;
     }
+
     return (
       <div className={classes} onClick={this.props.slideTo}>
         <div className='inner'>
@@ -204,34 +198,6 @@ var Sports = React.createClass({
     return state;
   },
 
-  _loadFB: function () {
-
-    if (typeof FB !== 'undefined') return;
-    window.fbAsyncInit = this._initFB;
-
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-  },
-
-  _initFB: function () {
-
-    FB.init({
-      appId: '336644193184527',
-      //xfbml: true,
-      version: 'v2.1'
-    });
-
-  },
-
   reset: function (e) {
     e.preventDefault();
     this.props.reset();
@@ -261,7 +227,6 @@ var Sports = React.createClass({
   },
 
   componentDidMount: function () {
-    this._loadFB();
 
     $('#AFSportsGoBack').remove();
 

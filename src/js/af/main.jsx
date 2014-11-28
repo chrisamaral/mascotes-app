@@ -1,6 +1,8 @@
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var opts = ['a', 'b', 'c', 'd', 'e'];
 
+window.sys_args = window.sys_args || {};
+
 (function initializeBasePath() {
 
   if (typeof app_base !== 'undefined') return;
@@ -154,7 +156,7 @@ var WelcomeScreen = React.createClass({
   }
 });
 
-var Sports = require('./sports');
+var Sports = require('./sports.jsx');
 var $window = $(window);
 
 var AF = React.createClass({

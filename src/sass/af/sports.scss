@@ -19,7 +19,7 @@
     margin: 1em auto;
     list-style: none;
     height: 28em;
-    @media (min-height: 900px), (min-width: 1366px) {
+    @media (min-height: 900px) and (min-width: 1366px) {
       height: 32em;
     }
     >span{
@@ -28,8 +28,8 @@
   }
 
   #AFLogo{
-    width: 40%;
-    background-size: 50%;
+    width: 50%;
+    background-size: 60%;
   }
 }
 
@@ -39,7 +39,7 @@
   vertical-align: middle;
   line-height: 1.3em;
   color: white;
-  font-size: xx-large;
+  font-size: $fontSize-xlarge;
   font-weight: bold;  width: 59%;
   margin-left: -5%;
   text-align: center;
@@ -52,7 +52,7 @@
 }
 
 #AFSlidePrev, #AFSlideNext{
-  font-size: x-large;
+  font-size: $fontSize-large;
   display: inline-block;
   padding: 0 3em;
   line-height: 4em;
@@ -77,9 +77,9 @@
   display: inline-block;
   color: white;
   width: auto;
-  font-size: large;
-  line-height: 3em;
-  height: 3em;
+  font-size: $fontSize-largeish;
+  line-height: 2em;
+  height: 2em;
   padding: 0 2em;
   background: url(#{$basePath}img/bt-af-blue.png) center no-repeat;
   background-size: contain;
@@ -98,7 +98,7 @@
   @include transition(all, .2s, ease-out);
 
   h2{
-    font-size: xx-large;
+    font-size: $fontSize-large;
     font-weight: bold;
     color: rgb(0, 145, 214);
     margin: 0;
@@ -123,10 +123,10 @@
     .img{
       display: block;
       position: absolute;
-      height: 120%;
-      width: 120%;
-      top: -20%;
-      left: -10%;
+      height: 110%;
+      width: 110%;
+      top: -10%;
+      left: -5%;
     }
   }
 
@@ -134,7 +134,7 @@
     position: relative;
     width: 100%;
     text-align: center;
-    font-size: x-large;
+    font-size: $fontSize-xlarge;
   }
 
 
@@ -153,7 +153,9 @@
   text-align: left;
 
   .AFBTSportDetails{
-    font-size: medium;
+    font-size: $fontSize-medium;
+    line-height: 2.5em;
+    height: 2.5em;
   }
 
   h2{
@@ -191,12 +193,12 @@
     width: 60%;
     overflow-y: auto;
     padding-left: 2em;
-    font-size: x-large;
+    font-size: $fontSize-large;
 
     article{
       max-width: 30em;
       text-align: left;
-      font-size: medium;
+      font-size: $fontSize-medium;
     }
   }
 
@@ -233,10 +235,10 @@
   display: block;
   position: relative;
   text-align: left;
-  font-size: medium;
+  font-size: $fontSize-medium;
 
   @media (max-width: 1366px) {
-    font-size: small;
+    font-size: $fontSize-small;
   }
 
   line-height: 3em;
@@ -245,7 +247,9 @@
   >a{
 
   }
-
+  .share{
+    font-size: $fontSize-small;
+  }
   .share-fb, .share-tw{
     display: inline-block;
     width: 3em;
@@ -263,7 +267,7 @@
   .share-this{
 
     display: inline-block;
-    font-size: small;
+
     color: rgb(150, 150, 150);
     font-weight: bold;
     position: absolute;
@@ -327,11 +331,11 @@
   padding: 0 2em 0 2em;
   bottom: 1em;
   right: -1em;
-  line-height: 4em;
+  line-height: 3em;
   text-align: right;
   background: url(#{$basePath}img/bt-af-back.png) right center no-repeat;
   background-size: 100%;
-  font-size: large;
+  font-size: $fontSize-largeish;
   font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
   color: $dark-brown;
   transition: transform .2s ease-out;
@@ -350,13 +354,13 @@
   background-size: contain;
   padding: 0; margin: 0;
   line-height: 3.5em;
-  margin-top: -1.5em;
+
   font-weight: bold;
   color: $dark-brown;
 
   position: absolute;
   display: block;
-  bottom: 3.5em;
+  bottom: 3rem;
   left: 0;
   z-index: 2;
   width: 100%;

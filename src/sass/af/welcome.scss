@@ -3,35 +3,34 @@
 }
 
 #AFWelcomeText{
-  display: table;
   font-weight: bold;
-  font-size: large;
+  font-size: $fontSize-large;
   text-align: center;
-  line-height: 1.5em;
-  margin: 0;
+  line-height: 1em;
+  margin: 0 5%;
+  padding: 2rem 0;
 
-  height: 22em;
   background: url(#{$basePath}img/af-text-container.png) center no-repeat;
-  background-size: 90% 17em;
-  @media (min-width: 1500px) {
-    background-size: 75% 17em;
-  }
+  background-size: 100% 100%;
+  height: auto;
+
+
   >article{
-    display: table-cell;
-    vertical-align: middle;
-    padding: 0 15%;
+    margin: 0 8%;
+
     >p{
-      font-size: medium;
+      font-size: $fontSize-medium;
       color: white;
-      margin: 0.5em;
 
       &:first-child {
-        font-size: x-large;
+        font-size: $fontSize-large;
         color: yellow;
+        margin-bottom: 1em;
       }
 
       &:last-child{
-        font-size: x-large;
+        margin-top: 1em;
+        font-size: $fontSize-large;
       }
     }
   }
@@ -43,9 +42,21 @@
 
 #AFWelcomeAction{
   z-index: 2;
-  position: absolute;
-  bottom: -1.5em;
+  position: relative;
   width: 100%;
+  font-size: $fontSize-large;
+  transform: translateY(-2rem);
+
+  a{
+    display: inline-block;
+    width: 10em;
+    text-align: center;
+    line-height: 4em;
+    color: white;
+
+    background: url(#{$basePath}img/bt-af-proceed.png) center no-repeat;
+    background-size: contain;
+  }
 }
 
 #AFWelcomeLeft, #AFWelcomeRight{
@@ -62,25 +73,12 @@
 
   #AFLogo{
     display: block;
-    height: 6em;
-    background-size: auto 6em;
-    margin-bottom: -1em;
+    height: 9rem;
+    margin-bottom: 2rem;
+    background-size: contain;
   }
 
-  a{
-    display: inline-block;
-    width: 10em;
-    text-align: center;
-    line-height: 4em;
-    color: white;
-    background: url(#{$basePath}img/bt-af-proceed.png) center no-repeat;
-    font-size: x-large;
-    background-size: contain;
-    @media screen and (max-width: 1024px) {
-      font-size: large;
-      line-height: 4em;
-    }
-  }
+
 }
 
 #AFWelcomeRight {
