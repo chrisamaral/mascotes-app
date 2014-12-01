@@ -25,7 +25,7 @@
 
   #PleaseRotate{
     display: block  !important;
-    background: url(#{$basePath}/icons/rotate-phone.png) center no-repeat;
+    background: url(#{$basePath}icons/rotate-phone.png) center no-repeat;
     margin-top: 2rem;
     height: 200px;
   }
@@ -51,7 +51,7 @@
 
   #PleaseRotate{
     display: block !important;
-    background: url(#{$basePath}/icons/rotate-tablet.png) center no-repeat;
+    background: url(#{$basePath}icons/rotate-tablet.png) center no-repeat;
     margin-top: 2rem;
     height: 400px;
   }
