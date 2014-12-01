@@ -175,7 +175,10 @@ var R2016MascotesApp = React.createClass({
 
       <Menu lang={this.props.lang} height={windowHeight} visible={this.state.visibleMenu} setApp={this.setApp} />
 
+      <div id='PleaseRotate'></div>
+
       <main id='Main' className={mainClasses} style={wrapperStyle}>{mainContent}</main>
+
     </div>;
   }
 });

@@ -15,12 +15,15 @@ var Sport = React.createClass({
     e.preventDefault();
 
     if (this.props.slideTo) return this.props.slideTo(e);
+
+    this.props.expandText();
     if (this.state.text) return this.renderText();
 
     this.fetchText();
   },
 
   fetchText: function () {
+
     fetch(app_base + 'text/' + this.context.locales[0].substr(0, 2) +
       '/sports/' + this.props.sport.category + '/' +
       this.props.sport.id.toLowerCase() + '.html')
@@ -38,22 +41,7 @@ var Sport = React.createClass({
   },
 
   resizeSportInfo: function () {
-
-    var $scrollable, $expansible;
-
-
-    /*
-     $scrollable = $(this.refs.scrollable.getDOMNode());
-     $expansible = $(this.refs.expansible.getDOMNode());
-    if ($expansible.height() < $scrollable.height()) {
-      $expansible.addClass('mid');
-    } else {
-      $expansible.removeClass('mid');
-    }
-    */
-
     $(this.refs.img.getDOMNode()).css('height', '');
-
   },
 
   resize: function () {
@@ -83,7 +71,7 @@ var Sport = React.createClass({
 
   render: function () {
     var sport = this.props.sport;
-    var showText = this.state.text && this.props.index === 1;
+    var showText = this.props.expanded && this.state.text && this.props.index === 1;
     var classes = React.addons.classSet({
       AFSport: true,
       expanded: showText,
@@ -180,7 +168,7 @@ var Sports = React.createClass({
   mixins: [ReactIntlMixin],
 
   getInitialState: function () {
-    var state = {currentIndex: 0}, found;
+    var state = {currentIndex: 0, expanded: false}, found;
 
     if (typeof sys_args !== 'undefined' && sys_args.params && sys_args.params[1]) {
 
@@ -197,7 +185,9 @@ var Sports = React.createClass({
 
     return state;
   },
-
+  expandText: function () {
+    this.setState({expanded: true});
+  },
   reset: function (e) {
     e.preventDefault();
     this.props.reset();
@@ -224,19 +214,23 @@ var Sports = React.createClass({
 
   componentDidUpdate: function () {
     this.props.updateURL();
+    this.mountGoBackLink();
   },
 
-  componentDidMount: function () {
-
+  mountGoBackLink: function () {
     $('#AFSportsGoBack').remove();
 
     $(this.getDOMNode()).closest('.AF').append(
       $(
         React.renderToStaticMarkup(
-          <a id='AFSportsGoBack' className='hoverable' href=''>{this.getIntlMessage('result.back')}</a>
+          <a id='AFSportsGoBack' className={React.addons.classSet({expanded: this.state.expanded, hoverable: true})} href=''>{this.getIntlMessage('result.back')}</a>
         )
       ).on('click', this.reset)
     );
+  },
+
+  componentDidMount: function () {
+    this.mountGoBackLink();
   },
 
   componentWillUnmount: function () {
@@ -269,7 +263,7 @@ var Sports = React.createClass({
 
     var twitterUrl = encodeURI('//twitter.com/intent/tweet?text=' + shareText + '&url=' + window.location.href);
 
-    return <div id='AFSports'>
+    return <div id='AFSports' className={React.addons.classSet({expanded: this.state.expanded})}>
       <header>
         <div id='AFLogo'></div>
         <span id='AFCoolStoryBro' dangerouslySetInnerHTML={{__html:
@@ -285,7 +279,9 @@ var Sports = React.createClass({
           var slideF;
           if (index === 0) slideF = this.slidePrev;
           if (index === 2) slideF = this.slideNext;
-          return <Sport slideTo={slideF} index={index} key={index} ref='prevSport' sport={slide} twitterUrl={twitterUrl} />;
+          return <Sport slideTo={slideF} index={index} key={index}
+            ref='prevSport' expanded={this.state.expanded} sport={slide}
+            twitterUrl={twitterUrl} expandText={this.expandText} />;
         }, this)}
       </section>
       <div id='AFSportsIndex'>{

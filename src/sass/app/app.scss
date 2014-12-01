@@ -40,30 +40,29 @@ $fontSize-xsmall: 0.5rem;
 }
 
 html, body{
-  font-size: 100%;
   font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
   padding: 0; margin: 0;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.wrapped{
+%wrapped{
   display: block; position: relative;
   width: 100%; height: auto; margin: 0; padding: 0;
 }
 
 #App{
-  @extend .wrapped;
+  @extend %wrapped;
   a{
     text-decoration: none;
   }
 }
 
 #Header{
-  @extend .wrapped;
+  @extend %wrapped;
   line-height: 3em;
   background: #2f3222;
-  font-size: large;
+  font-size: $fontSize-large;
   font-weight: bold;
   color: white;
   text-indent: 3em;
@@ -83,9 +82,10 @@ html, body{
     top: 50%;
     transform: translateY(-50%);
   }
+
   .tick{
-    @extend .wrapped;
-    font-size: large;
+    @extend %wrapped;
+    font-size: $fontSize-large;
     line-height: 0.3em;
     color: darken(white, 5%);
   }
@@ -103,6 +103,7 @@ html, body{
   box-shadow: 3px 0 5px rgba(0, 0, 0, 0.3);
   transition: transform .3s ease;
   z-index: 10;
+  font-size: $fontSize-medium;
   &.hidden{
     transform: translateX(-100%);
   }
@@ -119,7 +120,11 @@ html, body{
 }
 
 #Main{
-  @extend .wrapped;
+  @extend %wrapped;
+}
+
+#PleaseRotate{
+  display: none;
 }
 
 @import "../af/af.scss";

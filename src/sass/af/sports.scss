@@ -18,10 +18,18 @@
     width: 85%;
     margin: 1em auto;
     list-style: none;
+
     height: 28em;
+
+    @media only screen and (max-width: 480px) {
+      height: auto;
+      margin-top: 2rem;
+    }
+
     @media (min-height: 900px) and (min-width: 1366px) {
       height: 32em;
     }
+
     >span{
       @extend .inner;
     }
@@ -30,6 +38,12 @@
   #AFLogo{
     width: 50%;
     background-size: 60%;
+  }
+
+  &.expanded > section {
+    @media only screen and (max-width: 480px) {
+      height: auto;
+    }
   }
 }
 
@@ -61,7 +75,6 @@
   background-size: contain !important;
   text-indent: -9999px;
   z-index: 2;
-
 }
 
 #AFSlidePrev{
@@ -73,6 +86,7 @@
   background: url(#{$basePath}img/bt-af-next.png) center no-repeat;
   right: 12.5%;
 }
+
 .AFBTSportDetails{
   display: inline-block;
   color: white;
@@ -91,10 +105,17 @@
   width: 30%;
   text-align: center;
   height: 100%;
+
+  @media only screen and (max-width: 480px) {
+    &:not(.middle) {
+      height: 28rem;
+    }
+  }
+
   overflow: visible;
   line-height: 1.5em;
   top: 0;
-  //left height width top opacity
+
   @include transition(all, .2s, ease-out);
 
   h2{
@@ -204,8 +225,6 @@
 
   .AFInfoWrapper {
     display: block;
-    height: 100%;
-    overflow-y: auto;
   }
 
   .AFInfoTB{
@@ -231,6 +250,7 @@
 
 
 }
+
 .AFDoSomething{
   display: block;
   position: relative;
@@ -311,11 +331,28 @@
   z-index: 2;
   width: 50%;
   left: 25%;
+
+  @media only screen and (max-width: 480px) {
+    width: 95%;
+    left: 2.5%;
+    >.inner{
+      background-size: 100% 100%;
+    }
+  }
+
 }
 
 .AFSport.expanded.middle{
   width: 70%;
   left: 15%;
+
+  @media only screen and (max-width: 480px) {
+    width: 95%;
+    left: 2.5%;
+    >.inner{
+      background-size: 100% 100%;
+    }
+  }
 }
 
 .AFSport.last{
@@ -329,8 +366,10 @@
   position: fixed;
   z-index: 2;
   padding: 0 2em 0 2em;
-  bottom: 1em;
-  right: -1em;
+  @media only screen and (min-width: 960px) {
+    bottom: 1em;
+    right: -1em;
+  }
   line-height: 3em;
   text-align: right;
   background: url(#{$basePath}img/bt-af-back.png) right center no-repeat;
@@ -374,5 +413,120 @@
   }
   &:active{
     transform: scale(1.02) translate3d(0, 0em, 0) !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+  #AFSports {
+
+    header{
+      display: block;
+      height: auto;
+    }
+
+    #AFLogo{
+      display: block;
+      position: relative;
+      width: 80%;
+      height: 7rem;
+      margin: 0.5rem auto;
+      background-size: 70%;
+    }
+
+    #AFCoolStoryBro{
+      display: block;
+      position: relative;
+      font-size: $fontSize-large;
+      width: 100%;
+      margin: 2rem 0; padding: 0;
+    }
+
+    &.expanded {
+
+      #AFCoolStoryBro{
+        display: none;
+      }
+
+    }
+  }
+
+  #AFSportsIndex {
+    display: none;
+  }
+
+  #AFSlidePrev, #AFSlideNext {
+    font-size: $fontSize-medium;
+    width: 3em;
+    padding: 0;
+    line-height: 4em;
+    position: absolute;
+    top: 23rem;
+    z-index: 2;
+  }
+
+  #AFSlidePrev {
+    background: url(#{$basePath}img/bt-af-prev.png) center no-repeat;
+    left: .5%;
+  }
+
+  #AFSlideNext {
+    background: url(#{$basePath}img/bt-af-next.png) center no-repeat;
+    right: .5%;
+  }
+
+  #AFSportsGoBack {
+
+    display: none;
+    font-size: $fontSize-medium;
+
+    &.expanded {
+      display: block;
+      top: 9rem;
+    }
+
+  }
+  .AFSport.middle{
+    position: relative;
+  }
+
+  .AFSport.middle.expanded{
+
+    .AFInfo{
+      padding-left: 0;
+      height: auto;
+      h2, article{
+        text-align: center;
+      }
+      h2{
+        margin-top: 1rem;
+        font-size: $fontSize-xlarge;
+      }
+      article{
+        text-align: justify;
+        font-size: $fontSize-small;
+      }
+    }
+
+    .AFInfoTB, .AFInfoExpansible{
+      display: block;
+    }
+
+    .AFSportImg, .AFInfo{
+      display: block;
+      position: relative;
+      width: 100%;
+    }
+
+    .AFSportImg{
+      height: 8rem;
+      .img{
+        height: 140%;
+        width: 120%;
+        top: -40%;
+        left: -10%;
+      }
+    }
+
   }
 }

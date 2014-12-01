@@ -14,13 +14,13 @@ body{
   margin: 0; padding: 0;
 }
 
-.AF{
+.AF {
   height: auto;
   width: 100%;
-  display: table !important;
 
-  background: url(#{$basePath}img/bg-af.jpg) center no-repeat !important;
-  background-size: cover !important;
+  display: table !important;
+  background: url(#{$basePath}img/bg-af.jpg) center/cover no-repeat !important;
+
   overflow: hidden;
   font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
 
@@ -137,6 +137,17 @@ body{
     &.next{
       background: url(#{$basePath}img/bt-af-next.png) center no-repeat;
     }
+
+    @media only screen and (max-width: 480px) {
+      &.prev {
+        background: url(#{$basePath}img/bt-af-prev-mobile.png) center no-repeat;
+      }
+
+      &.next{
+        background: url(#{$basePath}img/bt-af-next-mobile.png) center no-repeat;
+      }
+    }
+
     &.disabled{
       @include filter(grayscale(100%));
       opacity: 0.3;
@@ -158,9 +169,20 @@ body{
   margin: 1em auto;
 }
 
+@media only screen and (max-width: 480px) {
+  .AF {
+    background: url(#{$basePath}img/bg-af-mobile.jpg) center/cover no-repeat !important;
+    display: block !important;
+  }
+  #AFContainer, .AFContent{
+    display: block;
+    position: relative;
+  }
+}
 
 
 @import "welcome";
 @import "question";
 @import "sports";
+
 
