@@ -1,5 +1,11 @@
 window.$ = require('./../ext/jquery.min.js');
 window.jQuery = window.$;
+
+$(function () {
+  if (!Modernizr.touch) return;
+  require('./../ext/fastclick.js')(document.body);
+});
+
 window.React = require('react/addons');
 window.ReactIntlMixin = require('react-intl');
 window._ = require('./../ext/lodash.min.js');
@@ -41,6 +47,7 @@ var AppSelectorItem = React.createClass({
 
   }
 });
+
 var AppSelector = React.createClass({
   mixins: [ReactIntlMixin],
 
@@ -195,10 +202,28 @@ function AppRenderer(lang) {
 $(function () {
   $window = $(window);
 
-  if (!fromCordova) return AppRenderer('en');
+  if (!fromCordova) return AppRenderer('pt');
 
-  ljs.load(['cordova.js'], function () {
-    AppRenderer('en');
-  });
+  function onDeviceReady() {
+    navigator.globalization.getPreferredLanguage(
+      function (language) {
+        var lang = language.value.substr(0, 2);
 
+        if (lang !== 'en') {
+          lang = 'pt';
+        }
+
+        AppRenderer(lang);
+      },
+      function () {
+        AppRenderer('pt');
+      }
+    );
+  }
+
+  function bindEvents () {
+    document.addEventListener("deviceready", onDeviceReady, false);
+  }
+
+  ljs.load(['cordova.js'], bindEvents);
 });

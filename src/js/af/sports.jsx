@@ -69,6 +69,13 @@ var Sport = React.createClass({
     $(window).off('resize orientationchange', this.resize);
   },
 
+  openInBrowser: function (e) {
+    e.preventDefault();
+    window.open(e.target.href, '_system');
+  },
+
+
+
   render: function () {
     var sport = this.props.sport;
     var showText = this.props.expanded && this.state.text && this.props.index === 1;
@@ -81,15 +88,7 @@ var Sport = React.createClass({
     });
 
     var img = app_base + 'img/cards/' + sport.category + '/' + sport.id + '.png';
-
-    var shareBox = null;
-    if (!window.fromCordova) {
-      shareBox = <div className='share'>
-        <span className='share-this'>{this.getIntlMessage('result.shareme')}</span>
-        <a target='_blank' className='share-tw AFPopBt' href={this.props.twitterUrl}>&zwnj;</a>
-        <a target='_blank' className='share-fb AFPopBt' href={'//www.facebook.com/sharer/sharer.php?u=' + window.location.href}>&zwnj;</a>
-      </div>;
-    }
+    var anchorHandler = window.fromCordova ? this.openInBrowser : null;
 
     return (
       <div className={classes} onClick={this.props.slideTo}>
@@ -115,13 +114,17 @@ var Sport = React.createClass({
                       {showText ? <article ref='descr'></article> : null}
                       {showText
                           ? <div className='AFDoSomething'>
-                              <a className='AFBTSportDetails AFPopBt' href={
-                                  sport.url ? sport.url : '//google.com/search?q=' + sport.name
-                                } target='_blank'>
+                              <a className='AFBTSportDetails AFPopBt'
+                                href={sport.url ? sport.url : 'http://google.com/search?q=' + sport.name}
+                                target='_blank' onClick={anchorHandler}>
                                   {this.getIntlMessage('result.evenmore')}
                               </a>
 
-                              {shareBox}
+                              <div className='share'>
+                                <span className='share-this'>{this.getIntlMessage('result.shareme')}</span>
+                                <a target='_blank' className='share-tw AFPopBt' href={this.props.twitterUrl} onClick={anchorHandler}>&zwnj;</a>
+                                <a target='_blank' className='share-fb AFPopBt' href={'http://www.facebook.com/sharer/sharer.php?u=' + this.props.appReferenceURL()} onClick={anchorHandler}>&zwnj;</a>
+                              </div>
 
                             </div>
                         : null}
@@ -229,6 +232,15 @@ var Sports = React.createClass({
     );
   },
 
+  appReferenceURL: function () {
+
+    if (!window.fromCordova) {
+      return window.location.href;
+    }
+
+    return this.getIntlMessage('url');
+  },
+
   componentDidMount: function () {
     this.mountGoBackLink();
   },
@@ -261,7 +273,7 @@ var Sports = React.createClass({
       sports: sports_names.join(', ')
     });
 
-    var twitterUrl = encodeURI('//twitter.com/intent/tweet?text=' + shareText + '&url=' + window.location.href);
+    var twitterUrl = encodeURI('http://twitter.com/intent/tweet?text=' + shareText + '&url=' + this.appReferenceURL());
 
     return <div id='AFSports' className={React.addons.classSet({expanded: this.state.expanded})}>
       <header>
@@ -279,7 +291,7 @@ var Sports = React.createClass({
           var slideF;
           if (index === 0) slideF = this.slidePrev;
           if (index === 2) slideF = this.slideNext;
-          return <Sport slideTo={slideF} index={index} key={index}
+          return <Sport slideTo={slideF} index={index} key={index} appReferenceURL={this.appReferenceURL}
             ref='prevSport' expanded={this.state.expanded} sport={slide}
             twitterUrl={twitterUrl} expandText={this.expandText} />;
         }, this)}

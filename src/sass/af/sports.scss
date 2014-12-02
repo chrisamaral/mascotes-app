@@ -361,7 +361,7 @@
   position: fixed;
   z-index: 2;
   padding: 0 2em 0 2em;
-  @media only screen and (min-width: 481px) and (min-aspect-ratio: 81/10) {
+  @media only screen and (min-width: 481px) and (min-aspect-ratio: 1/1) {
     bottom: 1em;
     right: -1em;
   }
