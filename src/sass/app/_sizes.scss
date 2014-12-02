@@ -2,25 +2,44 @@
 %phoneHtmlStyle {
   font-size: 13px;
 }
+
 %tabletHtmlStyle{
   font-size: 15px;
 }
 
+$portrait-phone:
+  "only screen
+    and (max-aspect-ratio: 8/10),
+  only screen
+    and (max-width: 480px) and (orientation: portrait)";
+
+$landscape-phone:
+  "only screen
+    and (min-aspect-ratio: 81/100) and (max-height: 480px),
+  only screen
+    and (max-width: 480px) and (orientation: landscape)";
+
+$landscape-tablet:
+  "only screen
+    and (min-width: 960px) and (orientation: landscape),
+  only screen
+    and (min-height: 480px) and (min-aspect-ratio: 1/1)";
+
+$portrait-tablet:
+  "only screen
+    and (min-width: 960px) and (orientation: portrait),
+  only screen
+    and (min-width: 480px) and (max-width: 768px) and (max-aspect-ratio: 1/1)";
+
 /* Smartphones  */
 
-@media only screen
-  and (min-device-width: 320px) and (max-device-width: 480px)
-  and (min-device-height: 481px)
-{
-  html{
-    @extend %phoneHtmlStyle;
+@media #{$portrait-phone} {
+    html{
+      @extend %phoneHtmlStyle;
+    }
   }
-}
 
-@media only screen
-  and (min-device-height: 320px) and (max-device-height: 480px)
-  and (min-device-width: 481px) and (max-device-width: 959px)
-{
+@media #{$landscape-phone} {
   html{
     @extend %phoneHtmlStyle;
   }
@@ -29,24 +48,21 @@
     visibility: hidden  !important;
   }
 
-  #PleaseRotate{
-    display: block  !important;
-    background: url(#{$basePath}icons/rotate-phone.png) center no-repeat;
-    margin-top: 2rem;
-    height: 200px;
+  #App {
+    background: url(#{$basePath}img/rotate-phone.png) center no-repeat;
+    background-size: 60%;
   }
 }
 
 /* tablets */
 
-@media only screen and (min-width: 960px) and (orientation: landscape) {
+@media #{$landscape-tablet} {
   html{
     @extend %tabletHtmlStyle;
   }
 }
 
-@media only screen and (min-width: 960px) and (orientation: portrait) {
-
+@media #{$portrait-tablet} {
   html {
     @extend %tabletHtmlStyle;
   }
@@ -54,12 +70,9 @@
   #Main {
     visibility: hidden  !important;
   }
-
-  #PleaseRotate {
-    display: block !important;
-    background: url(#{$basePath}icons/rotate-tablet.png) center no-repeat;
-    margin-top: 2rem;
-    height: 400px;
+  #App {
+    background: url(#{$basePath}img/rotate-tablet.png) center no-repeat;
+    background-size: 60%;
   }
 }
 

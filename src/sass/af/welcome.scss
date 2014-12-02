@@ -84,7 +84,7 @@
   background-size: 80%;
 }
 
-@media only screen and (max-width: 480px) {
+@media #{$portrait-phone} {
 
   #AFWelcome{
     display: block;
@@ -107,7 +107,7 @@
 
     #AFLogo{
       position: relative;
-      background-size: 65% auto;
+      background-size: auto 90%;
       height: 7rem;
       margin-bottom: 0;
     }
@@ -123,10 +123,10 @@
     position: absolute;
     height: 20rem;
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
     top: 9rem;
-    background-size: 80% auto;
+    background-size: auto 100%;
     background-position: center;
   }
 }

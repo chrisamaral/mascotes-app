@@ -4,7 +4,7 @@ $opt-color: darken(rgb(104, 37, 123), 10%);
   width: 75%;
   margin: 0 auto;
 
-  @media only screen and (max-width: 480px) {
+  @media #{$portrait-phone} {
     width: 85%;
   }
 
@@ -16,11 +16,11 @@ $opt-color: darken(rgb(104, 37, 123), 10%);
       background-size: contain;
     }
 
-    @media only screen and (max-width: 480px) {
+    @media #{$portrait-phone} {
       height: 7rem !important;
       margin-bottom: 0.5rem;
       #AFLogo {
-        background-size: 65% auto;
+        background-size: auto 90%;
       }
     }
   }
@@ -28,7 +28,7 @@ $opt-color: darken(rgb(104, 37, 123), 10%);
   >fieldset{
 
     padding: 2em 0; margin: 0;
-    @media only screen and (max-width: 480px) {
+    @media #{$portrait-phone} {
       padding: 1rem 0;
     }
     border: none;
@@ -47,7 +47,7 @@ $opt-color: darken(rgb(104, 37, 123), 10%);
         right: -10%;
       }
 
-      @media only screen and (max-width: 480px) {
+      @media #{$portrait-phone} {
         display: none;
       }
     }
@@ -162,7 +162,7 @@ $opt-color: darken(rgb(104, 37, 123), 10%);
   text-align: center;
   vertical-align: middle;
   text-indent: -25%;
-  @media only screen and (max-width: 480px) {
+  @media #{$portrait-phone} {
     text-indent: 0;
     text-align: left;
   }
