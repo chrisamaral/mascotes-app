@@ -40,11 +40,6 @@
     background-size: 60%;
   }
 
-  &.expanded > section {
-    @media #{$portrait-phone} {
-      height: auto;
-    }
-  }
 }
 
 #AFCoolStoryBro{
@@ -444,10 +439,19 @@
 
     &.expanded {
 
-      #AFCoolStoryBro{
+      #AFCoolStoryBro, #AFSlidePrev, #AFSlideNext {
         display: none;
       }
 
+      > section {
+        height: auto;
+        width: 90%;
+      }
+
+      .AFSport.first,
+      .AFSport.last{
+        display: none;
+      }
     }
   }
 
@@ -461,7 +465,7 @@
     padding: 0;
     line-height: 4em;
     position: absolute;
-    top: 23rem;
+    top: 26rem;
     z-index: 2;
   }
 
@@ -479,11 +483,14 @@
 
     display: none;
     font-size: .8rem;
+    background: url(#{$basePath}img/bt-af-back-mobile.png) right center no-repeat;
+    background-size: contain;
 
     &.expanded {
       display: block;
       position: absolute;
       top: 9rem;
+      margin-left: 1em;
     }
 
   }
@@ -521,6 +528,7 @@
 
     .AFSportImg{
       height: 8rem;
+      transition: height .3s ease, width .3s ease, top .3s ease, left .3s ease;
       .img{
         height: 140%;
         width: 120%;
@@ -529,5 +537,21 @@
       }
     }
 
+  }
+
+  .AFSport.first,
+  .AFSport.last{
+    width: 60%;
+    >.inner {
+      margin: 20% 0 0 0;
+    }
+  }
+
+  .AFSport.first{
+    left: -5%;
+  }
+
+  .AFSport.last{
+    right: -5%;
   }
 }
