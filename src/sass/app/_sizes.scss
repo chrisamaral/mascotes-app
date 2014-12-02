@@ -14,7 +14,7 @@
   }
 }
 
-@media only screen and (max-device-width: 480px) and (orientation: landscape) {
+@media only screen and (max-device-width: 480px) and (orientation: landscape), only screen and (max-height: 480px) and (max-width: 960px) {
   html{
     @extend %phoneHtmlStyle;
   }
