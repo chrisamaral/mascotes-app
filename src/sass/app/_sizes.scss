@@ -8,13 +8,19 @@
 
 /* Smartphones  */
 
-@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+@media only screen
+  and (min-device-width: 320px) and (max-device-width: 480px)
+  and (min-device-height: 481px)
+{
   html{
     @extend %phoneHtmlStyle;
   }
 }
 
-@media only screen and (max-device-width: 480px) and (orientation: landscape), only screen and (max-height: 480px) and (max-width: 960px) {
+@media only screen
+  and (min-device-height: 320px) and (max-device-height: 480px)
+  and (min-device-width: 481px) and (max-device-width: 959px)
+{
   html{
     @extend %phoneHtmlStyle;
   }
@@ -33,23 +39,23 @@
 
 /* tablets */
 
-@media only screen and (min-device-width: 960px) and (orientation: landscape) {
+@media only screen and (min-width: 960px) and (orientation: landscape) {
   html{
     @extend %tabletHtmlStyle;
   }
 }
 
-@media only screen and (min-device-width: 960px) and (orientation: portrait) {
+@media only screen and (min-width: 960px) and (orientation: portrait) {
 
-  html{
+  html {
     @extend %tabletHtmlStyle;
   }
 
-  #Main{
+  #Main {
     visibility: hidden  !important;
   }
 
-  #PleaseRotate{
+  #PleaseRotate {
     display: block !important;
     background: url(#{$basePath}icons/rotate-tablet.png) center no-repeat;
     margin-top: 2rem;
@@ -59,14 +65,14 @@
 
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 1224px) {
-  html{
+  html {
     font-size: 17px;
   }
 }
 
 /* Large screens ----------- */
 @media only screen and (min-width: 1500px) {
-  html{
+  html {
     font-size: 18px;
   }
 }
