@@ -14,7 +14,7 @@
   }
 }
 
-@media only screen and (max-device-height: 480px) and (orientation: landscape) {
+@media only screen and (max-device-width: 480px) and (orientation: landscape) {
   html{
     @extend %phoneHtmlStyle;
   }
@@ -39,7 +39,7 @@
   }
 }
 
-@media only screen and (min-device-height: 960px) and (orientation: portrait) {
+@media only screen and (min-device-width: 960px) and (orientation: portrait) {
 
   html{
     @extend %tabletHtmlStyle;
