@@ -275,7 +275,7 @@
 }
 
 #BtGoBack {
-  background: url(#{$basePath}img/bt-tirar-outra.png) center no-repeat;
+  background: url(#{$basePath}img/bt-tirar-outra.png) center/contain no-repeat;
   margin: 0 1em 0 12em;
 }
 
@@ -345,11 +345,11 @@
 }
 
 #BtShareFB {
-  background: url(#{$basePath}img/fb-logo.png) center no-repeat;
+  background: url(#{$basePath}img/fb-logo.png) center/contain no-repeat;
 }
 
 #BtShareTwitter {
-  background: url(#{$basePath}img/twitter-logo.png) center no-repeat;
+  background: url(#{$basePath}img/twitter-logo.png) center/contain no-repeat;
 }
 
 #SelfieLogo {

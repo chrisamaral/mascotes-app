@@ -1,4 +1,9 @@
 window.React = require('react/addons');
+
+if (!window.intl) {
+  window.Intl = require('intl');
+}
+
 window.ReactIntlMixin = require('react-intl');
 window._ = require('./../ext/lodash.min.js');
 window.Hammer = require('./../ext/hammer.min.js');

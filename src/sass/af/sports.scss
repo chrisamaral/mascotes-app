@@ -69,7 +69,7 @@
   top: 15em;
   background-size: contain !important;
   text-indent: -9999px;
-  z-index: 2;
+  z-index: 3;
 }
 
 #AFSlidePrev{
@@ -466,7 +466,6 @@
     line-height: 4em;
     position: absolute;
     top: 26rem;
-    z-index: 2;
   }
 
   #AFSlidePrev {
@@ -512,7 +511,8 @@
       }
       article{
         text-align: justify;
-        font-size: $fontSize-small;
+        line-height: 1.3em;
+        font-size: .85rem;
       }
     }
 

@@ -16,6 +16,8 @@ function detectmob() {
   }
 }
 
+window.sys_args = window.sys_args || {};
+
 (function initializeBasePath() {
 
   if (typeof app_base !== 'undefined') return;
