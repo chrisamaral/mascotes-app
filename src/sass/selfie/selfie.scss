@@ -808,7 +808,7 @@
   > .fullWrapper {
     height: auto;
     &:after {
-      top: calc(100% + 1em); left: 3em;
+      top: calc(100% + .9em); left: 3em;
       border: solid transparent;
       content: " ";
       height: 0;
