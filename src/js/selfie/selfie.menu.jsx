@@ -115,12 +115,12 @@ var MenuInitial = React.createClass({
 
 	render: function () {
 		var supportsCamera = navigatorCamera || WebRTC;
-
+    var messageSuffix = this.props.orientation === 'portrait' ? '_mob' : '';
     var TakePicButton = this.props.hasOpenStream
-					? <button id='SelfieTakePic' className='sBt lameHover' disabled={!this.props.canCapture} onClick={this.capture}>
-              {this.getIntlMessage('menu.capture_pic')}</button>
-					: <button id='SelfieTakePic' className='sBt lameHover' onClick={this.openCamera}>
-              {this.getIntlMessage('menu.new_pic')}</button>;
+					? <a id='SelfieTakePic' className='sBt lameHover' disabled={!this.props.canCapture} onClick={this.capture}>
+              {this.getIntlMessage('menu.capture_pic'  + messageSuffix)}</a>
+					: <a id='SelfieTakePic' className='sBt lameHover' onClick={this.openCamera}>
+              {this.getIntlMessage('menu.new_pic'  + messageSuffix)}</a>;
 
     var toggleBtClasses = React.addons.classSet({
       lameHover: true,
@@ -128,13 +128,15 @@ var MenuInitial = React.createClass({
       hasStupidAnimation: this.props.highlight
     });
 
+
+
 		return (
 			<div  className='fullWrapper' id='MenuBtsContainer'>
 			{this.props.togglePopup
-				&& <button  className={toggleBtClasses} id='ShowPopupButton' onClick={this.props.togglePopup}>{'#'}</button>}
+				&& <a  className={toggleBtClasses} id='ShowPopupButton' onClick={this.props.togglePopup}>{'#'}</a>}
 
 			<div id='SelfieOpenGallery' className='sBt lameHover' onClick={navigatorCamera ? this.callNativeGallery : null}>
-        {this.getIntlMessage('menu.choose_pic')}
+        {this.getIntlMessage('menu.choose_pic' + messageSuffix)}
 				{ !navigatorCamera 
 					? <input id='SelfieFileSelector' type='file' onChange={this.fileInputLoad} />
 					: null
@@ -159,17 +161,19 @@ var MenuCheck = React.createClass({
       hasStupidAnimation: this.props.highlight
     });
 
+    var messageSuffix = this.props.orientation === 'portrait' ? '_mob' : '';
+
 		return (
 			<div className='fullWrapper' id='MenuBtsContainer'>
 				{this.props.togglePopup
-					&& <button className={toggleBtClasses} id='ShowPopupButton' onClick={this.props.togglePopup}>{'#'}</button>}
+					&& <a className={toggleBtClasses} id='ShowPopupButton' onClick={this.props.togglePopup}>{'#'}</a>}
 
-        <button id='BtChangeSelfie' onClick={this.props.selfieSelector} className='sBt lameHover'>
-          {this.getIntlMessage('menu.change_pic')}</button>
+        <a id='BtChangeSelfie' onClick={this.props.selfieSelector} className='sBt lameHover'>
+          {this.getIntlMessage('menu.change_pic' + messageSuffix)}</a>
 
-				<button id='BtProceedToSave' disabled={!this.props.allSet} onClick={this.props.goToSaveMenu}
+				<a id='BtProceedToSave' disabled={!this.props.allSet} onClick={this.props.goToSaveMenu}
           className={React.addons.classSet({lameHover: this.props.allSet, sBt: true})}>
-            {this.getIntlMessage('menu.confirm_pic')}</button>
+            {this.getIntlMessage('menu.confirm_pic' + messageSuffix)}</a>
 
       </div>
     );
@@ -202,7 +206,7 @@ var MenuSave = React.createClass({
         js = d.createElement(s);
         js.id = id;
         //js.src = '//connect.facebook.net/en_US/sdk/debug.js';
-        js.src = "//connect.facebook.net/en_US/sdk.js";
+        js.src = "http://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     }.bind(this));
@@ -297,80 +301,139 @@ var MenuSave = React.createClass({
 	},
 
 	writeToDisk: function () {
+    var blob = dataURItoBlob(this.props.canvasDataURL);
+    function gotFS(fileSystem) {
+      fileSystem.root.getFile("rio2016selfie.jpeg", {create: true, exclusive: false}, gotFileEntry.bind(this), fail.bind(this));
+    }
+
+    function gotFileEntry(fileEntry) {
+      fileEntry.createWriter(gotFileWriter.bind(this), fail.bind(this));
+    }
+
+    function gotFileWriter(writer) {
+      writer.write(blob);
+
+      if ('android') {
+        /*
+          android.intent.action.MEDIA_SCANNER_SCAN_FILE
+         */
+
+      }
+    }
+
+    function fail(error) {
+      this.props.makeAlert(this.getIntlMessage('errors.write_to_disk'));
+    }
+
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS.bind(this), fail.bind(this));
+
 		this.setState({saved: true});
 	},
 
 	twitterShare: function () {
-    window.open('http://twitter.com/intent/tweet?url=' + window.location.href);
+    var url = 'http://twitter.com/intent/tweet?url=' + window.location.href;
+    if (window.fromCordova) {
+      window.open(url, '_system');
+    } else {
+      window.open(url);
+    }
 	},
 
   unsaved: function () {
     this.setState({fbStatus: 'initial'});
   },
 
+  toggleSharePopup: function () {
+    this.setState({visibleSharePopup: !!!this.state.visibleSharePopup});
+  },
+
 	render: function () {
-
-    var waitingBt = <button className='sBt waiting'>
-      <span>{'...'}</span>
-    </button>;
-
-    var loadingBt = <button className='sBt loading'>
-      <span>{'↻'}</span>
-    </button>;
-
-    var errorBt = <button onClick={this.unsaved}className='sBt lameHover error'>
-      <span>{'!'}</span>
-    </button>;
-
-    var savedBt = <button className='sBt saved'>
-      <span>{'✔'}</span>
-    </button>;
 
     var fbBt;
 
     switch (this.state.fbStatus) {
       case 'initial':
-        fbBt = <button id='BtShareFB' onClick={this._loginFB} className='sBt lameHover'>&nbsp;</button>;
+        fbBt = <a id='BtShareFB' onClick={this._loginFB} className='sBt lameHover'>&nbsp;</a>;
         break;
       case 'waiting':
-        fbBt = waitingBt;
+        fbBt = <a className='sBt waiting'><span>{'...'}</span></a>;
         break;
       case 'loading':
-        fbBt = loadingBt;
+        fbBt = <a className='sBt loading'><span>{'↻'}</span></a>;
         break;
       case 'saved':
-        fbBt = savedBt;
+        fbBt = <a className='sBt saved'><span>{'✔'}</span></a>;
         break;
       case 'error':
-        fbBt = errorBt;
+        fbBt = <a onClick={this.unsaved}className='sBt lameHover error'><span>{'!'}</span></a>;
         break;
     }
 
-		return (
-      <div className='fullWrapper'  id='MenuBtsContainer'>
-					<button id='BtShareTwitter' className='sBt lameHover' onClick={this.twitterShare}>&nbsp;</button>
-          {fbBt}
-          {!window.FileTransfer
-            ?
-              (window.isMobileMode
-                ? <a id='BtDownload' href={this.props.canvasDataURL} className='sBt lameHover' target='_blank'>
+    var messageSuffix = this.props.orientation === 'portrait' ? '_mob' : '';
+
+    if (this.props.orientation === 'landscape') {
+      return (
+        <div className='fullWrapper'  id='MenuBtsContainer'>
+            <a id='BtShareTwitter' className='sBt lameHover' onClick={this.twitterShare}>&nbsp;</a>
+            {fbBt}
+            {!window.fromCordova
+              ?
+                (this.props.orientation === 'portrait'
+                  ? <a id='BtDownload' href={this.props.canvasDataURL} className='sBt lameHover' target='_blank'>
+                          {this.getIntlMessage('menu.save_pic')}
+                    </a>
+                  : <a id='BtDownload' href={this.props.canvasDataURL} className='sBt lameHover' download='Rio2016Selfie.jpg'>
                         {this.getIntlMessage('menu.save_pic')}
-                  </a>
-                : <a id='BtDownload' href={this.props.canvasDataURL} className='sBt lameHover' download='Rio2016Selfie.jpg'>
-                      {this.getIntlMessage('menu.save_pic')}
-                  </a>
-              )
+                    </a>
+                )
 
-            :
-              <button id='BtDownload' className={React.addons.classSet({sBt: true, lameHover: !this.state.saved})}
-                    onClick={this.writeToDisk}>
-                {this.getIntlMessage('menu.save_pic')}
-              </button>
-          }
+              :
+                <a id='BtDownload' className={React.addons.classSet({sBt: true, lameHover: !this.state.saved})}
+                      onClick={this.writeToDisk}>
+                  {this.getIntlMessage('menu.save_pic')}
+                </a>
+            }
 
-          <button id='BtGoBack' className='sBt lameHover' onClick={this.props.exitSave}>
-            {this.getIntlMessage('menu.try_again')}
-          </button>
+            <a id='BtGoBack' className='sBt lameHover' onClick={this.props.exitSave}>
+              {this.getIntlMessage('menu.try_again')}
+            </a>
+        </div>
+      );
+    }
+
+    var sharePopupClasses = React.addons.classSet({
+      visible: this.state.visibleSharePopup
+    });
+
+    return (
+      <div className='fullWrapper'  id='MenuBtsContainer'>
+
+        <a id='BtSharePopup' className='sBt lameHover' onClick={this.toggleSharePopup}>
+          {this.getIntlMessage('menu.share')}
+        </a>
+
+        <div id='SelfieSharePopup' className={sharePopupClasses}>
+          <a id='BtShareTwitter' className='sBt lameHover' onClick={this.twitterShare}>&nbsp;</a>
+          {fbBt}
+        </div>
+
+        {!window.fromCordova
+          ?
+          <a id='BtDownload' href={this.props.canvasDataURL} className='sBt lameHover' download='Rio2016Selfie.jpg'>
+            <span>{this.getIntlMessage('menu.save_pic')}</span>
+          </a>
+
+          :
+          <a id='BtDownload' className={React.addons.classSet({sBt: true, lameHover: !this.state.saved})}
+            onClick={this.writeToDisk}>
+              {this.getIntlMessage('menu.save_pic')}
+          </a>
+        }
+
+        <a id='BtGoBack' className='sBt lameHover' onClick={this.props.exitSave}>
+          {this.getIntlMessage('menu.try_again' + messageSuffix)}
+        </a>
+
       </div>
     );
 	}

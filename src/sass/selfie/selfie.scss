@@ -2,14 +2,16 @@
   @return #{"grayscale(" + $value + ")"};
 }
 
+.fullWrapper {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0; padding: 0;
+}
+
 #SelfieApp {
-  .fullWrapper {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0; padding: 0;
-  }
+
   >.fullWrapper{
     max-width: 1440px;
     margin: 0 auto;
@@ -21,7 +23,6 @@
 }
 
 #SelfieApp {
-  font-size: 100%;
   overflow: hidden;
   background: url(#{$basePath}img/bg-default.jpg) center / 100% 100% no-repeat;
 }
@@ -83,43 +84,6 @@
   }
 }
 
-
-
-#SelfieTela0 {
-  display: block;
-  text-align: center;
-  >div:last-child{
-    margin-left: 3em;
-  }
-}
-
-#SelfieTela0Logo {
-  background: url(#{$basePath}img/tela0-logo.png) center / contain no-repeat;
-  width: 90%;
-  height: 14em;
-  margin: 1em auto;
-}
-
-.en #SelfieTela0Logo {
-  background: url(#{$basePath}img/tela0-logo-en.png) center / contain no-repeat;
-}
-
-#SelfieTela0 p {
-  width: 15em;
-  margin: 2em auto;
-  font-family: TheSansRio2016TT-Bold,sans-serif;
-  font-size: x-large;
-  color: #fff;
-  font-weight: 700;
-  text-shadow: 1px 2px 1px rgba(100, 100, 100, 0.3);
-}
-
-#SelfieTela0Mascotes {
-  display: table-cell;
-  vertical-align: middle;
-  background: url(#{$basePath}img/mascotes/a/tela0-mascotes.png) center / contain no-repeat;
-}
-
 #SelfieBtSkip {
   background: url(#{$basePath}img/bt-vamos-nessa.png) center / 100% 100% no-repeat;
   padding: 0 1.5em;
@@ -157,13 +121,16 @@
   position: absolute;
   height: auto;
   width: 100%;
-  top: 0; bottom: 6em;
+  top: 0; bottom: 6rem;
 }
 
 #FlexColumnBottom {
   position: absolute;
-  height: 5em;
-  bottom: 0em;
+  @media #{$portrait-phone} {
+    font-size: $fontSize-small;
+  }
+  height: 6rem;
+  bottom: 0;
   width: 100%;
 }
 
@@ -182,33 +149,32 @@
   width: 100%;
 }
 
+#CanvasWrapper{
 
-#SelfieApp.landscape #CanvasWrapper {
-  overflow: hidden;
-  height: 90%;
-  width: 85%;
-  margin: 5% auto;
-  max-width: 1000px;
-
-  border: 1em solid #4c9023;
-  border-width: .8em;
-
-  background: #fffbcc;
-  &.isEmpty {
-    background: url(#{$basePath}img/bg-canvas.png) center / cover no-repeat #fffbcc;
-  }
 }
 
+#SelfieApp.landscape {
+  #CanvasWrapper {
+    overflow: hidden;
+    height: 90%;
+    width: 85%;
+    margin: 5% auto;
+    max-width: 1000px;
 
+    border: 1em solid #4c9023;
+    border-width: .8em;
 
-#MenuBtsContainer {
-  text-align: center;
+    background: #fffbcc;
+    &.isEmpty {
+      background: url(#{$basePath}img/bg-canvas.png) center / cover no-repeat #fffbcc;
+    }
+  }
 }
 
 .sBt {
   display: inline-block;
   font-family: TheSansRio2016TT-Bold,sans-serif;
-  font-size: x-large;
+  font-size: $fontSize-largeish;
   line-height: 3em;
   font-weight: 700;
   margin: 0 1em;
@@ -287,12 +253,6 @@
   }
 }
 
-
-#ShowPopupButton {
-  background-color: #43ac6a!important;
-  width: 4em;
-}
-
 #BtChangeSelfie, #BtGoBack, #SelfieTakePic {
   padding-left: 2em;
   padding-right: 2em;
@@ -358,14 +318,14 @@
   height: 70%;
 }
 @media (max-width: 1024px) and (max-height: 768px) {
-
+  /*
   #SelfieApp.landscape #FlexRowLeft{
     max-height: 700px;
   }
   #FlexRowRight{
     max-height: 700px;
   }
-
+  */
   #SelfieApp.landscape #SelfieSaveMascote1 {
     height: 40%;
   }
@@ -395,7 +355,6 @@
 #SelfieLogo {
   display: block;
   position: absolute;
-  background: url(#{$basePath}img/selfie-logo.png) center no-repeat;
   width: 12em;
   height: auto;
   left: 1em;
@@ -450,8 +409,8 @@
 
 #SideMenuBox {
   position: absolute;
-  top: 6em;
-  bottom: 6em;
+  top: 6rem;
+  bottom: 6rem;
   width: 100%;
   background: url(#{$basePath}img/bg-side-menu.png) center / 100% 100% no-repeat;
   > img {
@@ -464,20 +423,20 @@
   position: absolute;
   display: block;
   width: 100%;
-  height: 6em;
+  height: 6rem;
 }
 
 #SideMenuScrollUp {
   position: absolute;
   display: block;
   width: 100%;
-  height: 6em;
+  height: 6rem;
   background: url(#{$basePath}img/bt-up.png) center no-repeat;
-  top: 6em;
+  top: 6rem;
 }
 
 #SideMenuScrollDown {
-  bottom: 4em;
+  bottom: 6rem;
   background: url(#{$basePath}img/bt-down.png) center no-repeat;
 }
 
@@ -519,12 +478,6 @@
   }
 }
 
-.SelfiePopupMenuItem {
-  border: 3px solid #4f7a00;
-  border-radius: 10%;
-  border-bottom-width: 7px;
-  border-left-width: 4px;
-}
 
 .SelfieSideMenuItem {
   border: 3px solid #4f7a00;
@@ -557,52 +510,6 @@
   }
 }
 
-#SelfiePopUpMenuContainer {
-  position: absolute;
-  width: 60%;
-  height: auto;
-  left: 5px;
-  bottom: 3.9em;
-  margin: auto;
-  background-color: #F5ECCE;
-  box-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 3%;
-  z-index: 2;
-  > .fullWrapper {
-    height: auto;
-    padding: 5px;
-    &:after {
-      top: 100%;
-      left: 3em;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-      border-color: rgba(245, 236, 206, 0);
-      border-top-color: #F5ECCE;
-      border-width: 10px;
-      margin-left: -10px;
-      z-index: 1;
-    }
-  }
-}
-
-#SelfiePopupMenuList {
-  list-style: none;
-  width: 90%;
-  margin: .5em auto;
-  padding: 0;
-}
-
-.SelfiePopupMenuItem {
-  display: inline-block;
-  width: 25%;
-  height: 4em;
-  margin: .5em;
-}
-
 @keyframes stupidAnimation {
   0% {
     transform: scale(1);
@@ -622,3 +529,372 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
+
+#SelfieTela0Content{
+  display: block;
+  position: absolute;
+  width: 50%;
+  height: auto;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+
+  article > p {
+    width: 15em;
+    margin: 2em auto;
+    font-family: TheSansRio2016TT-Bold,sans-serif;
+    font-size: $fontSize-large;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 1px 2px 1px rgba(100, 100, 100, 0.3);
+  }
+}
+
+#SelfieTela0Mascotes {
+  display: block;
+  position: absolute;
+  width: 50%;
+  right: 5%;
+  height: 70%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: url(#{$basePath}img/mascotes/a/tela0-mascotes.png) center / contain no-repeat;
+}
+
+#SelfieTela0Logo {
+  background: url(#{$basePath}img/tela0-logo.png) center / contain no-repeat;
+  width: 90%;
+  height: 10rem;
+  margin: 1em auto;
+}
+
+.en #SelfieTela0Logo {
+  background: url(#{$basePath}img/tela0-logo-en.png) center / contain no-repeat;
+}
+
+#MenuBtsContainer {
+  position: relative;
+  text-align: center;
+  height: auto;
+}
+
+#SelfieApp.portrait {
+  background: url(#{$basePath}img/selfie-bg-mobile.jpg) center / 100% 100% no-repeat;
+
+  .alert-box{
+    text-align: center;
+    padding: 1em 0;
+    line-height: 1.3rem;
+  }
+
+  .sBt{
+    font-size: $fontSize-medium;
+  }
+
+  .lameHover {
+    &:hover {
+      transform: none !important;
+    }
+    &:active {
+      transform: none !important;
+      &:hover {
+        transform: none !important;
+      }
+    }
+  }
+
+  #FlexColumnTop{
+    width: 400%;
+    left: -150%;
+    border-bottom: .5rem solid #4c9023;
+    overflow: hidden;
+    border-bottom: {
+      left-radius: 50%;
+      right-radius: 50%;
+    }
+  }
+
+  #CanvasWrapper{
+    overflow: hidden;
+    width: 25%;
+    margin-left: 37.5%;
+    background: #fffbcc;
+    &.isEmpty {
+      background: url(#{$basePath}img/bg-canvas.png) center / auto 100% no-repeat #fffbcc;
+    }
+  }
+
+  #SelfieLogo{
+    display: none;
+  }
+
+  #FlexRowLeft{
+    width: 100%;
+    transform: none !important;
+  }
+
+  #SelfieBkg{
+    display: none;
+  }
+
+  #FlexRowLeft{
+    width: 100%;
+  }
+
+  #SelfieTela0Mascotes{
+    width: 110%;
+    background: url(#{$basePath}img/selfie-mascotes-tela0.png) center / contain no-repeat;
+    right: -5%;
+    top: 10%;
+    height: 80%;
+    transform: none;
+  }
+
+  #SelfieTela0Content{
+    width: 100%;
+    height: 100%;
+    article{
+      visibility: hidden;
+    }
+  }
+
+  #SelfieTela0Logo{
+    width: 100%;
+    background: url(#{$basePath}img/tela0-logo.png) left center / contain no-repeat;
+    height: 25%;
+    margin: 1rem 0 0 1rem;
+  }
+
+  #SelfieBtSkip{
+    position: fixed;
+    bottom: .5rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 5em;
+    line-height: 5em;
+    z-index: 3;
+  }
+
+  #MenuBtsContainer{
+    position: relative;
+    height: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  #SelfieTakePic, #SelfieOpenGallery {
+    padding: 0;
+    width: 6em;
+    height: 4em;
+    line-height: 5.6em;
+    text-indent: 0;
+  }
+
+  #SelfieTakePic{
+    background: url(#{$basePath}img/bt-tirar-nova-mobile.png) center / 100% 100% no-repeat;
+  }
+
+  #SelfieOpenGallery {
+    background: url(#{$basePath}img/bt-escolher-foto-mobile.png) center / 100% 100% no-repeat;
+  }
+
+  #ShowPopupButton {
+    background: url(#{$basePath}img/bt-mascotes.png) center / contain no-repeat;
+    width: 40%;
+    top: -2rem;
+    left: 5px;
+    position: absolute;
+    height: 7rem;
+    line-height: 7rem;
+    text-indent: -9999px;
+    padding: 0; margin: 0;
+  }
+
+  #BtChangeSelfie{
+    background: url(#{$basePath}img/bt-trocar-mobile.png) center / contain no-repeat;
+    padding: 0;
+    height: 3.7rem;
+    line-height: 3.7rem;
+    width: 22%;
+    padding: 0; margin: 0 0 0 40%;
+  }
+
+  #BtSharePopup{
+    background: url(#{$basePath}img/bt-trocar-mobile.png) center / 100% 100% no-repeat;
+    padding: 0;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    width: auto;
+    min-width: 8em;
+    margin: 0;
+    font-size: .9rem;
+  }
+  &.en{
+    #BtSharePopup{
+      min-width: 6em;
+    }
+  }
+  #BtDownload{
+    position: relative;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    transform: translateY(.2rem);// scale(1.2);
+    font-size: .9rem;
+    width: 30%;
+    text-align: center;
+    margin: 0 1em; padding: 0;
+    >span{
+      display: inline-block;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  #BtGoBack{
+    position: relative;
+    background-size: 100% 100%;
+    display: inline-block;
+    position: relative;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    width: auto;
+    min-width: 6em;
+    padding: 0;
+    margin: 0;
+    font-size: .9rem;
+  }
+  #BtSharePopup, #BtGoBack{
+    transform: translateY(-.5rem);
+  }
+  #BtProceedToSave{
+    background: url(#{$basePath}img/bt-quero-essa-mobile.png) center / contain no-repeat;
+    width: 22%;
+    padding: 0; margin: 0 0 0 .5em;
+    text-align: center;
+    text-indent: -1.2em;
+    height: 3.7rem;
+    line-height: 3.7rem;
+  }
+
+
+}
+
+#SelfiePopUpMenuContainer {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10%);
+
+  &.visible{
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  transition: visibility .1s ease,
+    opacity .4s ease,
+    transform .4s ease;
+
+  position: absolute;
+  height: auto;
+  left: 5%; right: 1em;
+  bottom: 5rem;
+  margin: auto;
+  background-color: rgb(250, 250, 250);
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 3%;
+  z-index: 2;
+  > .fullWrapper {
+    height: auto;
+    &:after {
+      top: calc(100% + 1em); left: 3em;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(245, 236, 206, 0);
+      border-top-color: rgb(250, 250, 250);
+      border-width: 10px;
+      margin-left: -10px;
+      z-index: 1;
+    }
+  }
+}
+
+#SelfiePopupMenuList {
+  list-style: none;
+  margin: 1em;
+  padding: 0;
+}
+
+.SelfiePopupMenuItem {
+  display: inline-block;
+  width: calc(33.333% - .666em);
+  height: 5rem;
+  margin: .5em 1em 0 0;
+
+  &.lastInRow{
+    margin-right: 0;
+  }
+
+  border: 2px solid rgb(150, 150, 150);
+  border-radius: 10%;
+
+  box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+#SelfieSharePopup{
+  display: block;
+  position: absolute;
+
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10%);
+
+  &.visible{
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  transition: visibility .1s ease,
+    opacity .4s ease,
+    transform .4s ease;
+
+  height: auto;
+  left: 2rem; width: auto;
+  bottom: 4.5rem; margin: 0;
+  background-color: rgb(250, 250, 250);
+  padding: 0.2rem;
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10%;
+  z-index: 2;
+
+  &:after {
+    bottom: -20px;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(245, 236, 206, 0);
+    border-top-color: rgb(250, 250, 250);
+    border-width: 10px;
+    margin-left: -10px;
+    z-index: 1;
+  }
+
+  .sBt{
+    display: block;
+    height: 3.5rem;
+    width: 4rem;
+    background-size: 3rem;
+    margin: 0 0 .5rem 0; padding: 0;
+  }
+}
+

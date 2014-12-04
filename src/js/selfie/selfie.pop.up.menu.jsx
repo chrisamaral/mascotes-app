@@ -15,11 +15,12 @@ var Item = React.createClass({
     var classes = React.addons.classSet({
       SelfiePopupMenuItem: true,
       lameHover: true,
+      lastInRow: this.props.lastInRow,
       selected: this.props.selected
     });
 
     return <li className={classes} onClick={this.selectMe} style={{
-        background: 'url(../' + this.props.mascote.thumb + ') center no-repeat',
+        background: 'url(' + this.props.mascote.mobThumb + ') center no-repeat',
         backgroundSize: 'cover'
       }}>
     </li>
@@ -33,10 +34,8 @@ var PopupMenu = React.createClass({
   },
 
   render: function () {
-    var style = {};
-    if (!this.props.visible) style.display = 'none';
     
-    return <div id='SelfiePopUpMenuContainer' style={style}>
+    return <div id='SelfiePopUpMenuContainer' className={React.addons.classSet({visible: this.props.visible})}>
       <div className='fullWrapper'>
         { this.props.mascotes.length
             ?
@@ -44,7 +43,7 @@ var PopupMenu = React.createClass({
                  {
                   _.map(this.props.mascotes, function (mascote, index) {
                     var isSelected = compareSrc(mascote.full, this.props.selected);
-                    return <Item key={index} mascote={mascote} selected={isSelected} setMascote={this.setMascote} />;
+                    return <Item key={index} lastInRow={(index + 1) % 3 === 0} mascote={mascote} selected={isSelected} setMascote={this.setMascote} />;
                   }, this)
                }
              </ul>

@@ -123,9 +123,5 @@ html, body{
   @extend %wrapped;
 }
 
-#PleaseRotate{
-  display: none;
-}
-
 @import "../af/af.scss";
 @import "../selfie/selfie.scss";

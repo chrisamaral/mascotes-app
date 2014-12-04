@@ -11,8 +11,7 @@ function detectmob() {
     || navigator.userAgent.match(/Windows Phone/i)
   ){
     return true;
-  }
-  else {
+  } else {
     return false;
   }
 }
@@ -270,6 +269,10 @@ var Selfie = React.createClass({
 
     }
 
+    if (this.state.isPopupMenuVisible) {
+      this.state.isPopupMenuVisible = false;
+    }
+
     this.setState(this.state, this.saveToLocalStorage);
   },
 
@@ -493,14 +496,14 @@ var Selfie = React.createClass({
                   <div className='fullWrapper'>
                     { this.state.mode !== 'save' && this.state.mode !== 'initial' && !landscapeViewPort
                       ? <PopUpMenu setImage={this.setImage} ref='popUpMenu' mascotes={this.state.mascotes}
-                    visible={this.state.isPopupMenuVisible}
-                    mascotes={this.state.mascotes} selected={this.state.mascote} />
-                      : null
+                          visible={this.state.isPopupMenuVisible} mascotes={this.state.mascotes} selected={this.state.mascote} />
+                            : null
                       }
 
                     <Menu ref='bottomMenu' hasOpenStream={!!this.state.stream}
-                      togglePopup={!landscapeViewPort ? this.togglePopup : null}
+                      togglePopup={!landscapeViewPort && this.state.mode === 'check' ? this.togglePopup : null}
                       makeAlert={this.makeAlert}
+                      orientation={this.state.orientation}
                       canCapture={!!this.state.mascote}
                       highlight={!this.state.mascote}
                       goToSaveMenu={this.goToSaveMenu}
@@ -547,7 +550,7 @@ var Selfie = React.createClass({
     var $window = $(window);
     var landscapeViewPort = this.state.orientation === 'landscape';
     var viewPort = {width: $window.width(), height: $window.height()};
-    var classesObj = {landscape: landscapeViewPort};
+    var classesObj = {landscape: landscapeViewPort, portrait: !landscapeViewPort};
 
     classesObj[this.props.locales[0].substr(0, 2)] = true;
 
@@ -561,32 +564,17 @@ var Selfie = React.createClass({
       <div id='SelfieApp' className={mainClasses} style={viewPort}>
         {this.props.onClose && <a id='SelfieClose' title={this.getIntlMessage('close')} onClick={this.props.onClose}>{'×'}</a>}
         <img id='SelfieBkg' src={app_base + 'img/bg-tela0.png'} />
-        <div className='fullWrapper' id='SelfieTela0'>
 
-          <div style={{display: 'inline-block', height: '100%', width: '30%'}}>
-            <div className='fullWrapper' style={{display: 'table', 'zIndex': 2}}>
-
-              <div style={{display: 'table-cell', verticalAlign: 'middle', textAlign: 'center'}}>
-                <div id='SelfieTela0Logo'></div>
-                <article dangerouslySetInnerHTML={{__html:
-                  this.getIntlMessage('welcome.paragraph')
-                }}></article>
-                <button className='sBt lameHover' id='SelfieBtSkip' onClick={this.exitSplashScreen}>
-                  {this.getIntlMessage('welcome.proceed')}</button>
-
-              </div>
-
-            </div>
+          <div id='SelfieTela0Content'>
+            <div id='SelfieTela0Logo'></div>
+            <article dangerouslySetInnerHTML={{__html:
+              this.getIntlMessage('welcome.paragraph')
+            }}></article>
+            <button className='sBt lameHover' id='SelfieBtSkip' onClick={this.exitSplashScreen}>
+              {this.getIntlMessage('welcome.proceed')}</button>
           </div>
 
-          <div style={{display: 'inline-block', height: '100%', width: '49%'}}>
-            <div className='fullWrapper' style={{display: 'table'}}>
-
-              <div id='SelfieTela0Mascotes'></div>
-
-            </div>
-          </div>
-        </div>
+          <div id='SelfieTela0Mascotes'></div>
       </div>
     );
 
