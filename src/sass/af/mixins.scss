@@ -1,35 +1,4 @@
-@mixin untrans($zero) {
-  -webkit-transition: $zero;
-  -moz-transition: $zero;
-  -ms-transition: $zero;
-  -o-transition: $zero;
-  transition: $zero;
-}
-
-@mixin transition($properties: all, $duration: .3s, $easing: ease-out) {
-  @if length($properties) > 1 {
-    transition-property: $properties;
-    transition-duration: $duration;
-    transition-timing-function: $easing;
-  } @else {
-    transition: $properties $duration $easing;
-  }
-}
-
-@mixin transform($transforms) {
-  -moz-transform: $transforms;
-  -o-transform: $transforms;
-  -ms-transform: $transforms;
-  -webkit-transform: $transforms;
-  transform: $transforms;
-}
-
-@mixin translate ($x, $y, $z) {
-  @include transform(translate3d($x, $y, $z));
-}
-
 @mixin filter($f) {
-  -webkit-filter: $f;
   filter: $f;
 }
 

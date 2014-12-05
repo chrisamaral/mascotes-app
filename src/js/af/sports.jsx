@@ -1,4 +1,4 @@
-require('./../ext/fetch');
+//require('./../ext/fetch');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var Sport = React.createClass({
@@ -24,13 +24,9 @@ var Sport = React.createClass({
 
   fetchText: function () {
 
-    fetch(app_base + 'text/' + this.context.locales[0].substr(0, 2) +
-      '/sports/' + this.props.sport.category + '/' +
-      this.props.sport.id.toLowerCase() + '.html')
-        .then(function (response) {
-          return response.text();
-        })
-        .then(function (response) {
+    $.get(app_base + 'text/' + this.context.locales[0].substr(0, 2) +
+      '/sports/' + this.props.sport.category + '/' + this.props.sport.id.toLowerCase() + '.html')
+        .done(function (response) {
           this.setState({text: response}, this.renderText);
         }.bind(this));
   },

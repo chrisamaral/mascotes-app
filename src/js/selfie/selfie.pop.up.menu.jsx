@@ -20,6 +20,7 @@ var Item = React.createClass({
     });
 
     return <li className={classes} onClick={this.selectMe} style={{
+        height: this.props.height,
         background: 'url(' + this.props.mascote.mobThumb + ') center no-repeat',
         backgroundSize: 'cover'
       }}>
@@ -34,7 +35,7 @@ var PopupMenu = React.createClass({
   },
 
   render: function () {
-    
+    var wHeight = $(window).height();
     return <div id='SelfiePopUpMenuContainer' className={React.addons.classSet({visible: this.props.visible})}>
       <div className='fullWrapper'>
         { this.props.mascotes.length
@@ -43,7 +44,7 @@ var PopupMenu = React.createClass({
                  {
                   _.map(this.props.mascotes, function (mascote, index) {
                     var isSelected = compareSrc(mascote.full, this.props.selected);
-                    return <Item key={index} lastInRow={(index + 1) % 3 === 0} mascote={mascote} selected={isSelected} setMascote={this.setMascote} />;
+                    return <Item height={(wHeight * 0.5)/3} key={index} lastInRow={(index + 1) % 3 === 0} mascote={mascote} selected={isSelected} setMascote={this.setMascote} />;
                   }, this)
                }
              </ul>

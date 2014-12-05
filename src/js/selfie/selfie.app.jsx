@@ -551,7 +551,7 @@ var Selfie = React.createClass({
 
     var $window = $(window);
     var landscapeViewPort = this.state.orientation === 'landscape';
-    var viewPort = {width: $window.width(), height: $window.height()};
+    var viewPort = {height: $window.height()};
     var classesObj = {landscape: landscapeViewPort, portrait: !landscapeViewPort};
 
     classesObj[this.props.locales[0].substr(0, 2)] = true;
@@ -564,19 +564,21 @@ var Selfie = React.createClass({
 
     return (
       <div id='SelfieApp' className={mainClasses} style={viewPort}>
-        {this.props.onClose && <a id='SelfieClose' title={this.getIntlMessage('close')} onClick={this.props.onClose}>{'×'}</a>}
-        <img id='SelfieBkg' src={app_base + 'img/bg-tela0.png'} />
+        <div className='fullWrapper'>
+          {this.props.onClose && <a id='SelfieClose' title={this.getIntlMessage('close')} onClick={this.props.onClose}>{'×'}</a>}
+          <img id='SelfieBkg' src={app_base + 'img/bg-tela0.png'} />
 
-          <div id='SelfieTela0Content'>
-            <div id='SelfieTela0Logo'></div>
-            <article dangerouslySetInnerHTML={{__html:
-              this.getIntlMessage('welcome.paragraph')
-            }}></article>
-            <button className='sBt lameHover' id='SelfieBtSkip' onClick={this.exitSplashScreen}>
-              {this.getIntlMessage('welcome.proceed')}</button>
-          </div>
+            <div id='SelfieTela0Content'>
+              <div id='SelfieTela0Logo'></div>
+              <article dangerouslySetInnerHTML={{__html:
+                this.getIntlMessage('welcome.paragraph')
+              }}></article>
+              <button className='sBt lameHover' id='SelfieBtSkip' onClick={this.exitSplashScreen}>
+                {this.getIntlMessage('welcome.proceed')}</button>
+            </div>
 
-          <div id='SelfieTela0Mascotes'></div>
+            <div id='SelfieTela0Mascotes'></div>
+        </div>
       </div>
     );
 

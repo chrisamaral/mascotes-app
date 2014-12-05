@@ -19,7 +19,8 @@ body{
   width: 100%;
 
   display: table !important;
-  background: url(#{$basePath}img/bg-af.jpg) center/cover no-repeat !important;
+  background: url(#{$basePath}img/bg-af.jpg) center no-repeat !important;
+  background-size: cover;
 
   overflow: hidden;
   font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
@@ -45,16 +46,16 @@ body{
   }
 
   .hoverable{
-    @include transition(transform, .4s, cubic-bezier(0.19, 1, 0.22, 1));
+    transition: transform, .4s, cubic-bezier(0.19, 1, 0.22, 1);
 
     &:hover{
-      @include transform(translateY(-0.3em) scale(1.1));
+      transform: translateY(-0.3em) scale(1.1);
     }
 
     &:active{
-      @include transform(translateY(0.1em));
+      transform: translateY(0.1em);
       &:hover{
-        @include transform(translateY(0.1em));
+        transform: translateY(0.1em);
       }
     }
   }
@@ -65,17 +66,17 @@ body{
   transition: transform .2s ease-out;
 
   &.left:hover{
-    transform: translate3d(-10%, 0, 0);
+    transform: translateX(-10%);
   }
   &.left:active{
-    transform: translate3d(-5%, 0, 0);
+    transform: translateX(-5%);
   }
 
   &.right:hover{
-    transform: translate3d(10%, 0, 0);
+    transform: translateX(10%);
   }
   &.right:active{
-    transform: translate3d(5%, 0, 0);
+    transform: translateX(5%);
   }
 }
 
@@ -94,14 +95,14 @@ body{
   text-decoration: none;
   z-index: 2;
 
-  @include transition(transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1));
+  transition: transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 #AFClose:hover{
   color: white;
   text-decoration: none;
   cursor: pointer;
-  @include transform(scale(1.2));
+  transform: scale(1.2);
 }
 
 #AFLogo{
@@ -171,7 +172,8 @@ body{
 
 @media #{$portrait-phone} {
   .AF {
-    background: url(#{$basePath}img/bg-af-mobile.jpg) center/cover no-repeat !important;
+    background: url(#{$basePath}img/bg-af-mobile.jpg) center no-repeat !important;
+    background-size: cover;
     display: block !important;
   }
   #AFContainer, .AFContent{

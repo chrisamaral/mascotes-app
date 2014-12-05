@@ -35,7 +35,7 @@ var SideMenuItem = React.createClass({
 		});
 
 		return <li className={classes} onClick={this.selectMe}>
-			<img ref='img' src={this.props.mascote.thumb} onLoad={this.loadCallback}></img>
+			<img ref='img' src={this.props.mascote.mobThumb} onLoad={this.loadCallback}></img>
 		</li>
 	}
 });
