@@ -28,11 +28,14 @@ module.exports = {
       },
       errors: {
         camera: 'Oops... there was an error accessing your camera',
-        upload_fb: "Oops... We couldn't upload your Selfie to Facebook :(",
+        share_on: "Oops... We couldn't send your Selfie to {app_name} :(",
         write_to_disk: "Sorry, we couldn't save your picture.",
         file: 'Invalid File! Please select your photo.',
         size: 'The selected file is too big ({size}MB), the maximum allowed size is {max}MB ;)',
         format: 'Invalid Format. We only accept photos in these formats: {types}'
+      },
+      share_text: {
+        twitter: 'Selfie with the Mascots Rio2016'
       }
     }
   },
@@ -64,11 +67,14 @@ module.exports = {
       },
       errors: {
         camera: 'Não foi possível capturar imagem',
-        upload_fb: 'Não foi possível enviar a foto pro seu facebook :(',
+        share_on: 'Não foi possível enviar sua selfie pro {app_name} :(',
         write_to_disk: 'Não foi possível salvar a imagem.',
         file: 'Arquivo Inválido, por favor selecione uma imagem.',
         size: 'O arquivo selecionado é muito grande ({size}MB), por favor selecione algum com menos de {max}MB ;)',
         format: 'Formato Inválido. Os formatos aceitos são: {types}'
+      },
+      share_text: {
+        twitter: 'Selfie com os Mascotes Rio2016'
       }
     }
   }

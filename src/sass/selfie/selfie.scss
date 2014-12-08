@@ -189,20 +189,22 @@
   }
 }
 
-.lameHover {
-  transition: transform .4s ease-in;
-  &:hover {
-    cursor: pointer;
-    transform: translateY(-0.3em) scale(1.1) !important;
-  }
-  &:active {
-    transform: translateY(0.1em) !important;
+html:not(.touch) {
+
+  .lameHover {
+    transition: transform .4s ease-in;
     &:hover {
+      cursor: pointer;
+      transform: translateY(-0.3em) scale(1.1) !important;
+    }
+    &:active {
       transform: translateY(0.1em) !important;
+      &:hover {
+        transform: translateY(0.1em) !important;
+      }
     }
   }
 }
-
 .sBt {
   &.error, &.loading, &.saved, &.waiting {
     padding: 0 1.5em;
@@ -344,13 +346,11 @@
   }
 }
 
-
 #SelfieSaveMascote2 {
   bottom: 4em;
-
 }
 
-#BtShareFB, #BtShareTwitter {
+#BtShareFB, #BtShareTwitter, #BtShareInstagram {
   width: 4em;
 }
 
@@ -361,6 +361,11 @@
 
 #BtShareTwitter {
   background: url(#{$basePath}img/twitter-logo.png) center no-repeat;
+  background-size: contain;
+}
+
+#BtShareInstagram {
+  background: url(#{$basePath}img/bt-selfie-instagram.png) center no-repeat;
   background-size: contain;
 }
 
@@ -473,10 +478,12 @@
   margin: 1em auto;
   background-color: #fffbec;
   transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+
   &:hover {
     cursor: pointer;
     transform: translateY(-0.3em) scale(1.05) !important;
   }
+
   &:active {
     transform: translateY(0.1em) !important;
     &:hover {
@@ -608,18 +615,6 @@
 
   .sBt{
     font-size: $fontSize-medium;
-  }
-
-  .lameHover {
-    &:hover {
-      transform: none !important;
-    }
-    &:active {
-      transform: none !important;
-      &:hover {
-        transform: none !important;
-      }
-    }
   }
 
   #FlexColumnTop{

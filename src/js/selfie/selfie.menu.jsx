@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || null;
-
+var supportsADownload = !window.externalHost && 'download' in document.createElement('a');
 var WebRTC = window.navigator && navigator.getUserMedia;
 var navigatorCamera = navigator.camera && navigator.camera.getPicture;
 
@@ -32,12 +32,20 @@ var MenuInitial = React.createClass({
 
 	getUserMedia: function () {
 
-      navigator.getUserMedia({video: true}, function(stream) {
-    	this.setState({stream: stream}, function () {
-    		this.props.setCameraStream(window.URL.createObjectURL(stream), stream);
-    	}.bind(this));
+    navigator.getUserMedia({video: true},
 
-      }.bind(this), this.onError);
+      function(stream) {
+        this.setState({stream: stream},
+
+          function () {
+            this.props.setCameraStream(window.URL.createObjectURL(stream), stream);
+          }.bind(this)
+
+        );
+      }.bind(this),
+
+      this.onError
+    );
 
 	},
 
@@ -183,19 +191,41 @@ var MenuCheck = React.createClass({
 var MenuSave = React.createClass({
   mixins: [ReactIntlMixin],
 	getInitialState: function () {
-		return {
-			saved: false,
-      fbStatus: typeof FB !== 'undefined' ? 'initial' : 'waiting'
-		};
+
+    var state = {
+      saved: false,
+      hasInstagram: false,
+      facebookStatus: 'ready',
+      instagramStatus: 'ready',
+      twitterStatus: 'ready'
+    };
+
+    if (!window.fromCordova) {
+      state.facebookStatus = typeof FB !== 'undefined' ? 'ready' : 'waiting';
+    }
+
+		return state;
 	},
 
   componentDidMount: function () {
-    if (typeof FB === 'undefined') this._loadFB();
+    if (typeof FB === 'undefined' && !window.fromCordova) {
+      this._loadFB();
+    }
+
+    if (!window.fromCordova || !window.Instagram) {
+      return;
+    }
+
+    Instagram.isInstalled(function (err, installed) {
+      if (installed) {
+        this.setState({hasInstagram: true});
+      }
+    }.bind(this));
   },
 
   _loadFB: function () {
 
-    this.setState({fbStatus: 'waiting'}, function () {
+    this.setState({facebookStatus: 'waiting'}, function () {
       window.fbAsyncInit = this._initFB;
 
       (function (d, s, id) {
@@ -222,25 +252,40 @@ var MenuSave = React.createClass({
       version: 'v2.1'
     });
 
-    this.setState({fbStatus: 'initial'});
+    this.setState({facebookStatus: 'ready'});
 
   },
 
-  _FBError: function () {
-    this.setState({fbStatus: 'error'}, function () {
-      this.props.makeAlert(this.getIntlMessage('errors.upload_fb'));
+  _shareError: function (appName) {
+    var appAbbr = appName.toLowerCase();
+    this.state[appAbbr + 'Status'] = 'error';
+
+    this.setState(this.state, function () {
+      this.props.makeAlert(this.formatMessage(this.getIntlMessage('errors.share_on'),
+          {app_name: appName})
+      );
     });
   },
 
+  _facebookError: function () {
+    this._shareError('Facebook');
+  },
+
+  _twitterError: function () {
+    this._shareError('Twitter');
+  },
+
+  _instagramError: function () {
+    this._shareError('Instagram');
+  },
+
   _uploadFB: function () {
-    this.setState({fbStatus: 'loading'}, function () {
+    this.setState({facebookStatus: 'loading'}, function () {
       var formData = new FormData();
       var token = FB.getAuthResponse()['accessToken'];
 
       formData.append("access_token", token);
       formData.append("source", dataURItoBlob(this.props.canvasDataURL));
-      //formData.append("message", "");
-
 
       $.ajax({
         url: "https://graph.facebook.com/me/photos?access_token=" + token,
@@ -250,32 +295,18 @@ var MenuSave = React.createClass({
         contentType: false,
         cache: false,
         success: function (data) {
-          this.setState({fbStatus: 'saved'});
+          this.setState({facebookStatus: 'saved'});
         }.bind(this),
-        error: this._FBError
+        error: this._facebookError
       });
     });
-
-    /*
-
-    FB.api(
-      "/me/photos", "POST",
-      formData,
-      function (response) {
-
-        if (response && response.error) return callback(response.error);
-        callback(null, response);
-
-      }
-    );
-    */
   },
 
   _loginFB: function () {
     FB.login(
       function(response) {
 
-        if (!(response && response.authResponse)) return this._FBError();
+        if (!(response && response.authResponse)) return this._facebookError();
 
         this._uploadFB();
 
@@ -283,17 +314,7 @@ var MenuSave = React.createClass({
       {scope: 'publish_actions', return_scopes: true}
     );
 
-    /*
-
-      FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') return this._uploadFB();
-
-
-
-      }.bind(this));
-
-    */
-    this.setState({fbStatus: 'waiting'});
+    this.setState({facebookStatus: 'waiting'});
   },
 
 	saveMe: function () {
@@ -301,23 +322,30 @@ var MenuSave = React.createClass({
 	},
 
 	writeToDisk: function () {
+    var fileName = "Rio2016Selfie-" + Math.random().toString(36).substr(2) + ".jpeg";
     var blob = dataURItoBlob(this.props.canvasDataURL);
+
     function gotFS(fileSystem) {
-      fileSystem.root.getFile("rio2016selfie.jpeg", {create: true, exclusive: false}, gotFileEntry.bind(this), fail.bind(this));
+      this.setState({FS: fileSystem});
+      fileSystem.root.getFile(fileName, {create: true, exclusive: false}, gotFileEntry.bind(this), fail.bind(this));
     }
 
     function gotFileEntry(fileEntry) {
+      var state = this.state;
+      if (!state.savedFiles) {
+        state.savedFiles = [];
+      }
+
+      state.savedFiles.push(fileEntry);
+      this.setState(state);
       fileEntry.createWriter(gotFileWriter.bind(this), fail.bind(this));
     }
 
     function gotFileWriter(writer) {
       writer.write(blob);
 
-      if ('android') {
-        /*
-          android.intent.action.MEDIA_SCANNER_SCAN_FILE
-         */
-
+      if (device.platform === 'Android') {
+        //refreshMedia.refresh(fileName);
       }
     }
 
@@ -330,17 +358,81 @@ var MenuSave = React.createClass({
 		this.setState({saved: true});
 	},
 
-	twitterShare: function () {
-    var url = 'http://twitter.com/intent/tweet?url=' + window.location.href;
-    if (window.fromCordova) {
-      window.open(url, '_system');
-    } else {
-      window.open(url);
-    }
-	},
+  saveSelfie: function (e) {
 
-  unsaved: function () {
-    this.setState({fbStatus: 'initial'});
+    if (window.fromCordova) {
+      e.preventDefault();
+      this.writeToDisk();
+    } else {
+      this.setState({saved: true});
+    }
+
+  },
+
+  
+  openTwitterApp: function () {
+    var fileEntry = this.state.savedFiles[this.state.savedFiles.length - 1];
+    window.plugins.socialsharing.shareViaTwitter(
+      this.getIntlMessage('share_text.twitter'),
+      fileEntry.nativeURL,//file path
+      null, //url
+      null,//successCallback
+      this._twitterError
+    );
+  },
+
+  openFacebookApp: function () {
+    var fileEntry = this.state.savedFiles[this.state.savedFiles.length - 1];
+    window.plugins.socialsharing.shareViaFacebook(
+      '',
+      fileEntry.nativeURL,//file path
+      null, //url
+      null,//successCallback
+      this._facebookError
+    );
+  },
+
+  shareOnInstagram: function () {
+    this.setState({postedOnInstagram: true});
+    setTimeout(this.forgetSocialSaveStatus, 1000 * 2);
+
+    Instagram.share(this.props.canvasDataURL, function (err) {
+      if (err && err.toLowerCase() !== 'share cancelled') {
+        this._instagramError();
+      }
+    }.bind(this));
+  },
+
+	shareOnTwitter: function () {
+    this.setState({postedOnTwitter: true});
+    setTimeout(this.forgetSocialSaveStatus, 1000 * 2);
+
+    if (window.fromCordova) {
+      return this.openTwitterApp();
+    }
+
+    var url = 'http://twitter.com/intent/tweet?url=' + window.location.href;
+    window.open(url);
+	},
+  
+  forgetSocialSaveStatus: function () {
+    this.setState({postedOnFacebook: false, postedOnTwitter: false, postedOnInstagram: false});
+  },
+
+  shareOnFacebook: function () {
+    if (!window.fromCordova) {
+      this._loginFB();
+    } else {
+      this.openFacebookApp();
+    }
+    this.setState({postedOnFacebook: true});
+    setTimeout(this.forgetSocialSaveStatus, 1000 * 2);
+  },
+
+  forgetShareError: function (e) {
+    e.preventDefault();
+    this.state[$(e.target).data('target') + 'Status'] = 'ready';
+    this.setState(this.state);
   },
 
   toggleSharePopup: function () {
@@ -348,55 +440,81 @@ var MenuSave = React.createClass({
   },
 
 	render: function () {
+    var messageSuffix = this.props.orientation === 'portrait' ? '_mob' : '';
+    var socialSharingDisabled = window.fromCordova && !this.state.saved;
+    var downloadButtonClasses = React.addons.classSet({sBt: true, lameHover: !this.state.saved});
 
-    var fbBt;
-
-    switch (this.state.fbStatus) {
-      case 'initial':
-        fbBt = <a id='BtShareFB' onClick={this._loginFB} className='sBt lameHover'>&nbsp;</a>;
-        break;
-      case 'waiting':
-        fbBt = <a className='sBt waiting'><span>{'...'}</span></a>;
-        break;
-      case 'loading':
-        fbBt = <a className='sBt loading'><span>{'↻'}</span></a>;
-        break;
-      case 'saved':
-        fbBt = <a className='sBt saved'><span>{'✔'}</span></a>;
-        break;
+    var shareOnTwitterButton;
+    switch (this.state.twitterStatus) {
       case 'error':
-        fbBt = <a onClick={this.unsaved}className='sBt lameHover error'><span>{'!'}</span></a>;
+        shareOnTwitterButton = <a onClick={this.forgetShareError} data-target='twitter' className='sBt lameHover error'><span>{'!'}</span></a>;
+        break;
+      default:
+        shareOnTwitterButton = <button id='BtShareTwitter' className='sBt lameHover' onClick={this.shareOnTwitter} disabled={socialSharingDisabled || !!this.state.postedOnTwitter}>&nbsp;</button>;
         break;
     }
 
-    var messageSuffix = this.props.orientation === 'portrait' ? '_mob' : '';
+    var goBackButton = <a id='BtGoBack' className='sBt lameHover' onClick={this.props.exitSave}>{this.getIntlMessage('menu.try_again' + messageSuffix)}</a>;
+
+    var instagramShareButton = null;
+
+    if (this.state.hasInstagram) {
+      switch (this.state.instagramStatus) {
+        case 'error':
+          instagramShareButton = <a onClick={this.forgetShareError} data-target='instagram' className='sBt lameHover error'>
+            <span>{'!'}</span>
+          </a>;
+          break;
+        default:
+          instagramShareButton = <button id='BtShareInstagram' className='sBt lameHover' onClick={this.shareOnInstagram} disabled={socialSharingDisabled || !!this.state.postedOnInstagram}>&nbsp;</button>;
+          break;
+      }
+    }
+
+    var shareOnFacebookButton;
+
+    switch (this.state.facebookStatus) {
+      case 'ready':
+        shareOnFacebookButton = <button id='BtShareFB' onClick={this.shareOnFacebook} className='sBt lameHover' disabled={socialSharingDisabled || !!this.state.postedOnFacebook}>&nbsp;</button>;
+        break;
+      case 'waiting':
+        shareOnFacebookButton = <a className='sBt waiting'><span>{'...'}</span></a>;
+        break;
+      case 'loading':
+        shareOnFacebookButton = <a className='sBt loading'><span>{'↻'}</span></a>;
+        break;
+      case 'saved':
+        shareOnFacebookButton = <a className='sBt saved'><span>{'✔'}</span></a>;
+        break;
+      case 'error':
+        shareOnFacebookButton = <a onClick={this.forgetShareError} data-target='facebook' className='sBt lameHover error'><span>{'!'}</span></a>;
+        break;
+    }
+
+    var downloadButton;
+
+    if (window.fromCordova) {
+      downloadButton = <a id='BtDownload' className={downloadButtonClasses} onClick={this.saveSelfie}>
+        {this.getIntlMessage('menu.save_pic')}
+      </a>;
+    } else if (supportsADownload) {
+      downloadButton = <a id='BtDownload' href={this.props.canvasDataURL} className={downloadButtonClasses} download='Rio2016Selfie.jpg' onClick={this.saveSelfie}>
+        {this.getIntlMessage('menu.save_pic')}
+      </a>;
+    } else {
+      downloadButton = <a id='BtDownload' href={this.props.canvasDataURL} className={downloadButtonClasses} target='_blank' onClick={this.saveSelfie}>
+        {this.getIntlMessage('menu.save_pic')}
+      </a>;
+    }
 
     if (this.props.orientation === 'landscape') {
       return (
         <div className='fullWrapper'  id='MenuBtsContainer'>
-            <a id='BtShareTwitter' className='sBt lameHover' onClick={this.twitterShare}>&nbsp;</a>
-            {fbBt}
-            {!window.fromCordova
-              ?
-                (this.props.orientation === 'portrait'
-                  ? <a id='BtDownload' href={this.props.canvasDataURL} className='sBt lameHover' target='_blank'>
-                          {this.getIntlMessage('menu.save_pic')}
-                    </a>
-                  : <a id='BtDownload' href={this.props.canvasDataURL} className='sBt lameHover' download='Rio2016Selfie.jpg'>
-                        {this.getIntlMessage('menu.save_pic')}
-                    </a>
-                )
-
-              :
-                <a id='BtDownload' className={React.addons.classSet({sBt: true, lameHover: !this.state.saved})}
-                      onClick={this.writeToDisk}>
-                  {this.getIntlMessage('menu.save_pic')}
-                </a>
-            }
-
-            <a id='BtGoBack' className='sBt lameHover' onClick={this.props.exitSave}>
-              {this.getIntlMessage('menu.try_again')}
-            </a>
+            {shareOnTwitterButton}
+            {shareOnFacebookButton}
+            {instagramShareButton}
+            {downloadButton}
+            {goBackButton}
         </div>
       );
     }
@@ -406,34 +524,20 @@ var MenuSave = React.createClass({
     });
 
     return (
-      <div className='fullWrapper'  id='MenuBtsContainer'>
+      <div className='fullWrapper' id='MenuBtsContainer'>
 
-        <a id='BtSharePopup' className='sBt lameHover' onClick={this.toggleSharePopup}>
+        <button id='BtSharePopup' className='sBt lameHover' onClick={this.toggleSharePopup} disabled={socialSharingDisabled}>
           {this.getIntlMessage('menu.share')}
-        </a>
+        </button>
 
         <div id='SelfieSharePopup' className={sharePopupClasses}>
-          <a id='BtShareTwitter' className='sBt lameHover' onClick={this.twitterShare}>&nbsp;</a>
-          {fbBt}
+          {shareOnFacebookButton}
+          {shareOnTwitterButton}
+          {instagramShareButton}
         </div>
 
-        {!window.fromCordova
-          ?
-          <a id='BtDownload' href={this.props.canvasDataURL} className='sBt lameHover' download='Rio2016Selfie.jpg'>
-            <span>{this.getIntlMessage('menu.save_pic')}</span>
-          </a>
-
-          :
-          <a id='BtDownload' className={React.addons.classSet({sBt: true, lameHover: !this.state.saved})}
-            onClick={this.writeToDisk}>
-              {this.getIntlMessage('menu.save_pic')}
-          </a>
-        }
-
-        <a id='BtGoBack' className='sBt lameHover' onClick={this.props.exitSave}>
-          {this.getIntlMessage('menu.try_again' + messageSuffix)}
-        </a>
-
+        {downloadButton}
+        {goBackButton}
       </div>
     );
 	}
