@@ -162,7 +162,7 @@ var ErrorMsg = React.createClass({
   },
   render: function () {
     return (
-        <li data-alert className="alert-box alert radius">
+        <li data-alert className="alert-box alert radius" onClick={this.props.orientation === 'portrait' ? this.dismiss : null}>
           {this.props.msg}<a className="close" onClick={this.dismiss}>{'×'}</a>
         </li>
       );
@@ -176,8 +176,8 @@ var ErrList = React.createClass({
       <ul id='SelfieAppErrors'>
         {
           _.map(this.props.errors, function (err, index) {
-            return <ErrorMsg dismissError={this.props.dismissError} key={index} msg={err} index={index} />;
-          }.bind(this))
+            return <ErrorMsg dismissError={this.props.dismissError} key={index} msg={err} index={index} orientation={this.props.orientation} />;
+          }, this)
         }
       </ul>
     );
@@ -537,7 +537,7 @@ var Selfie = React.createClass({
 
           <img id='SelfieLogo' onDoubleClick={this.doReset} src={app_base + 'img/selfie-logo' + imgSuffix + '.png'} />
 
-          <ErrList errors={this.state.errors} dismissError={this.dismissError} />
+          <ErrList errors={this.state.errors} dismissError={this.dismissError} orientation={this.state.orientation} />
         </div>
       </div>
     );
