@@ -15,7 +15,7 @@ $portrait-phone:
 
 $landscape-phone:
   "only screen
-    and (min-aspect-ratio: 81/100) and (max-height: 480px),
+    and (min-aspect-ratio: 81/100) and (max-height: 480px) and (max-width: 800px),
   only screen
     and (max-width: 480px) and (orientation: landscape)";
 

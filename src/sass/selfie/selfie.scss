@@ -619,6 +619,14 @@ html:not(.touch) {
       left-radius: 50%;
       right-radius: 50%;
     }
+
+    html.cordova & {
+      border-bottom: {
+        left-radius: 0;
+        right-radius: 0;
+      }
+    }
+
   }
 
   #CanvasWrapper{
@@ -796,19 +804,7 @@ html:not(.touch) {
   }
 
 }
-html.cordova {
 
-  #SelfieApp.portrait {
-
-    #FlexColumnTop {
-      border-bottom: {
-        left-radius: 0;
-        right-radius: 0;
-      }
-    }
-  }
-
-}
 #SelfiePopUpMenuContainer {
   visibility: hidden;
   opacity: 0;

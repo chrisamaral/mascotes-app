@@ -16,7 +16,6 @@ var languages = [
 ];
 
 var appList = ['af', 'selfie'];
-var $window;
 var Atleta = require('../af/main.jsx');
 var Selfie = require('../selfie/selfie.app.jsx');
 
@@ -67,7 +66,7 @@ var Menu = React.createClass({
       hidden: !this.props.visible
     });
 
-    return <div id='Menu' className={menuClasses}>
+    return <nav id='Menu' className={menuClasses}>
       <div className='divisor'>{this.getIntlMessage('apps_divisor')}</div>
 
       <AppSelector selectApp={this.props.setApp} />
@@ -81,8 +80,7 @@ var Menu = React.createClass({
             })
             }
       </select>
-      <div id='ContentOverlay'></div>
-    </div>
+    </nav>
   }
 });
 
@@ -90,7 +88,12 @@ var R2016MascotesApp = React.createClass({
   mixins: [ReactIntlMixin],
 
   getInitialState: function () {
-    var state = {visibleMenu: false, activeApp: null};
+    var state = {
+      visibleMenu: false,
+      activeApp: null,
+      windowHeight: $window.height(),
+      windowWidth: $window.width()
+    };
 
     if (Modernizr.localstorage) {
       state.activeApp = localStorage.getItem('r2016.currentApp') || null;
@@ -126,7 +129,14 @@ var R2016MascotesApp = React.createClass({
     hammertime.get('swipe').set({direction: Hammer.DIRECTION_HORIZONTAL});
     hammertime.on('swiperight', this.showMenu);
     hammertime.on('swipeleft', this.hideMenu);
+    $window.on('resize orientationchange', _.throttle(function () {
+      this.setState({
+        windowHeight: $window.height(),
+        windowWidth: $window.width()
+      });
+    }.bind(this), 200));
   },
+
   componentDidUpdate: function () {
     $('#ContentOverlay').remove();
 
@@ -134,9 +144,10 @@ var R2016MascotesApp = React.createClass({
 
     $(this.getDOMNode()).prepend($('<div id="ContentOverlay"></div>').on('click', this.hideMenu));
   },
+
   render: function () {
     var mainContent, SelectedComponent, localeData,
-      windowHeight = $window.height(),
+      windowHeight = this.state.windowHeight,
       mainClasses = React.addons.classSet({AF: this.state.activeApp === 'af'}),
       wrapperStyle = {minHeight: windowHeight};
 
@@ -166,9 +177,9 @@ var R2016MascotesApp = React.createClass({
         break;
     }
 
-    return <div id='App' style={{minHeight: windowHeight}}>
+    return <div id='App' style={{minHeight: this.state.windowHeight}}>
 
-      <div id='Header'>
+      <header id='Header'>
         <a id='Hamburger' href='' onClick={this.showOnClick}>
           <div>
             <div className='tick'>―</div>
@@ -177,9 +188,9 @@ var R2016MascotesApp = React.createClass({
           </div>
         </a>
         {this.getIntlMessage('app_title')}
-      </div>
+      </header>
 
-      <Menu lang={this.props.lang} height={windowHeight} visible={this.state.visibleMenu} setApp={this.setApp} />
+      <Menu lang={this.props.lang} height={this.state.windowHeight} visible={this.state.visibleMenu} setApp={this.setApp} />
 
       <main id='Main' className={mainClasses} style={wrapperStyle}>{mainContent}</main>
 
