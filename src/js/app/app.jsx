@@ -16,7 +16,11 @@ require('./../ext/l.min.js');
 
 $(function () {
 
-  if (!fromCordova) return require('./view.jsx')('pt');
+  if (!fromCordova) {
+    return require('./view.jsx')('pt');
+  }
+
+  $('html').addClass('cordova');
 
   function onDeviceReady() {
     var AppRenderer = require('./view.jsx');

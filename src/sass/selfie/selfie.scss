@@ -20,6 +20,7 @@
 #SelfieApp *, :after, :before {
   box-sizing: border-box;
   -webkit-transform: translate3d(0, 0, 0);
+  background-clip: padding-box;
 }
 
 #SelfieApp {
@@ -151,10 +152,6 @@
   position: absolute;
   height: 100%;
   width: 100%;
-}
-
-#CanvasWrapper{
-
 }
 
 #SelfieApp.landscape {
@@ -381,12 +378,6 @@ html:not(.touch) {
 
 #FlexColumn, #FlexRow {
   height: 100%;
-}
-
-#SelfieCanvasBorder {
-  position: absolute;
-  height: 100%;
-  width: 100%;
 }
 
 .ImgContainer {
@@ -622,8 +613,8 @@ html:not(.touch) {
   #FlexColumnTop{
     width: 400%;
     left: -150%;
-    border-bottom: .5rem solid #4c9023;
     overflow: hidden;
+    border-bottom: .5rem solid #4c9023;
     border-bottom: {
       left-radius: 50%;
       right-radius: 50%;
@@ -635,6 +626,7 @@ html:not(.touch) {
     width: 25%;
     margin-left: 37.5%;
     background: #fffbcc;
+
     &.isEmpty {
       background: url(#{$basePath}img/bg-canvas.png) center no-repeat #fffbcc;
       background-size: auto 100%;
@@ -803,9 +795,20 @@ html:not(.touch) {
     line-height: 3.7rem;
   }
 
+}
+html.cordova {
+
+  #SelfieApp.portrait {
+
+    #FlexColumnTop {
+      border-bottom: {
+        left-radius: 0;
+        right-radius: 0;
+      }
+    }
+  }
 
 }
-
 #SelfiePopUpMenuContainer {
   visibility: hidden;
   opacity: 0;

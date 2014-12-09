@@ -498,8 +498,8 @@ var Selfie = React.createClass({
                         position: 'absolute'
                       }} />}
 
-
                   </div>
+
                 </div>
 
                 <div id='FlexColumnBottom'>
