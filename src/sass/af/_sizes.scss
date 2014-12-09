@@ -25,7 +25,7 @@ $landscape-tablet:
 
 $portrait-tablet:
   "only screen
-    and (min-width: 481px) and (max-width: 960px) and (orientation: landscape),
+    and (min-width: 481px) and (max-width: 960px) and (min-height: 800px) and (orientation: landscape),
   only screen
     and (min-width: 481px) and (max-width: 960px) and (min-height: 800px) and (max-aspect-ratio: 1/1)";
 
