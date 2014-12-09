@@ -243,7 +243,15 @@ var Selfie = React.createClass({
 
   },
 
+  makeToast: function (msg) {
+    window.plugins.toast.show(msg, 'long', 'center');
+  },
+
   makeAlert: function (msg) {
+    if (window.fromCordova) {
+      return this.makeToast(msg);
+    }
+
     this.state.errors.push(msg);
     this.setState(this.state);
   },
