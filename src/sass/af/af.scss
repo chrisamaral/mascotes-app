@@ -47,12 +47,11 @@ body{
 
   .hoverable{
     transition: transform, .4s, cubic-bezier(0.19, 1, 0.22, 1);
-
-    &:hover{
+    html:not(.touch) &:hover{
       transform: translateY(-0.3em) scale(1.1);
     }
 
-    &:active{
+    html:not(.touch) &:active{
       transform: translateY(0.1em);
       &:hover{
         transform: translateY(0.1em);
@@ -65,17 +64,17 @@ body{
 .AFNavBt{
   transition: transform .2s ease-out;
 
-  &.left:hover{
+  html:not(.touch) &.left:hover{
     transform: translateX(-10%);
   }
-  &.left:active{
+  html:not(.touch) &.left:active{
     transform: translateX(-5%);
   }
 
-  &.right:hover{
+  html:not(.touch) &.right:hover{
     transform: translateX(10%);
   }
-  &.right:active{
+  html:not(.touch) &.right:active{
     transform: translateX(5%);
   }
 }

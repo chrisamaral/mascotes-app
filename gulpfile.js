@@ -6,7 +6,6 @@ var gulp = require('gulp'),
   source = require('vinyl-source-stream'),
   uglify = require('gulp-uglify'),
   concat = require('gulp-concat'),
-  minifyCSS = require('gulp-minify-css'),
   sass = require('gulp-sass'),
   autoprefixer = require('gulp-autoprefixer'),
   gulpsync = require('gulp-sync')(gulp),
@@ -36,7 +35,9 @@ gulp.task('scripts', function () {
 gulp.task('sass', function () {
   return gulp.src('./src/sass/app/app.scss')
     .on('error', gutil.log)
-    .pipe(sass())
+    .pipe(sass({
+      //outputStyle: 'compressed'
+    }))
     .pipe(autoprefixer({
       browsers: require('../r2016.browsers.js'),
       cascade: false
@@ -50,7 +51,6 @@ gulp.task('watch', function() {
 });
 
 gulp.task('compress', function() {
-
   gulp.src('./js/app.js')
     .pipe(uglify())
     .pipe(gulp.dest('./js/'));
@@ -58,11 +58,6 @@ gulp.task('compress', function() {
   gulp.src('./js/loader.js')
     .pipe(uglify())
     .pipe(gulp.dest('./js/'));
-
-  gulp.src(['./css/app.css'])
-    .pipe(concat('app.css'))
-    .pipe(minifyCSS())
-    .pipe(gulp.dest('./css/'));
 });
 
 gulp.task('generate',

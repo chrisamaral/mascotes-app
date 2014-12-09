@@ -373,10 +373,10 @@
   font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
   color: $dark-brown;
   transition: transform .2s ease-out;
-  &:hover{
+  html:not(.touch) &:hover{
     transform: translateX(-1em);
   }
-  &:active{
+  html:not(.touch) &:active{
     transform: translateY(-0.7em);
   }
 }

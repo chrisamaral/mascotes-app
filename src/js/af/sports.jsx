@@ -70,8 +70,6 @@ var Sport = React.createClass({
     window.open(e.target.href, '_system');
   },
 
-
-
   render: function () {
     var sport = this.props.sport;
     var showText = this.props.expanded && this.state.text && this.props.index === 1;
