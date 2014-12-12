@@ -352,7 +352,7 @@ var Selfie = React.createClass({
       this.setState({
         stream: null,
         captureVideo: false,
-        selfie: streamCanvas.toDataURL('image/jpeg', 0.85),
+        selfie: streamCanvas.toDataURL('image/jpeg', 0.9),
         mediaStreamObject: null,
         mode: 'check'
       }, this.saveToLocalStorage);
@@ -394,19 +394,53 @@ var Selfie = React.createClass({
   resizeWrap: function () {
     if (this.state.mode === 'zero') return;
 
+    var $appContainer = $(this.getDOMNode()).children('.fullWrapper');
     var $container = $(this.refs.container.getDOMNode());
     var $wrap = $(this.refs.wrap.getDOMNode());
     var totalHeight = $container.height();
-    return;
-    $wrap.css({
-      height: totalHeight * 0.9,
-      'margin-top': totalHeight * 0.075,
-      'margin-bottom': totalHeight * 0.025
-    });
+    var img, aux;
+    //var $logo = $('#SelfieLogo');
+    var logoHeight = 120;
+
+    if (this.state.orientation !== 'landscape' || $appContainer.width() >= 1366) return;
+
+    var lateralSpan = ($appContainer.width() - $wrap.width()) * 0.5 * 1.2;
+    var verticalSpan =  ($container.height() * 0.9) - logoHeight;
+
+    function fixImgSize() {
+      var img = this;
+      if (!img) return;
+      var $img = $(img);
+
+      $img.width(lateralSpan).height('auto');
+      aux = img.naturalHeight * (lateralSpan / img.naturalWidth);
+
+      if (aux > verticalSpan) {
+        $img.height(verticalSpan).width('auto');
+      }
+    }
+
+    for (var i = 0; i < 4; i++) {
+      img = this.refs['floatingMascot' + i];
+
+      if (!img) continue;
+
+      img = img.getDOMNode();
+      if (img.complete) {
+        fixImgSize.call(img);
+        continue;
+      }
+
+      img.onload = fixImgSize.bind(img);
+
+    }
   },
 
   componentDidUpdate: function () {
-    if (this.state.mode !== 'zero' && Modernizr.localstorage) localStorage.setItem('selfie.f1rst', true);
+    if (this.state.mode !== 'zero' && Modernizr.localstorage) {
+      localStorage.setItem('selfie.f1rst', true);
+    }
+
     this.resizeWrap();
   },
 
@@ -454,16 +488,16 @@ var Selfie = React.createClass({
                 <div id='FlexColumnTop' ref='container'>
 
                   {landscapeViewPort && this.state.mode === 'initial' && !this.state.stream
-                    ? <img className='floatingMascote' id='SelfieInitialMascote1' src={app_base + 'img/mascotes/a/tela1-mascote1' + imgSuffix + '.png'} /> : null}
+                    ? <img className='floatingMascote' ref='floatingMascot0' id='SelfieInitialMascote1' src={app_base + 'img/mascotes/a/tela1-mascote1' + imgSuffix + '.png'} /> : null}
 
                   {landscapeViewPort && this.state.mode === 'initial' && !this.state.stream
-                    ? <img className='floatingMascote' id='SelfieInitialMascote2' src={app_base + 'img/mascotes/a/tela1-mascote2' + imgSuffix + '.png'} /> : null}
+                    ? <img className='floatingMascote' ref='floatingMascot1' data-msize='smaller' id='SelfieInitialMascote2' src={app_base + 'img/mascotes/a/tela1-mascote2' + imgSuffix + '.png'} /> : null}
 
                   {landscapeViewPort && this.state.mode === 'save'
-                    ? <img className='floatingMascote' id='SelfieSaveMascote1' src={app_base + 'img/mascotes/a/tela5-mascote1.png'} /> : null}
+                    ? <img className='floatingMascote' ref='floatingMascot2' data-msize='smaller' id='SelfieSaveMascote1' src={app_base + 'img/mascotes/a/tela5-mascote1.png'} /> : null}
 
                   {landscapeViewPort && this.state.mode === 'save'
-                    ? <img className='floatingMascote' id='SelfieSaveMascote2' src={app_base + 'img/mascotes/a/tela5-mascote2.png'} /> : null}
+                    ? <img className='floatingMascote' ref='floatingMascot3' id='SelfieSaveMascote2' src={app_base + 'img/mascotes/a/tela5-mascote2.png'} /> : null}
 
                   <div className={canvasClasses} id='CanvasWrapper' ref='wrap'>
                       { this.state.stream && this.state.mode === 'initial'

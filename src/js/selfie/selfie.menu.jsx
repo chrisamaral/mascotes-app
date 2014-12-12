@@ -55,12 +55,12 @@ var MenuInitial = React.createClass({
 
 			function (result) {
 				this.props.setImage('selfie', result);
-			}.bind(this), 
+			}.bind(this),
 
-			this.onError, 
+			this.onError,
 
 			{destinationType: Camera.DestinationType.FILE_URI}
-	  	);
+    );
 
 	},
 

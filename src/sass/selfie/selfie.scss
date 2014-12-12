@@ -19,7 +19,6 @@
 }
 #SelfieApp *, :after, :before {
   box-sizing: border-box;
-  -webkit-transform: translate3d(0, 0, 0);
   background-clip: padding-box;
 }
 
@@ -306,46 +305,26 @@ html:not(.touch) {
 
 .floatingMascote {
   position: absolute;
-  bottom: 2em;
-  width: auto;
-  height: 50%;
-  z-index: 2;
-  &:first-child {
-    left: -2em;
-  }
-  &:last-of-type {
-    right: -4em;
-  }
-}
-
-#SelfieSaveMascote1 {
-  height: 50%;
-  width: auto;
-  bottom: 4.5em;
-}
-
-#SelfieInitialMascote1, #SelfieInitialMascote2{
+  //top: 9rem;
   height: 70%;
-}
-@media (max-width: 1024px) and (max-height: 768px) {
-  /*
-  #SelfieApp.landscape #FlexRowLeft{
-    max-height: 700px;
-  }
-  #FlexRowRight{
-    max-height: 700px;
-  }
-  */
-  #SelfieApp.landscape #SelfieSaveMascote1 {
-    height: 40%;
-  }
-  #SelfieApp.landscape #SelfieSaveMascote2 {
-    height: 45%;
-  }
-}
+  bottom: 5%;
+  width: auto;
+  z-index: 2;
 
-#SelfieSaveMascote2 {
-  bottom: 4em;
+
+  &:first-child {
+    transform: translateX(-30%);
+    left: 0;
+  }
+
+  &:last-of-type {
+    transform: translateX(30%);
+    right: 0;
+  }
+
+  &#SelfieInitialMascote2, &#SelfieSaveMascote1{
+    height: 65%;
+  }
 }
 
 #BtShareFB, #BtShareTwitter, #BtShareInstagram {

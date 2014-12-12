@@ -430,8 +430,7 @@ var Img = React.createClass({
 		return (
       <div className={classes} style={wrapperStyle} onDoubleClick={this.clickZoom} onWheel={this.onMouseWheel} >
         <div className='fullWrapper'>
-          <img ref='img' src={this.props.src} onLoad={this.setDefaultSize}
-              width={wrapperStyle.width} height={wrapperStyle.height} />
+          <img ref='img' src={this.props.src} onLoad={this.setDefaultSize} />
         </div>
       </div>
     );

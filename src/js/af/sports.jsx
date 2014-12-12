@@ -58,11 +58,12 @@ var Sport = React.createClass({
 
   componentDidMount: function () {
     _.delay(this.resize, 500);
-    $(window).on('resize orientationchange', this.resize);
+    this.__resizeHandler = _.throttle(this.resize, 200);
+    $(window).on('resize orientationchange', this.__resizeHandler);
   },
 
   componentWillUnmount: function () {
-    $(window).off('resize orientationchange', this.resize);
+    $(window).off('resize orientationchange', this.__resizeHandler);
   },
 
   openInBrowser: function (e) {
@@ -260,8 +261,6 @@ var Sports = React.createClass({
       : sports[pos + 1]);
 
     var sports_names = _.map(sports, 'name');
-    var sports_ids = _.map(sports, 'id');
-
     var shareText = this.formatMessage(this.getIntlMessage('result.share_text'), {
       count: sports_names.length,
       sports: sports_names.join(', ')

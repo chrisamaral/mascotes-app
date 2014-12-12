@@ -76,8 +76,7 @@ html, html {
 *, :after, :before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transform: translate3d(0, 0, 0); }
+  box-sizing: border-box; }
 
 html, body {
   font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
@@ -1044,7 +1043,6 @@ body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-transform: translate3d(0, 0, 0);
   -webkit-background-clip: padding-box;
   background-clip: padding-box; }
 
@@ -1379,39 +1377,24 @@ html:not(.touch) .lameHover {
 
 .floatingMascote {
   position: absolute;
-  bottom: 2em;
+  height: 70%;
+  bottom: 5%;
   width: auto;
-  height: 50%;
   z-index: 2; }
   .floatingMascote:first-child {
-    left: -2em; }
+    -webkit-transform: translateX(-30%);
+    -moz-transform: translateX(-30%);
+    -ms-transform: translateX(-30%);
+    transform: translateX(-30%);
+    left: 0; }
   .floatingMascote:last-of-type {
-    right: -4em; }
-
-#SelfieSaveMascote1 {
-  height: 50%;
-  width: auto;
-  bottom: 4.5em; }
-
-#SelfieInitialMascote1, #SelfieInitialMascote2 {
-  height: 70%; }
-
-@media (max-width: 1024px) and (max-height: 768px) {
-  /*
-  #SelfieApp.landscape #FlexRowLeft{
-    max-height: 700px;
-  }
-  #FlexRowRight{
-    max-height: 700px;
-  }
-  */
-  #SelfieApp.landscape #SelfieSaveMascote1 {
-    height: 40%; }
-  #SelfieApp.landscape #SelfieSaveMascote2 {
-    height: 45%; } }
-
-#SelfieSaveMascote2 {
-  bottom: 4em; }
+    -webkit-transform: translateX(30%);
+    -moz-transform: translateX(30%);
+    -ms-transform: translateX(30%);
+    transform: translateX(30%);
+    right: 0; }
+  .floatingMascote#SelfieInitialMascote2, .floatingMascote#SelfieSaveMascote1 {
+    height: 65%; }
 
 #BtShareFB, #BtShareTwitter, #BtShareInstagram {
   width: 4em; }
