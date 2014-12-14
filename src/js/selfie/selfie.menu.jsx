@@ -3,6 +3,8 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 var supportsADownload = !window.externalHost && 'download' in document.createElement('a');
 var WebRTC = window.navigator && navigator.getUserMedia;
 var navigatorCamera = navigator.camera && navigator.camera.getPicture;
+var ie = ('ActiveXObject' in window && +(/\s(?:MSIE\s|rv\:)(\d+)/.exec(navigator.userAgent)[1])) || NaN;
+var ieMobile = ( !! window.ActiveXObject && +( /IEMobile\/(\d+\.?(\d+)?)/.exec( navigator.userAgent )[1] ) ) || NaN;
 
 function dataURItoBlob (dataURI) {
   dataURI = dataURI.substr('data:image/jpeg;base64,'.length);
@@ -367,6 +369,14 @@ var MenuSave = React.createClass({
       this.setState({saved: true});
     }
 
+    var $img;
+
+    if (!Modernizr.adownload && (ie !== NaN || ieMobile !== NaN)) {
+
+      $img = $('<img>').attr('src', this.props.canvasDataURL);
+      $('body').empty().append($img);
+
+    }
   },
 
   
@@ -497,7 +507,7 @@ var MenuSave = React.createClass({
       downloadButton = <a id='BtDownload' className={downloadButtonClasses} onClick={this.saveSelfie}>
         {this.getIntlMessage('menu.save_pic')}
       </a>;
-    } else if (supportsADownload) {
+    } else if (Modernizr.adownload) {
       downloadButton = <a id='BtDownload' href={this.props.canvasDataURL} className={downloadButtonClasses} download='Rio2016Selfie.jpg' onClick={this.saveSelfie}>
         {this.getIntlMessage('menu.save_pic')}
       </a>;
@@ -522,6 +532,8 @@ var MenuSave = React.createClass({
     var sharePopupClasses = React.addons.classSet({
       visible: this.state.visibleSharePopup
     });
+
+
 
     return (
       <div className='fullWrapper' id='MenuBtsContainer'>
