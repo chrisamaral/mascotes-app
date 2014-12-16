@@ -1,54 +1,22 @@
-/* Smartphones (portrait and landscape) ----------- */
-html, html {
-  font-size: 13px; }
+@media only screen and (max-width: 560px), only screen and (max-device-width: 560px) {
+  html {
+    font-size: 13px; } }
 
-html, html {
-  font-size: 15px; }
+@media only screen and (min-width: 561px), only screen and (min-device-width: 561px) {
+  html {
+    font-size: 14px; } }
 
-/* Smartphones  */
-@media only screen
-    and (max-aspect-ratio: 8/10),
-  only screen
-    and (max-width: 480px) and (orientation: portrait) { }
+@media only screen and (min-width: 800px), only screen and (min-device-width: 800px) {
+  html {
+    font-size: 15px; } }
 
-@media only screen
-    and (min-aspect-ratio: 81/100) and (max-height: 480px) and (max-width: 800px),
-  only screen
-    and (max-width: 480px) and (orientation: landscape) {
-  #Main {
-    visibility: hidden !important; }
-  #App {
-    background: url(../img/rotate-phone.png) center no-repeat;
-    background-size: 60%; } }
-
-/* tablets */
-@media only screen
-    and (min-width: 960px) and (orientation: portrait),
-  only screen
-    and (min-height: 481px) and (min-aspect-ratio: 1/1) { }
-
-@media only screen
-    and (min-width: 481px) and (max-width: 960px) and (min-height: 800px) and (orientation: landscape),
-  only screen
-    and (min-width: 481px) and (max-width: 960px) and (min-height: 800px) and (max-aspect-ratio: 1/1) {
-  #Main {
-    visibility: hidden !important; }
-  #App {
-    background: url(../img/rotate-tablet.png) center no-repeat;
-    background-size: 60%; } }
-
-/* Desktops and laptops ----------- */
 @media only screen and (min-width: 1224px) {
   html {
     font-size: 17px; } }
 
-/* Large screens ----------- */
 @media only screen and (min-width: 1500px) {
   html {
     font-size: 18px; } }
-
-/* iPhone 4 ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) { }
 
 @font-face {
   font-family: 'TheSansRio2016TT-Regular';
@@ -72,6 +40,7 @@ html, html {
   font-style: normal; }
 
 *, :after, :before {
+  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
@@ -115,6 +84,7 @@ html, body {
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%); }
   #Hamburger .tick {
@@ -132,13 +102,16 @@ html, body {
   padding-right: 3em;
   padding-left: 1em;
   background: white;
+  -webkit-box-shadow: 3px 0 5px rgba(0, 0, 0, 0.3);
   box-shadow: 3px 0 5px rgba(0, 0, 0, 0.3);
-  transition: -webkit-transform 0.3s ease;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  -moz-transition: -moz-transform 0.3s ease;
   transition: transform 0.3s ease;
   z-index: 10;
   font-size: 1rem; }
   #Menu.hidden {
     -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
     -ms-transform: translateX(-100%);
     transform: translateX(-100%); }
 
@@ -169,6 +142,7 @@ body {
   width: 100%;
   display: table !important;
   background: url(../img/bg-af.jpg) center no-repeat !important;
+  -webkit-background-size: cover;
   background-size: cover;
   overflow: hidden;
   font-family: "TheSansRio2016TT-Regular", Arial, sans-serif; }
@@ -184,43 +158,53 @@ body {
     width: 100%;
     height: 12em; }
   .AF .hoverable {
-    transition: -webkit-transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-transition: -webkit-transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-transition: -moz-transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1);
     transition: transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1); }
     html:not(.touch) .AF .hoverable:hover {
       -webkit-transform: translateY(-0.3em) scale(1.1);
+      -moz-transform: translateY(-0.3em) scale(1.1);
       -ms-transform: translateY(-0.3em) scale(1.1);
       transform: translateY(-0.3em) scale(1.1); }
     html:not(.touch) .AF .hoverable:active {
       -webkit-transform: translateY(0.1em);
+      -moz-transform: translateY(0.1em);
       -ms-transform: translateY(0.1em);
       transform: translateY(0.1em); }
       html:not(.touch) .AF .hoverable:active:hover {
         -webkit-transform: translateY(0.1em);
+        -moz-transform: translateY(0.1em);
         -ms-transform: translateY(0.1em);
         transform: translateY(0.1em); }
 
 .AFNavBt {
-  transition: -webkit-transform 0.2s ease-out;
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  -moz-transition: -moz-transform 0.2s ease-out;
   transition: transform 0.2s ease-out; }
   html:not(.touch) .AFNavBt.left:hover {
     -webkit-transform: translateX(-10%);
+    -moz-transform: translateX(-10%);
     -ms-transform: translateX(-10%);
     transform: translateX(-10%); }
   html:not(.touch) .AFNavBt.left:active {
     -webkit-transform: translateX(-5%);
+    -moz-transform: translateX(-5%);
     -ms-transform: translateX(-5%);
     transform: translateX(-5%); }
   html:not(.touch) .AFNavBt.right:hover {
     -webkit-transform: translateX(10%);
+    -moz-transform: translateX(10%);
     -ms-transform: translateX(10%);
     transform: translateX(10%); }
   html:not(.touch) .AFNavBt.right:active {
     -webkit-transform: translateX(5%);
+    -moz-transform: translateX(5%);
     -ms-transform: translateX(5%);
     transform: translateX(5%); }
 
 #AFClose {
   background: url(../img/bt-close.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain;
   width: 3em;
   height: 4em;
@@ -234,7 +218,8 @@ body {
   font-size: 1.5rem;
   text-decoration: none;
   z-index: 2;
-  transition: -webkit-transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: -webkit-transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: -moz-transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1);
   transition: transform, 0.4s, cubic-bezier(0.19, 1, 0.22, 1); }
 
 #AFClose:hover {
@@ -242,12 +227,14 @@ body {
   text-decoration: none;
   cursor: pointer;
   -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2); }
 
 #AFLogo {
   display: table-cell;
   background: url(../img/af-logo.png) center no-repeat;
+  -webkit-background-size: auto auto;
   background-size: auto;
   height: 100%;
   width: 100%;
@@ -265,6 +252,7 @@ body {
     display: inline-block;
     padding: 0 3em;
     line-height: 4em;
+    -webkit-background-size: contain !important;
     background-size: contain !important;
     text-indent: -9999px; }
     #AFNavigation .AFButtonFlow.prev {
@@ -302,6 +290,7 @@ body {
     and (max-width: 480px) and (orientation: portrait) {
   .AF {
     background: url(../img/bg-af-mobile.jpg) center no-repeat !important;
+    -webkit-background-size: cover;
     background-size: cover;
     display: block !important; }
   #AFContainer, .AFContent {
@@ -319,6 +308,7 @@ body {
   margin: 0 5%;
   padding: 2rem 0;
   background: url(../img/af-text-container.png) center no-repeat;
+  -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
   height: auto; }
   #AFWelcomeText > article {
@@ -343,6 +333,7 @@ body {
   width: 100%;
   font-size: 1.5rem;
   -webkit-transform: translateY(-2rem);
+  -moz-transform: translateY(-2rem);
   -ms-transform: translateY(-2rem);
   transform: translateY(-2rem); }
   #AFWelcomeAction a {
@@ -352,6 +343,7 @@ body {
     line-height: 4em;
     color: white;
     background: url(../img/bt-af-proceed.png) center no-repeat;
+    -webkit-background-size: contain;
     background-size: contain; }
 
 #AFWelcomeLeft, #AFWelcomeRight {
@@ -368,10 +360,12 @@ body {
     display: block;
     height: 9rem;
     margin-bottom: 2rem;
+    -webkit-background-size: contain;
     background-size: contain; }
 
 #AFWelcomeRight {
   background: url(../img/af-mascotes.png) left center no-repeat;
+  -webkit-background-size: 80% 80%;
   background-size: 80%; }
 
 @media only screen
@@ -395,6 +389,7 @@ body {
       display: none; }
     #AFWelcomeLeft #AFLogo {
       position: relative;
+      -webkit-background-size: auto 90%;
       background-size: auto 90%;
       height: 7rem;
       margin-bottom: 0; }
@@ -409,6 +404,7 @@ body {
     margin: 0;
     padding: 0;
     top: 9rem;
+    -webkit-background-size: auto 100%;
     background-size: auto 100%;
     background-position: center; } }
 
@@ -425,6 +421,7 @@ body {
     height: 8rem !important;
     margin-bottom: 2rem; }
     #AFQuestionForm > header #AFLogo {
+      -webkit-background-size: contain;
       background-size: contain; }
     @media only screen
     and (max-aspect-ratio: 8/10),
@@ -434,6 +431,7 @@ body {
         height: 7rem !important;
         margin-bottom: 0.5rem; }
         #AFQuestionForm > header #AFLogo {
+          -webkit-background-size: auto 90%;
           background-size: auto 90%; } }
   #AFQuestionForm > fieldset {
     padding: 2em 0;
@@ -472,7 +470,10 @@ body {
     line-height: 2em;
     padding: 1.5em 0;
     background: #e9fa00;
+    background: -moz-linear-gradient(top, #e9fa00 0%, #ffd500 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, #e9fa00), color-stop(100%, #ffd500));
+    background: -webkit-linear-gradient(top, #e9fa00 0%, #ffd500 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e9fa00), to(#ffd500));
     background: linear-gradient(to bottom, #e9fa00 0%, #ffd500 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9fa00', endColorstr='#ffd500', GradientType=0 );
     font-weight: bold;
@@ -481,11 +482,13 @@ body {
       border-top-left-radius: 1em;
       border-top-right-radius: 1.2em; }
       #AFQuestionForm li:first-child.selected {
+        -webkit-box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.3);
         box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.3); }
     #AFQuestionForm li:last-child {
       border-bottom-left-radius: 1em;
       border-bottom-right-radius: 1.2em; }
       #AFQuestionForm li:last-child.selected {
+        -webkit-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.3);
         box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.3); }
     #AFQuestionForm li input[type=checkbox] {
       display: none; }
@@ -497,7 +500,10 @@ body {
     background-color: #e6bc00; }
   #AFQuestionForm li.selected {
     background: #f68535;
+    background: -moz-linear-gradient(top, #f68535 0%, #de570e 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, #f68535), color-stop(100%, #de570e));
+    background: -webkit-linear-gradient(top, #f68535 0%, #de570e 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f68535), to(#de570e));
     background: linear-gradient(to bottom, #f68535 0%, #de570e 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f68535', endColorstr='#de570e', GradientType=0 );
     color: white; }
@@ -511,6 +517,7 @@ body {
   font-size: 1rem;
   border-radius: 0.7em;
   color: #282828;
+  -webkit-box-shadow: 1px 3px 2px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 3px 2px rgba(0, 0, 0, 0.1); }
   #AFQuestion > span {
     display: block;
@@ -528,6 +535,7 @@ body {
     line-height: 2em;
     background-color: white;
     border-radius: 50%;
+    -webkit-box-shadow: 2px 4px 7px rgba(104, 37, 123, 0.5);
     box-shadow: 2px 4px 7px rgba(104, 37, 123, 0.5);
     color: #461954 !important; }
 
@@ -546,12 +554,14 @@ body {
       padding-right: 1em; } }
 
 #AFSports {
+  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-transform: translate3d(0, 0, 0);
   position: relative;
   padding-bottom: 4em; }
   #AFSports *, #AFSports :after, #AFSports :before {
+    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
   #AFSports > section {
@@ -573,6 +583,7 @@ body {
         height: 32em; } }
   #AFSports #AFLogo {
     width: 50%;
+    -webkit-background-size: 60% 60%;
     background-size: 60%; }
 
 #AFCoolStoryBro {
@@ -598,6 +609,7 @@ body {
   line-height: 4em;
   position: absolute;
   top: 15em;
+  -webkit-background-size: contain !important;
   background-size: contain !important;
   text-indent: -9999px;
   z-index: 3; }
@@ -619,6 +631,7 @@ body {
   height: 2em;
   padding: 0 2em;
   background: url(../img/bt-af-blue.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain; }
 
 .AFSport {
@@ -630,6 +643,8 @@ body {
   overflow: visible;
   line-height: 1.5em;
   top: 0;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out; }
   @media only screen
     and (max-aspect-ratio: 8/10),
@@ -667,6 +682,7 @@ body {
     font-size: 2rem; }
   .AFSport > .inner, .AFSport > #AFSports > section > span, #AFSports > section > .AFSport > span {
     background: url(../img/card-af-small.png) center no-repeat;
+    -webkit-background-size: 88% 100%;
     background-size: 88% 100%;
     padding: 0; }
 
@@ -724,10 +740,12 @@ body {
   .AFSport.expanded .AFInfoExpansible.mid {
     top: 50%;
     -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%); }
   .AFSport.expanded > .inner, .AFSport.expanded > #AFSports > section > span, #AFSports > section > .AFSport.expanded > span {
     background: url(../img/card-af-large.png) center no-repeat;
+    -webkit-background-size: 88% 100%;
     background-size: 88% 100%; }
 
 .AFDoSomething {
@@ -749,10 +767,12 @@ body {
     height: 3em; }
   .AFDoSomething .share-fb {
     background: url(../img/af-fb.png) center no-repeat;
+    -webkit-background-size: contain;
     background-size: contain;
     margin-left: 0.7em; }
   .AFDoSomething .share-tw {
     background: url(../img/af-twitter.png) center no-repeat;
+    -webkit-background-size: contain;
     background-size: contain; }
   .AFDoSomething .share-this {
     display: inline-block;
@@ -796,6 +816,7 @@ body {
       width: 95%;
       left: 2.5%; }
       .AFSport.middle > .inner, .AFSport.middle > #AFSports > section > span, #AFSports > section > .AFSport.middle > span {
+        -webkit-background-size: 100% 100%;
         background-size: 100% 100%; } }
 
 .AFSport.expanded.middle {
@@ -809,6 +830,7 @@ body {
       width: 95%;
       left: 2.5%; }
       .AFSport.expanded.middle > .inner, .AFSport.expanded.middle > #AFSports > section > span, #AFSports > section > .AFSport.expanded.middle > span {
+        -webkit-background-size: 100% 100%;
         background-size: 100% 100%; } }
 
 .AFSport.last {
@@ -823,11 +845,13 @@ body {
   line-height: 3em;
   text-align: right;
   background: url(../img/bt-af-back.png) right center no-repeat;
+  -webkit-background-size: 100% 100%;
   background-size: 100%;
   font-size: 1.2rem;
   font-family: "TheSansRio2016TT-Regular", Arial, sans-serif;
   color: #934400;
-  transition: -webkit-transform 0.2s ease-out;
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  -moz-transition: -moz-transform 0.2s ease-out;
   transition: transform 0.2s ease-out; }
   @media only screen and (min-width: 481px) and (min-aspect-ratio: 1/1) {
     #AFSportsGoBack {
@@ -835,15 +859,18 @@ body {
       right: -1em; } }
   html:not(.touch) #AFSportsGoBack:hover {
     -webkit-transform: translateX(-1em);
+    -moz-transform: translateX(-1em);
     -ms-transform: translateX(-1em);
     transform: translateX(-1em); }
   html:not(.touch) #AFSportsGoBack:active {
     -webkit-transform: translateY(-0.7em);
+    -moz-transform: translateY(-0.7em);
     -ms-transform: translateY(-0.7em);
     transform: translateY(-0.7em); }
 
 #AFSportsIndex {
   background: url(../img/af-sports-index.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain;
   padding: 0;
   margin: 0;
@@ -858,14 +885,17 @@ body {
   width: 100%; }
 
 .AFPopBt {
-  transition: -webkit-transform 0.2s ease-out;
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  -moz-transition: -moz-transform 0.2s ease-out;
   transition: transform 0.2s ease-out; }
   .AFPopBt:hover {
     -webkit-transform: scale(1.02) translateY(-0.3em) !important;
+    -moz-transform: scale(1.02) translateY(-0.3em) !important;
     -ms-transform: scale(1.02) translateY(-0.3em) !important;
     transform: scale(1.02) translateY(-0.3em) !important; }
   .AFPopBt:active {
     -webkit-transform: scale(1.02) translateY(0em) !important;
+    -moz-transform: scale(1.02) translateY(0em) !important;
     -ms-transform: scale(1.02) translateY(0em) !important;
     transform: scale(1.02) translateY(0em) !important; }
 
@@ -882,6 +912,7 @@ body {
     width: 80%;
     height: 7rem;
     margin: 0.5rem auto;
+    -webkit-background-size: 70% 70%;
     background-size: 70%; }
   #AFSports #AFCoolStoryBro {
     display: block;
@@ -916,6 +947,7 @@ body {
     display: none;
     font-size: 0.8rem;
     background: url(../img/bt-af-back-mobile.png) right center no-repeat;
+    -webkit-background-size: contain;
     background-size: contain; }
     #AFSportsGoBack.expanded {
       display: block;
@@ -944,6 +976,8 @@ body {
     width: 100%; }
   .AFSport.middle.expanded .AFSportImg {
     height: 8rem;
+    -webkit-transition: height 0.3s ease, width 0.3s ease, top 0.3s ease, left 0.3s ease;
+    -moz-transition: height 0.3s ease, width 0.3s ease, top 0.3s ease, left 0.3s ease;
     transition: height 0.3s ease, width 0.3s ease, top 0.3s ease, left 0.3s ease; }
     .AFSport.middle.expanded .AFSportImg .img {
       height: 140%;
@@ -972,17 +1006,21 @@ body {
   margin: 0 auto; }
 
 #SelfieApp *, :after, :before {
+  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  -webkit-background-clip: padding-box;
   background-clip: padding-box; }
 
 #SelfieApp {
   overflow: hidden;
   background: url(../img/bg-default.jpg) center no-repeat;
+  -webkit-background-size: 100% 100%;
   background-size: 100% 100%; }
 
 #SelfieClose {
   background: url(../img/bt-close.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain;
   width: 3em;
   height: 4em;
@@ -996,13 +1034,15 @@ body {
   font-size: large;
   text-decoration: none;
   z-index: 2;
-  transition: -webkit-transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: -moz-transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
   #SelfieClose:hover {
     color: #fff;
     text-decoration: none;
     cursor: pointer;
     -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
     -ms-transform: scale(1.2);
     transform: scale(1.2); }
 
@@ -1034,6 +1074,7 @@ body {
 
 #SelfieBtSkip {
   background: url(../img/bt-vamos-nessa.png) center no-repeat;
+  -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
   padding: 0 1.5em;
   line-height: 4em;
@@ -1049,6 +1090,7 @@ body {
 
 .fullCam #FlexRowLeft {
   -webkit-transform: translateX(5em);
+  -moz-transform: translateX(5em);
   -ms-transform: translateX(5em);
   transform: translateX(5em); }
 
@@ -1100,6 +1142,7 @@ body {
   background: #fffbcc; }
   #SelfieApp.landscape #CanvasWrapper.isEmpty {
     background: url(../img/bg-canvas.png) center no-repeat #fffbcc;
+    -webkit-background-size: cover;
     background-size: cover; }
 
 .sBt {
@@ -1116,19 +1159,23 @@ body {
     opacity: 0.8; }
 
 html:not(.touch) .lameHover {
-  transition: -webkit-transform 0.4s ease-in;
+  -webkit-transition: -webkit-transform 0.4s ease-in;
+  -moz-transition: -moz-transform 0.4s ease-in;
   transition: transform 0.4s ease-in; }
   html:not(.touch) .lameHover:hover {
     cursor: pointer;
     -webkit-transform: translateY(-0.3em) scale(1.1) !important;
+    -moz-transform: translateY(-0.3em) scale(1.1) !important;
     -ms-transform: translateY(-0.3em) scale(1.1) !important;
     transform: translateY(-0.3em) scale(1.1) !important; }
   html:not(.touch) .lameHover:active {
     -webkit-transform: translateY(0.1em) !important;
+    -moz-transform: translateY(0.1em) !important;
     -ms-transform: translateY(0.1em) !important;
     transform: translateY(0.1em) !important; }
     html:not(.touch) .lameHover:active:hover {
       -webkit-transform: translateY(0.1em) !important;
+      -moz-transform: translateY(0.1em) !important;
       -ms-transform: translateY(0.1em) !important;
       transform: translateY(0.1em) !important; }
 
@@ -1141,10 +1188,13 @@ html:not(.touch) .lameHover {
   background-color: #3F9C58 !important; }
   .sBt.saved > span {
     -webkit-animation-name: helloDumbAss;
+    -moz-animation-name: helloDumbAss;
     animation-name: helloDumbAss;
     -webkit-animation-duration: 3s;
+    -moz-animation-duration: 3s;
     animation-duration: 3s;
     -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
     animation-iteration-count: 1; }
 .sBt.waiting {
   background-color: #969696 !important; }
@@ -1152,10 +1202,13 @@ html:not(.touch) .lameHover {
   background-color: #003f54 !important; }
   .sBt.loading > span {
     -webkit-animation-name: lameRotate;
+    -moz-animation-name: lameRotate;
     animation-name: lameRotate;
     -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
     animation-duration: 2s;
     -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
     animation-iteration-count: infinite; }
 
 @-webkit-keyframes helloDumbAss {
@@ -1171,17 +1224,33 @@ html:not(.touch) .lameHover {
     -webkit-transform: scale(1);
     transform: scale(1); } }
 
+@-moz-keyframes helloDumbAss {
+  0% {
+    -moz-transform: scale(1);
+    transform: scale(1); }
+
+  25% {
+    -moz-transform: scale(2);
+    transform: scale(2); }
+
+  100%, 50% {
+    -moz-transform: scale(1);
+    transform: scale(1); } }
+
 @keyframes helloDumbAss {
   0% {
     -webkit-transform: scale(1);
+    -moz-transform: scale(1);
     transform: scale(1); }
 
   25% {
     -webkit-transform: scale(2);
+    -moz-transform: scale(2);
     transform: scale(2); }
 
   100%, 50% {
     -webkit-transform: scale(1);
+    -moz-transform: scale(1);
     transform: scale(1); } }
 
 @-webkit-keyframes lameRotate {
@@ -1197,17 +1266,33 @@ html:not(.touch) .lameHover {
     -webkit-transform: rotate(360deg) !important;
     transform: rotate(360deg) !important; } }
 
+@-moz-keyframes lameRotate {
+  0% {
+    -moz-transform: rotate(0deg) !important;
+    transform: rotate(0deg) !important; }
+
+  50% {
+    -moz-transform: rotate(180deg) !important;
+    transform: rotate(180deg) !important; }
+
+  100% {
+    -moz-transform: rotate(360deg) !important;
+    transform: rotate(360deg) !important; } }
+
 @keyframes lameRotate {
   0% {
     -webkit-transform: rotate(0deg) !important;
+    -moz-transform: rotate(0deg) !important;
     transform: rotate(0deg) !important; }
 
   50% {
     -webkit-transform: rotate(180deg) !important;
+    -moz-transform: rotate(180deg) !important;
     transform: rotate(180deg) !important; }
 
   100% {
     -webkit-transform: rotate(360deg) !important;
+    -moz-transform: rotate(360deg) !important;
     transform: rotate(360deg) !important; } }
 
 #BtChangeSelfie, #BtGoBack, #SelfieTakePic {
@@ -1216,33 +1301,39 @@ html:not(.touch) .lameHover {
 
 #BtChangeSelfie {
   background: url(../img/bt-trocar.png) center no-repeat;
+  -webkit-background-size: 100% 100%;
   background-size: 100% 100%; }
 
 #SelfieTakePic {
   background: url(../img/bt-tirar-nova.png) center no-repeat;
+  -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
   padding: 0 2em;
   text-indent: 1em; }
 
 #SelfieOpenGallery {
   background: url(../img/bt-escolher-foto.png) center no-repeat;
+  -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
   padding: 0 2.2em;
   text-indent: 1em; }
 
 #BtGoBack {
   background: url(../img/bt-tirar-outra.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain;
   margin: 0 1em 0 12em; }
 
 #BtProceedToSave {
   background: url(../img/bt-quero-essa.png) center no-repeat;
+  -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
   padding-left: 1em;
   padding-right: 3em; }
 
 #BtDownload {
   background: url(../img/bt-sv.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain;
   position: absolute;
   width: 10em;
@@ -1258,11 +1349,13 @@ html:not(.touch) .lameHover {
   z-index: 2; }
   .floatingMascote:first-child {
     -webkit-transform: translateX(-30%);
+    -moz-transform: translateX(-30%);
     -ms-transform: translateX(-30%);
     transform: translateX(-30%);
     left: 0; }
   .floatingMascote:last-of-type {
     -webkit-transform: translateX(30%);
+    -moz-transform: translateX(30%);
     -ms-transform: translateX(30%);
     transform: translateX(30%);
     right: 0; }
@@ -1274,14 +1367,17 @@ html:not(.touch) .lameHover {
 
 #BtShareFB {
   background: url(../img/fb-logo.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain; }
 
 #BtShareTwitter {
   background: url(../img/twitter-logo.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain; }
 
 #BtShareInstagram {
   background: url(../img/bt-selfie-instagram.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain; }
 
 #SelfieLogo {
@@ -1331,6 +1427,7 @@ html:not(.touch) .lameHover {
   bottom: 6rem;
   width: 100%;
   background: url(../img/bg-side-menu.png) center no-repeat;
+  -webkit-background-size: 100% 100%;
   background-size: 100% 100%; }
   #SideMenuBox > img {
     width: 100%;
@@ -1371,19 +1468,23 @@ html:not(.touch) .lameHover {
   width: 90%;
   margin: 1em auto;
   background-color: #fffbec;
-  transition: -webkit-transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: -moz-transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
   .SelfieSideMenuItem:hover {
     cursor: pointer;
     -webkit-transform: translateY(-0.3em) scale(1.05) !important;
+    -moz-transform: translateY(-0.3em) scale(1.05) !important;
     -ms-transform: translateY(-0.3em) scale(1.05) !important;
     transform: translateY(-0.3em) scale(1.05) !important; }
   .SelfieSideMenuItem:active {
     -webkit-transform: translateY(0.1em) !important;
+    -moz-transform: translateY(0.1em) !important;
     -ms-transform: translateY(0.1em) !important;
     transform: translateY(0.1em) !important; }
     .SelfieSideMenuItem:active:hover {
       -webkit-transform: translateY(0.1em) !important;
+      -moz-transform: translateY(0.1em) !important;
       -ms-transform: translateY(0.1em) !important;
       transform: translateY(0.1em) !important; }
   .SelfieSideMenuItem:first-child {
@@ -1429,27 +1530,47 @@ html:not(.touch) .lameHover {
     -webkit-transform: scale(1);
     transform: scale(1); } }
 
+@-moz-keyframes stupidAnimation {
+  0% {
+    -moz-transform: scale(1);
+    transform: scale(1); }
+
+  10% {
+    -moz-transform: scale(1.1);
+    transform: scale(1.1); }
+
+  20% {
+    -moz-transform: scale(1);
+    transform: scale(1); } }
+
 @keyframes stupidAnimation {
   0% {
     -webkit-transform: scale(1);
+    -moz-transform: scale(1);
     transform: scale(1); }
 
   10% {
     -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
     transform: scale(1.1); }
 
   20% {
     -webkit-transform: scale(1);
+    -moz-transform: scale(1);
     transform: scale(1); } }
 
 .hasStupidAnimation {
   -webkit-animation-duration: 3s;
+  -moz-animation-duration: 3s;
   animation-duration: 3s;
   -webkit-animation-name: stupidAnimation;
+  -moz-animation-name: stupidAnimation;
   animation-name: stupidAnimation;
   -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
+  -moz-animation-direction: alternate;
   animation-direction: alternate; }
 
 #SelfieTela0Content {
@@ -1460,6 +1581,7 @@ html:not(.touch) .lameHover {
   text-align: center;
   top: 50%;
   -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
   #SelfieTela0Content article > p {
@@ -1479,13 +1601,16 @@ html:not(.touch) .lameHover {
   height: 70%;
   top: 50%;
   -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   background: url(../img/mascotes/a/tela0-mascotes.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain; }
 
 #SelfieTela0Logo {
   background: url(../img/tela0-logo.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain;
   width: 90%;
   height: 10rem;
@@ -1493,6 +1618,7 @@ html:not(.touch) .lameHover {
 
 .en #SelfieTela0Logo {
   background: url(../img/tela0-logo-en.png) center no-repeat;
+  -webkit-background-size: contain;
   background-size: contain; }
 
 #MenuBtsContainer {
@@ -1501,11 +1627,13 @@ html:not(.touch) .lameHover {
   height: auto;
   top: 50%;
   -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
 #SelfieApp.portrait {
   background: url(../img/selfie-bg-mobile.jpg) center no-repeat;
+  -webkit-background-size: 100% 100%;
   background-size: 100% 100%; }
   #SelfieApp.portrait .alert-box {
     text-align: left;
@@ -1531,12 +1659,14 @@ html:not(.touch) .lameHover {
     background: #fffbcc; }
     #SelfieApp.portrait #CanvasWrapper.isEmpty {
       background: url(../img/bg-canvas.png) center no-repeat #fffbcc;
+      -webkit-background-size: auto 100%;
       background-size: auto 100%; }
   #SelfieApp.portrait #SelfieLogo {
     display: none; }
   #SelfieApp.portrait #FlexRowLeft {
     width: 100%;
     -webkit-transform: none !important;
+    -moz-transform: none !important;
     -ms-transform: none !important;
     transform: none !important; }
   #SelfieApp.portrait #SelfieBkg {
@@ -1546,11 +1676,13 @@ html:not(.touch) .lameHover {
   #SelfieApp.portrait #SelfieTela0Mascotes {
     width: 110%;
     background: url(../img/selfie-mascotes-tela0.png) center no-repeat;
+    -webkit-background-size: contain;
     background-size: contain;
     right: -5%;
     top: 10%;
     height: 80%;
     -webkit-transform: none;
+    -moz-transform: none;
     -ms-transform: none;
     transform: none; }
   #SelfieApp.portrait #SelfieTela0Content {
@@ -1561,6 +1693,7 @@ html:not(.touch) .lameHover {
   #SelfieApp.portrait #SelfieTela0Logo {
     width: 100%;
     background: url(../img/tela0-logo.png) left center no-repeat;
+    -webkit-background-size: contain;
     background-size: contain;
     height: 25%;
     margin: 1rem 0 0 1rem; }
@@ -1569,6 +1702,7 @@ html:not(.touch) .lameHover {
     bottom: 0.5rem;
     left: 50%;
     -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     height: 5em;
@@ -1579,6 +1713,7 @@ html:not(.touch) .lameHover {
     height: 4rem;
     top: 50%;
     -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%); }
   #SelfieApp.portrait #SelfieTakePic, #SelfieApp.portrait #SelfieOpenGallery {
@@ -1589,12 +1724,15 @@ html:not(.touch) .lameHover {
     text-indent: 0; }
   #SelfieApp.portrait #SelfieTakePic {
     background: url(../img/bt-tirar-nova-mobile.png) center no-repeat;
+    -webkit-background-size: 100% 100%;
     background-size: 100% 100%; }
   #SelfieApp.portrait #SelfieOpenGallery {
     background: url(../img/bt-escolher-foto-mobile.png) center no-repeat;
+    -webkit-background-size: 100% 100%;
     background-size: 100% 100%; }
   #SelfieApp.portrait #ShowPopupButton {
     background: url(../img/bt-mascotes.png) center no-repeat;
+    -webkit-background-size: contain;
     background-size: contain;
     width: 40%;
     top: -2rem;
@@ -1607,6 +1745,7 @@ html:not(.touch) .lameHover {
     margin: 0; }
   #SelfieApp.portrait #BtChangeSelfie {
     background: url(../img/bt-trocar-mobile.png) center no-repeat;
+    -webkit-background-size: contain;
     background-size: contain;
     padding: 0;
     height: 3.7rem;
@@ -1616,6 +1755,7 @@ html:not(.touch) .lameHover {
     margin: 0 0 0 40%; }
   #SelfieApp.portrait #BtSharePopup {
     background: url(../img/bt-trocar-mobile.png) center no-repeat;
+    -webkit-background-size: 100% 100%;
     background-size: 100% 100%;
     padding: 0;
     height: 3.2rem;
@@ -1631,6 +1771,7 @@ html:not(.touch) .lameHover {
     height: 4.5rem;
     line-height: 4.5rem;
     -webkit-transform: translateY(0.2rem);
+    -moz-transform: translateY(0.2rem);
     -ms-transform: translateY(0.2rem);
     transform: translateY(0.2rem);
     font-size: 0.9rem;
@@ -1643,10 +1784,12 @@ html:not(.touch) .lameHover {
       position: relative;
       top: 50%;
       -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%); }
   #SelfieApp.portrait #BtGoBack {
     position: relative;
+    -webkit-background-size: 100% 100%;
     background-size: 100% 100%;
     display: inline-block;
     position: relative;
@@ -1659,10 +1802,12 @@ html:not(.touch) .lameHover {
     font-size: 0.9rem; }
   #SelfieApp.portrait #BtSharePopup, #SelfieApp.portrait #BtGoBack {
     -webkit-transform: translateY(-0.5rem);
+    -moz-transform: translateY(-0.5rem);
     -ms-transform: translateY(-0.5rem);
     transform: translateY(-0.5rem); }
   #SelfieApp.portrait #BtProceedToSave {
     background: url(../img/bt-quero-essa-mobile.png) center no-repeat;
+    -webkit-background-size: contain;
     background-size: contain;
     width: 22%;
     padding: 0;
@@ -1676,9 +1821,11 @@ html:not(.touch) .lameHover {
   visibility: hidden;
   opacity: 0;
   -webkit-transform: translateY(10%);
+  -moz-transform: translateY(10%);
   -ms-transform: translateY(10%);
   transform: translateY(10%);
-  transition: visibility 0.1s ease, opacity 0.4s ease, -webkit-transform 0.4s ease;
+  -webkit-transition: visibility 0.1s ease, opacity 0.4s ease, -webkit-transform 0.4s ease;
+  -moz-transition: visibility 0.1s ease, opacity 0.4s ease, -moz-transform 0.4s ease;
   transition: visibility 0.1s ease, opacity 0.4s ease, transform 0.4s ease;
   position: absolute;
   height: auto;
@@ -1687,6 +1834,7 @@ html:not(.touch) .lameHover {
   bottom: 5rem;
   margin: auto;
   background-color: #fafafa;
+  -webkit-box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.2);
   box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.2);
   border-radius: 3%;
   z-index: 2; }
@@ -1694,11 +1842,14 @@ html:not(.touch) .lameHover {
     visibility: visible;
     opacity: 1;
     -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
     -ms-transform: translateY(0%);
     transform: translateY(0%); }
   #SelfiePopUpMenuContainer > .fullWrapper, #SelfiePopUpMenuContainer > #FlexRow, #SelfiePopUpMenuContainer > #FlexColumn {
     height: auto; }
     #SelfiePopUpMenuContainer > .fullWrapper:after, #SelfiePopUpMenuContainer > #FlexRow:after, #SelfiePopUpMenuContainer > #FlexColumn:after {
+      top: -webkit-calc(100% + .9em);
+      top: -moz-calc(100% + .9em);
       top: calc(100% + .9em);
       left: 3em;
       border: solid transparent;
@@ -1720,11 +1871,14 @@ html:not(.touch) .lameHover {
 
 .SelfiePopupMenuItem {
   display: inline-block;
+  width: -webkit-calc(33.333% - .666em);
+  width: -moz-calc(33.333% - .666em);
   width: calc(33.333% - .666em);
   height: 5rem;
   margin: 0.5em 1em 0 0;
   border: 2px solid #969696;
   border-radius: 10%;
+  -webkit-box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.1); }
   .SelfiePopupMenuItem.lastInRow {
     margin-right: 0; }
@@ -1735,9 +1889,11 @@ html:not(.touch) .lameHover {
   visibility: hidden;
   opacity: 0;
   -webkit-transform: translateY(10%);
+  -moz-transform: translateY(10%);
   -ms-transform: translateY(10%);
   transform: translateY(10%);
-  transition: visibility 0.1s ease, opacity 0.4s ease, -webkit-transform 0.4s ease;
+  -webkit-transition: visibility 0.1s ease, opacity 0.4s ease, -webkit-transform 0.4s ease;
+  -moz-transition: visibility 0.1s ease, opacity 0.4s ease, -moz-transform 0.4s ease;
   transition: visibility 0.1s ease, opacity 0.4s ease, transform 0.4s ease;
   height: auto;
   left: 2rem;
@@ -1746,6 +1902,7 @@ html:not(.touch) .lameHover {
   margin: 0;
   background-color: #fafafa;
   padding: 0.2rem;
+  -webkit-box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.2);
   box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.2);
   border-radius: 10%;
   z-index: 2; }
@@ -1753,6 +1910,7 @@ html:not(.touch) .lameHover {
     visibility: visible;
     opacity: 1;
     -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
     -ms-transform: translateY(0%);
     transform: translateY(0%); }
   #SelfieSharePopup:after {
@@ -1773,6 +1931,7 @@ html:not(.touch) .lameHover {
     display: block;
     height: 3.5rem;
     width: 4rem;
+    -webkit-background-size: 3rem 3rem;
     background-size: 3rem;
     margin: 0 0 0.5rem 0;
     padding: 0; }

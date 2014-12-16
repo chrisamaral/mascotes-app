@@ -66,12 +66,12 @@ module.exports = {
         save_pic: 'Salvar'
       },
       errors: {
-        camera: 'Não foi possível capturar imagem',
-        share_on: 'Não foi possível enviar sua selfie pro {app_name} :(',
-        write_to_disk: 'Não foi possível salvar a imagem.',
-        file: 'Arquivo Inválido, por favor selecione uma imagem.',
-        size: 'O arquivo selecionado é muito grande ({size}MB), por favor selecione algum com menos de {max}MB ;)',
-        format: 'Formato Inválido. Os formatos aceitos são: {types}'
+        camera: 'Ih! Rolou algum probleminha com a sua câmera.',
+        share_on: 'Ah! Sua selfie não foi postada no {app_name} :(',
+        write_to_disk: 'Puff! Não deu pra salvar sua foto. Pode tentar de novo?',
+        file: 'Esse não vale. Pode usar um arquivo de outro formato?',
+        size: 'Esse arquivo é grande demais({size}MB), mande um com menos de {max}MB ;)',
+        format: 'Ih, falhou. Aqui só dá pra mandar: {types}'
       },
       share_text: {
         twitter: 'Selfie com os Mascotes Rio2016'
